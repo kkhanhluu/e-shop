@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    restart: 'no'
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+
+  db:
+    image: postgres:15.1
+    restart: always
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./init-multiple-database.sh:/docker-entrypoint-initdb.d/init-multiple-database.sh.sh
+    environment:
+      - POSTGRES_MULTIPLE_DATABASES="product_service"
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
