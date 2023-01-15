@@ -1,8 +1,8 @@
 package eshop.productservice.util;
 
 import com.github.javafaker.Faker;
-import eshop.productservice.model.Product;
-import eshop.productservice.repository.ProductRepository;
+import eshop.productservice.product.model.Product;
+import eshop.productservice.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

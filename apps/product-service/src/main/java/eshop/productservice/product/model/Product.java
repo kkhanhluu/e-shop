@@ -1,4 +1,4 @@
-package eshop.productservice.model;
+package eshop.productservice.product.model;
 
 
 import jakarta.persistence.Entity;
