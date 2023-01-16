@@ -33,6 +33,10 @@ jobs:
           uses: actions/checkout@v3
           with:
             fetch-depth: 0
+        - name: Derive appropriate SHAs for base and head for `nx affected` commands
+          uses: nrwl/nx-set-shas@v3
+        - run: yarn install --frozen-lockfile
+
         - name: Set up Docker Buildx
           uses: docker/setup-buildx-action@v2
         - name: Set up QEMU
@@ -42,6 +46,4 @@ jobs:
           with:
             username: ${{ secrets.DOCKERHUB_USERNAME }}
             password: ${{ secrets.DOCKERHUB_TOKEN }}
-        - name: Derive appropriate SHAs for base and head for `nx affected` commands
-          uses: nrwl/nx-set-shas@v3
         - run: npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=pushToDockerHub --parallel=2
