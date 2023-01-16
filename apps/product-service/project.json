@@ -11,7 +11,7 @@
       ],
       "options": {
         "commands": [
-          "docker push kkhanhluu/e-shop:product-service:latest"
+          "docker image push kkhanhluu/e-shop-product-service"
         ]
       }
     },
@@ -64,7 +64,7 @@
       "executor": "@nxrocks/nx-spring-boot:build-image",
       "options": {
         "root": "apps/product-service",
-        "args": ["-Dspring-boot.build-image.imageName=kkhanhluu/e-shop:product-service"]
+        "args": ["-Dspring-boot.build-image.imageName=kkhanhluu/e-shop-product-service"]
       }
     },
     "build-info": {
