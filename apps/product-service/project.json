@@ -4,14 +4,14 @@
   "sourceRoot": "apps/product-service/src",
   "projectType": "application",
   "targets": {
-    "pushToDockerHub": {
+    "push-to-docker-hub": {
       "executor": "nx:run-commands",
+      "dependsOn": [
+        "build-image"
+      ],
       "options": {
         "commands": [
           "docker push e-shop/product-service:latest"
-        ],
-        "dependsOn": [
-          "^build-image"
         ]
       }
     },
@@ -63,7 +63,8 @@
     "build-image": {
       "executor": "@nxrocks/nx-spring-boot:build-image",
       "options": {
-        "root": "apps/product-service"
+        "root": "apps/product-service",
+        "args": ["-Dspring-boot.build-image.imageName=e-shop/product-service"]
       }
     },
     "build-info": {
