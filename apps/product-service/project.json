@@ -11,7 +11,7 @@
       ],
       "options": {
         "commands": [
-          "docker push e-shop/product-service:latest"
+          "docker push kkhanhluu/e-shop:product-service:latest"
         ]
       }
     },

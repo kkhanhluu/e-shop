@@ -78,7 +78,6 @@ class ProductControllerTest {
     products.add(getRandomProduct());
     products.add(getRandomProduct());
     products.add(getRandomProduct());
-    products.add(getRandomProduct());
 
     PageRequest pageable = PageRequest.of(0, 10, Sort.by("id"));
     given(productService.getAllProducts(pageable)).willReturn(new PageImpl<Product>(products, pageable, products.size()));
