@@ -5,7 +5,7 @@
   "projectType": "application",
   "targets": {
     "pushToDockerHub": {
-      "builder": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "docker push e-shop/product-service:latest"
