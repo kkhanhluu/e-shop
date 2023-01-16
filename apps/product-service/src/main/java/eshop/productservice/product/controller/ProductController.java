@@ -4,13 +4,16 @@ package eshop.productservice.product.controller;
 import eshop.productservice.product.model.Product;
 import eshop.productservice.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.UUID;
 
 @RestController
@@ -21,17 +24,20 @@ public class ProductController {
 
   @GetMapping("/{productId}")
   public ResponseEntity<Product> getProductById(@PathVariable("productId") String productId) {
-//    Product product1 = productService.findProductById(UUID.fromString(productId)).get();
-    System.out.println("product1 = " + productService == null);
-
     return productService.findProductById(UUID.fromString(productId))
-      .map(product -> {
-        System.out.println("product 2 = " + product);
-        return new ResponseEntity<>(product, HttpStatus.OK);
-      })
-      .orElseGet(() -> {
-        System.out.println("Nothing");
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-      });
+      .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
+      .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND)
+      );
+  }
+
+  @GetMapping
+  public ResponseEntity<Collection<Product>> getAllProducts(@RequestParam(name = "page", defaultValue = "0") int page, @RequestParam(name = "size", defaultValue = "10") int size) {
+    Pageable pageable = PageRequest.of(page, size, Sort.by("id"));
+    Page<Product> pageResult = productService.getAllProducts(pageable);
+    if (pageResult.hasContent()) {
+      return new ResponseEntity<>(pageResult.getContent(), HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(new ArrayList<Product>(), HttpStatus.OK);
+    }
   }
 }
