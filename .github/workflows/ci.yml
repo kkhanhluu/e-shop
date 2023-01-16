@@ -12,6 +12,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
       - uses: nrwl/nx-set-shas@v3
       - run: yarn install --frozen-lockfile
 
