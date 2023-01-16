@@ -74,7 +74,6 @@ class ProductControllerTest {
 
   @Test
   void getAllProducts() throws Exception {
-    System.out.println("HELLO");
     List<Product> products = new ArrayList<>();
     products.add(getRandomProduct());
     products.add(getRandomProduct());
