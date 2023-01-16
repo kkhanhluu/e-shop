@@ -21,8 +21,17 @@ public class ProductController {
 
   @GetMapping("/{productId}")
   public ResponseEntity<Product> getProductById(@PathVariable("productId") String productId) {
+//    Product product1 = productService.findProductById(UUID.fromString(productId)).get();
+    System.out.println("product1 = " + productService == null);
+
     return productService.findProductById(UUID.fromString(productId))
-      .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
-      .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+      .map(product -> {
+        System.out.println("product 2 = " + product);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+      })
+      .orElseGet(() -> {
+        System.out.println("Nothing");
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      });
   }
 }

@@ -2,28 +2,33 @@ package eshop.productservice.product.controller;
 
 import com.github.javafaker.Faker;
 import eshop.productservice.product.model.Product;
-import eshop.productservice.product.service.ProductServiceImpl;
+import eshop.productservice.product.service.ProductService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.assertj.core.api.BDDAssertions.then;
+import static org.mockito.BDDMockito.given;
+
 @WebMvcTest(ProductController.class)
+@AutoConfigureMockMvc
 class ProductControllerTest {
   private final Faker faker = new Faker();
   @Autowired
   MockMvc mockMvc;
   @MockBean
-  ProductServiceImpl productService;
+  ProductService productService;
 
   private Product getRandomProduct() {
     return Product.builder()
@@ -37,16 +42,25 @@ class ProductControllerTest {
   @Test
   void getProductByIdSuccessfully() throws Exception {
     Product product = getRandomProduct();
-    BDDMockito.given(productService.findProductById((UUID.randomUUID()))).willReturn(Optional.of(product));
+    given(productService.findProductById(product.getId())).willReturn(Optional.of(product));
 
-    mockMvc.perform(MockMvcRequestBuilders.get("/api/product/" + UUID.randomUUID().toString())
-      .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
+    MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get("/api/product/{productId}", product.getId()
+        .toString()))
+      .andReturn()
+      .getResponse();
+
+    then(response.getStatus()).isEqualTo(HttpStatus.OK.value());
   }
+
   @Test
   void getProductByIdFailed() throws Exception {
-    BDDMockito.given(productService.findProductById((UUID.randomUUID()))).willReturn(Optional.empty());
+    UUID productId = UUID.randomUUID();
+    given(productService.findProductById(productId)).willReturn(Optional.empty());
 
-    mockMvc.perform(MockMvcRequestBuilders.get("/api/product/" + UUID.randomUUID().toString())
-      .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isNotFound());
+    MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get("/api/product/{productId}", productId.toString()))
+      .andReturn()
+      .getResponse();
+
+    then(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
   }
 }
