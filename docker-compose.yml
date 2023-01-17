@@ -8,7 +8,7 @@ services:
       - '5672:5672'
       - '15672:15672'
 
-  db:
+  postgres:
     image: postgres:15.1
     restart: always
     ports:
@@ -19,3 +19,12 @@ services:
       - POSTGRES_MULTIPLE_DATABASES="product_service"
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
+
+  mongo:
+    image: mongo:6.0.3
+    restart: always
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: mongo
