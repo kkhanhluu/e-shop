@@ -32,7 +32,7 @@ public class SecurityConfig {
         http = http.exceptionHandling().authenticationEntryPoint(((request, response, authException) -> {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
         })).and();
-        
+
         // Set permissions on endpoints
         http.authorizeHttpRequests()
                 .requestMatchers("/api/auth/**", "/swagger-ui/**", "/v3/api-docs/**")
