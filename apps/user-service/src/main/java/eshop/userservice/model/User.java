@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Data
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "users")

@@ -24,7 +24,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.BDDAssertions.then;
-import static org.assertj.core.api.InstanceOfAssertFactories.ARRAY;
 import static org.mockito.BDDMockito.given;
 
 @WebMvcTest(ProductController.class)
