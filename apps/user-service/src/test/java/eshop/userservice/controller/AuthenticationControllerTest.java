@@ -8,6 +8,7 @@ import eshop.userservice.model.RegisterRequest;
 import eshop.userservice.model.User;
 import eshop.userservice.repository.UserRepository;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,6 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.testcontainers.containers.MongoDBContainer;
@@ -38,10 +41,21 @@ class AuthenticationControllerTest {
     private UserRepository userRepository;
     private final Faker faker = new Faker();
 
+    @DynamicPropertySource
+    static void setProperties(DynamicPropertyRegistry dynamicPropertyRegistry) {
+        dynamicPropertyRegistry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
+    }
+
+    @BeforeAll
+    static void beforeAll() {
+        mongoDBContainer.start();
+    }
+
     @AfterEach
     void afterEach() {
         userRepository.deleteAll();
     }
+
     @Test
     void shouldRegisterSuccessfully() throws Exception {
         // Arrange
@@ -113,7 +127,7 @@ class AuthenticationControllerTest {
         userRepository.save(user);
         LoginRequest loginRequest = LoginRequest.builder()
                 .email(user.getEmail())
-                .password(user.getPassword() + " Invalid password")
+                .password(user.getPassword() + "Invalid password")
                 .build();
 
         // Act
@@ -123,7 +137,7 @@ class AuthenticationControllerTest {
                         .content(objectMapper.writeValueAsString(loginRequest))).andReturn().getResponse();
 
         // Assert
-        then(httpResponse.getStatus()).isEqualTo(HttpStatus.FORBIDDEN.value());
+        then(httpResponse.getStatus()).isEqualTo(HttpStatus.UNAUTHORIZED.value());
         then(httpResponse.getContentAsString()).isNullOrEmpty();
     }
 }
