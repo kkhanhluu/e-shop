@@ -1,0 +1,49 @@
+name: Release
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  release:
+    if: github.event.action == 'closed' && github.event.pull_request.merged == true
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v3
+      - run: yarn install --frozen-lockfile
+
+      - name: Raise version of affected libraries
+        run: |
+          LIBS=$(yarn nx affected:libs --base=$NX_BASE --head=$NX_HEAD --plain)
+          for LIBRARY in $LIBS
+          do
+            cd ./libs/$LIBRARY
+            npx @dwmkerr/standard-version --packageFiles pom.xml --bumpFiles pom.xml
+            echo "Bumping $LIBRARY"
+            cd ../..
+          done
+
+      - name: Raise version of affected apps
+        run: |
+          APPS=$(yarn nx affected:apps --base=$NX_BASE --head=$NX_HEAD --plain)
+          for APP in $APPS
+          do
+            cd ./apps/$APP
+            npx @dwmkerr/standard-version --packageFiles pom.xml --bumpFiles pom.xml
+            echo "Bumping $APP"
+            cd ../..
+          done
+
+      - name: Git config
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+      - name: Release tags
+        uses: ad-m/github-push-action@master
+        with:
+          force: true
+          tags: true

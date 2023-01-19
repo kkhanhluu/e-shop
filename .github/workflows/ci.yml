@@ -1,9 +1,7 @@
 name: CI
 on:
-  push:
-    branches:
-      - main
   pull_request:
+    types: [opened]
 
 jobs:
   main:
@@ -12,43 +10,18 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v3
+
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
           cache: 'maven'
-      - uses: nrwl/nx-set-shas@v3
+
       - run: yarn install --frozen-lockfile
 
       - run: npx nx workspace-lint
-      - run: npx nx affected --target=lint --parallel=3
-      - run: npx nx affected --target=test --parallel=3 --ci
-      - run: npx nx affected --target=build --parallel=3
 
-  docker-build:
-      needs: main
-      runs-on: ubuntu-18.04
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v3
-          with:
-            fetch-depth: 0
-        - name: Derive appropriate SHAs for base and head for `nx affected` commands
-          uses: nrwl/nx-set-shas@v3
-        - uses: actions/setup-java@v3
-          with:
-            distribution: 'temurin'
-            java-version: '17'
-            cache: 'maven'
-        - run: yarn install --frozen-lockfile
-
-        - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v2
-        - name: Set up QEMU
-          uses: docker/setup-qemu-action@v2
-        - name: Login to GitHub Container Registry
-          uses: docker/login-action@v2
-          with:
-            username: ${{ secrets.DOCKERHUB_USERNAME }}
-            password: ${{ secrets.DOCKERHUB_TOKEN }}
-        - run: npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=push-to-docker-hub --parallel=2
+      - run: npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=verify --parallel=3
