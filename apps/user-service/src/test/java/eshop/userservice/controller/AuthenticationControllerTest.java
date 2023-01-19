@@ -139,5 +139,6 @@ class AuthenticationControllerTest {
         // Assert
         then(httpResponse.getStatus()).isEqualTo(HttpStatus.UNAUTHORIZED.value());
         then(httpResponse.getContentAsString()).isNullOrEmpty();
+        System.out.println("Hello world");
     }
 }
