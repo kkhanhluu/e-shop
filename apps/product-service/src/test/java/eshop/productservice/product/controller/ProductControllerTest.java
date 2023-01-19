@@ -87,5 +87,6 @@ class ProductControllerTest {
 
     then(response.getStatus()).isEqualTo(HttpStatus.OK.value());
     then(objectMapper.readValue(response.getContentAsString(), Product[].class)).hasSize(products.size());
+    System.out.println("Hello world");
   }
 }
