@@ -47,11 +47,6 @@ jobs:
             cd ../..
           done
 
-      - name: add changes
-        run: |
-          git add --all
-          git commit -m "update versions"
-
       - name: Release tags
         uses: ad-m/github-push-action@master
         with:
