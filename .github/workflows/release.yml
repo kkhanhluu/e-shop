@@ -12,13 +12,15 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v3
+
       - run: yarn install --frozen-lockfile
 
       - name: Raise version of affected libraries
         run: |
-          LIBS=$(yarn nx affected:libs --base=$NX_BASE --head=$NX_HEAD --plain)
+          LIBS=$(npx nx affected:libs --base=$NX_BASE --head=$NX_HEAD --plain)
           for LIBRARY in $LIBS
           do
             cd ./libs/$LIBRARY
@@ -29,7 +31,7 @@ jobs:
 
       - name: Raise version of affected apps
         run: |
-          APPS=$(yarn nx affected:apps --base=$NX_BASE --head=$NX_HEAD --plain)
+          APPS=$(npx nx affected:apps --base=$NX_BASE --head=$NX_HEAD --plain)
           for APP in $APPS
           do
             cd ./apps/$APP
