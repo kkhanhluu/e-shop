@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.github.kkhanhluu.eshop</groupId>
 	<artifactId>eshop-bom</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<name>eshop-bom</name>
-	<description>maven BOM for e-shop project</description>
+	<description>Maven BOM for e-shop project</description>
 	<packaging>pom</packaging>
 
 	<profiles>
