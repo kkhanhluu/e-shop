@@ -45,16 +45,16 @@ jobs:
 
       - name: Publish docker images to docker hub
         run: |
-          for APP in $(npx nx affected:apps --base=$last_version --head=$current_version --plain | awk 'NR > 2 && $1 != "Done" { print $1 }')
+          for APP in $(yarn nx affected:apps --base=$last_version --head=$current_version --plain | awk 'NR > 2 && $1 != "Done" { print $1 }')
           do
             cd ./dist/libs/$APP
-            npx nx run $APP:push-to-docker-hub
+            yarn nx run $APP:push-to-docker-hub
             cd ../..
           done
 
       - name: Publish libraries
         run: |
-          for LIBRARY in $(npx nx affected:libs --base=$last_version --head=$current_version --plain | awk 'NR > 2 && $1 != "Done" { print $1 }')
+          for LIBRARY in $(yarn nx affected:libs --base=$last_version --head=$current_version --plain | awk 'NR > 2 && $1 != "Done" { print $1 }')
           do
             cd ./dist/libs/$LIBRARY
             mvn -B -Pgithub deploy
