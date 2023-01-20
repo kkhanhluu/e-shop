@@ -1,0 +1,78 @@
+name: Publish
+on:
+  push:
+    tags:
+      - '@**'
+env:
+  dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
+jobs:
+  publish:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set env
+        run: echo "release_version=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+      - name: Get image name and version
+        run: |
+          STR=${release_version:1}
+          POSTFIX="-app"
+          CONTAINER_NAME_STR=$(echo $STR | cut -d '/' -f 1)
+          CONTAINER_NAME=${CONTAINER_NAME_STR%$POSTFIX}
+          TAG=$(echo $STR | cut -d '/' -f 2)
+          VERSION=${TAG:1}
+          echo "container_name=$(echo $CONTAINER_NAME)" >> $GITHUB_ENV
+          echo "version=$(echo $VERSION)" >> $GITHUB_ENV 
+
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v3
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
+      - run: yarn install --frozen-lockfile
+
+      - name: Set up Docker Buildx
+        if: ${{ contains(github.ref_name, 'app') }}
+        uses: docker/setup-buildx-action@v2
+
+      - name: Set up QEMU
+        if: ${{ contains(github.ref_name, 'app') }}
+        uses: docker/setup-qemu-action@v2
+
+      - name: Login to Docker Container Registry
+        if: ${{ contains(github.ref_name, 'app') }}
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Publish docker images to docker hub
+        if: ${{ contains(github.ref_name, 'app') }}
+        run: |
+          for APP in $(npx nx affected:apps --base=$NX_BASE --head=$NX_HEAD --plain)
+          do
+            cd ./apps/$APP
+            npx nx run $APP:build-image
+            docker push docker.io/$dockerhub_username/$container_name:$version
+            cd ../..
+          done
+
+      - name: Publish libraries
+        if: ${{ contains(github.ref_name, 'lib') }}
+        run: |
+          for LIBRARY in $(npx nx affected:libs --base=$NX_BASE --head=$NX_HEAD --plain)
+          do
+            cd ./libs/$LIBRARY
+            mvn -B -Pgithub deploy
+            cd ../..
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}

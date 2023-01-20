@@ -7,7 +7,7 @@
 		<version>0.0.1</version>
 	</parent>
 	<artifactId>user-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>user-service</name>
 	<description>User service of e-shop project</description>
 	<properties>
@@ -62,4 +62,24 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+					<image>
+						<name>docker.io/kkhanhluu/user-service:${version}</name>
+					</image>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

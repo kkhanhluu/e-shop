@@ -4,17 +4,6 @@
   "sourceRoot": "apps/user-service/src",
   "projectType": "application",
   "targets": {
-    "push-to-docker-hub": {
-      "executor": "nx:run-commands",
-      "dependsOn": [
-        "build-image"
-      ],
-      "options": {
-        "commands": [
-          "docker image push kkhanhluu/e-shop-user-service"
-        ]
-      }
-    },
     "build": {
       "executor": "@nxrocks/nx-spring-boot:build",
       "options": {
