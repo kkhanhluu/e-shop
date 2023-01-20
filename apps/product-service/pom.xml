@@ -5,13 +5,20 @@
     <parent>
         <groupId>com.github.kkhanhluu.eshop</groupId>
         <artifactId>eshop-bom</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
     </parent>
     <groupId>com.github.kkhanhluu.eshop</groupId>
     <artifactId>product-service</artifactId>
     <version>0.0.3</version>
     <name>ProductService</name>
     <description>Product service of e-shop project</description>
+
+    <repositories>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/kkhanhluu/e-shop</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>

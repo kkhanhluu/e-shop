@@ -21,25 +21,21 @@ jobs:
         run: |
           STR=${release_version:1}
           POSTFIX="-app"
+          POSTFIX_LIB="-lib"
           CONTAINER_NAME_STR=$(echo $STR | cut -d '/' -f 1)
           CONTAINER_NAME=${CONTAINER_NAME_STR%$POSTFIX}
+          CONTAINER_NAME_LIB=${CONTAINER_NAME_STR%$POSTFIX_LIB}
           TAG=$(echo $STR | cut -d '/' -f 2)
           VERSION=${TAG:1}
           echo "container_name=$(echo $CONTAINER_NAME)" >> $GITHUB_ENV
+          echo "container_name_lib=$(echo $CONTAINER_NAME_LIB)" >> $GITHUB_ENV
           echo "version=$(echo $VERSION)" >> $GITHUB_ENV 
-
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v3
 
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
           cache: 'maven'
-          server-username: 'kkhanhluu'
-          server-password: ${{ secrets.GIT_TOKEN }}
-
-      - run: yarn install --frozen-lockfile
 
       - name: Set up Docker Buildx
         if: ${{ contains(github.ref_name, 'app') }}
@@ -59,22 +55,18 @@ jobs:
       - name: Publish docker images to docker hub
         if: ${{ contains(github.ref_name, 'app') }}
         run: |
-          for APP in $(npx nx affected:apps --base=$NX_BASE --head=$NX_HEAD --plain)
-          do
-            cd ./apps/$APP
-            npx nx run $APP:build-image
-            docker push docker.io/$dockerhub_username/$container_name:$version
-            cd ../..
-          done
+          cd ./apps/$container_name
+          mvn -s $GITHUB_WORKSPACE/.github/workflows/maven-settings.xml -B spring-boot:build-image
+          docker push docker.io/$dockerhub_username/$container_name:$version
+        env:
+          GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
 
       - name: Publish libraries
         if: ${{ contains(github.ref_name, 'lib') }}
         run: |
-          for LIBRARY in $(npx nx affected:libs --base=$NX_BASE --head=$NX_HEAD --plain)
-          do
-            cd ./libs/$LIBRARY
-            mvn -B -Pgithub deploy
-            cd ../..
-          done
+          cd ./libs/$container_name_lib
+          mvn -B -Pgithub deploy
+          cd ../..
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
