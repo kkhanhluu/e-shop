@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/kkhanhluu/e-shop/compare/@user-service-app/v0.0.4...@user-service-app/v0.0.6) (2023-01-21)
+
+
+### Bug Fixes
+
+* update bom ([0f3490b](https://github.com/kkhanhluu/e-shop/commit/0f3490b69a632c1810b51cea193ab1f9d2b9bda8))
+
 ### 0.0.4 (2023-01-21)
 
 
