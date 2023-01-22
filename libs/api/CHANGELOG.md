@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/kkhanhluu/e-shop/compare/@api-lib/v0.0.2...@api-lib/v0.0.3) (2023-01-22)
+
+
+### Bug Fixes
+
+* add api utils as dependency ([2b1bffb](https://github.com/kkhanhluu/e-shop/commit/2b1bffb788dde3aa92c65743018ee5e35b30e9a0))
+* fix global controller exception handler ([1aecb92](https://github.com/kkhanhluu/e-shop/commit/1aecb92c0404299e977f3cf0a3268d23275037f8))
+
 ### 0.0.2 (2023-01-22)
 
 
