@@ -1,6 +1,6 @@
 package eshop.productservice.product.controller;
 
-
+import eshop.api.exceptions.NotFoundException;
 import eshop.productservice.product.model.Product;
 import eshop.productservice.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +22,10 @@ import java.util.UUID;
 public class ProductController {
   private final ProductService productService;
 
-  @GetMapping("/{productId}")
-  public ResponseEntity<Product> getProductById(@PathVariable("productId") String productId) {
+  @GetMapping(value ="/{productId}", produces = "application/json")
+  public  Product getProductById(@PathVariable("productId") String productId) {
     return productService.findProductById(UUID.fromString(productId))
-      .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
-      .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND)
-      );
+            .orElseThrow(() -> new NotFoundException("No found product for productId: " + productId));
   }
 
   @GetMapping
