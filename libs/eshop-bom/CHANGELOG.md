@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/kkhanhluu/e-shop/compare/@eshop-bom-lib/v0.0.7...@eshop-bom-lib/v0.0.8) (2023-01-22)
+
+
+### Bug Fixes
+
+* fix global controller exception handler ([1aecb92](https://github.com/kkhanhluu/e-shop/commit/1aecb92c0404299e977f3cf0a3268d23275037f8))
+
 ### [0.0.7](https://github.com/kkhanhluu/e-shop/compare/@eshop-bom-lib/v0.0.6...@eshop-bom-lib/v0.0.7) (2023-01-22)
 
 
