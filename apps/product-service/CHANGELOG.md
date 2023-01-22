@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/kkhanhluu/e-shop/compare/@product-service-app/v0.0.5...@product-service-app/v0.0.6) (2023-01-22)
+
+
+### Features
+
+* add api util library ([64305a2](https://github.com/kkhanhluu/e-shop/commit/64305a2bc1362c44d1c1b6f357f893fd28785d73))
+
+
+### Bug Fixes
+
+* add api utils as dependency ([2b1bffb](https://github.com/kkhanhluu/e-shop/commit/2b1bffb788dde3aa92c65743018ee5e35b30e9a0))
+* fix global controller exception handler ([1aecb92](https://github.com/kkhanhluu/e-shop/commit/1aecb92c0404299e977f3cf0a3268d23275037f8))
+* update api util version and add actuator ([6e7456e](https://github.com/kkhanhluu/e-shop/commit/6e7456e2420d88f03fef55dfb86f9a74caa894fa))
+* update bom version ([8b8fa78](https://github.com/kkhanhluu/e-shop/commit/8b8fa7872904f5160e1de95fb0c3731aa94e7a0a))
+
 ### [0.0.5](https://github.com/kkhanhluu/e-shop/compare/@product-service-app/v0.0.4...@product-service-app/v0.0.5) (2023-01-21)
 
 

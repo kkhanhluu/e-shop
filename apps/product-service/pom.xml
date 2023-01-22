@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.github.kkhanhluu.eshop</groupId>
     <artifactId>product-service</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
     <name>ProductService</name>
     <description>Product service of e-shop project</description>
 
