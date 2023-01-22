@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/kkhanhluu/e-shop/compare/@eshop-bom-lib/v0.0.8...@eshop-bom-lib/v0.0.9) (2023-01-22)
+
+
+### Bug Fixes
+
+* update api util version and add actuator ([6e7456e](https://github.com/kkhanhluu/e-shop/commit/6e7456e2420d88f03fef55dfb86f9a74caa894fa))
+
 ### [0.0.8](https://github.com/kkhanhluu/e-shop/compare/@eshop-bom-lib/v0.0.7...@eshop-bom-lib/v0.0.8) (2023-01-22)
 
 
