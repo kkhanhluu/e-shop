@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/kkhanhluu/e-shop/compare/@product-service-app/v0.0.6...@product-service-app/v0.0.7) (2023-01-23)
+
+
+### Bug Fixes
+
+* fix product service tests ([0399a29](https://github.com/kkhanhluu/e-shop/commit/0399a299413613f75672dcf02ed0a747de974616))
+
 ### [0.0.6](https://github.com/kkhanhluu/e-shop/compare/@product-service-app/v0.0.5...@product-service-app/v0.0.6) (2023-01-22)
 
 
