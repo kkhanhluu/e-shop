@@ -2,6 +2,7 @@ package eshop.productservice.product.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
+import eshop.api.http.GlobalControllerExceptionHandler;
 import eshop.productservice.product.model.Product;
 import eshop.productservice.product.service.ProductService;
 import org.junit.jupiter.api.Test;
@@ -9,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -26,8 +29,10 @@ import java.util.UUID;
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.mockito.BDDMockito.given;
 
-@WebMvcTest(ProductController.class)
+@WebMvcTest
 @AutoConfigureMockMvc
+@ContextConfiguration(classes = ProductController.class)
+@Import(GlobalControllerExceptionHandler.class)
 class ProductControllerTest {
   private final Faker faker = new Faker();
   @Autowired
