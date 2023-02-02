@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
@@ -18,7 +20,7 @@ public class UserController {
 
     @GetMapping(value = "/{userId}", produces = "application/json")
     public ResponseEntity<UserDTO> getUserById(@PathVariable("userId")String userId) {
-        return userService.getUserById(userId)
+        return userService.getUserById(UUID.fromString(userId))
                 .map(userDTO -> ResponseEntity.ok(userDTO))
                 .orElseThrow(() -> new NotFoundException("No found user for userId: " + userId));
     }

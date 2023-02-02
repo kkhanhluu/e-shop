@@ -1,12 +1,16 @@
 spring:
-  data:
-    mongodb:
-      database: user-service
-      username: mongo
-      password: mongo
-      port: 27017
-      host: localhost
-      authentication-database: admin
+  datasource:
+    url: jdbc:postgresql://localhost:5432/user_service
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
+  flyway:
+    user: postgres
+    password: postgres
+    default-schema: public
 
 logging:
   level:

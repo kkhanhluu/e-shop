@@ -1,30 +1,32 @@
 package eshop.userservice.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.UUID;
 
 @Data
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "users")
+@Entity(name = "users")
 public class User implements UserDetails {
   @Id
-  private ObjectId id;
+  @GeneratedValue
+  private UUID id;
 
   @CreatedDate
   private LocalDateTime createdAt;
@@ -34,7 +36,7 @@ public class User implements UserDetails {
 
   private String username;
 
-  @Indexed(unique = true)
+  @Column(unique = true)
   @Email
   private String email;
 
