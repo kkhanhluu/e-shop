@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/kkhanhluu/e-shop/compare/@product-service-app/v0.0.8...@product-service-app/v0.0.9) (2023-02-02)
+
+
+### Bug Fixes
+
+* change to property yaml files ([31db64c](https://github.com/kkhanhluu/e-shop/commit/31db64c34c9501220ecd87df786d2e2eba25b651))
+
 ### [0.0.8](https://github.com/kkhanhluu/e-shop/compare/@product-service-app/v0.0.7...@product-service-app/v0.0.8) (2023-02-02)
 
 
