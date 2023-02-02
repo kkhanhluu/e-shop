@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/kkhanhluu/e-shop/compare/@product-service-app/v0.0.7...@product-service-app/v0.0.8) (2023-02-02)
+
+
+### Bug Fixes
+
+* exclude snakeyml in faker dependecy ([f385b16](https://github.com/kkhanhluu/e-shop/commit/f385b16c8c2f01cc0e0304d1945588e1da9aa48c))
+
 ### [0.0.7](https://github.com/kkhanhluu/e-shop/compare/@product-service-app/v0.0.6...@product-service-app/v0.0.7) (2023-01-23)
 
 
