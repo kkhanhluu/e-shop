@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/kkhanhluu/e-shop/compare/@user-service-app/v0.0.7...@user-service-app/v0.0.8) (2023-02-02)
+
+
+### Bug Fixes
+
+* exclude snakeyml in faker dependecy ([f385b16](https://github.com/kkhanhluu/e-shop/commit/f385b16c8c2f01cc0e0304d1945588e1da9aa48c))
+* fix product service tests ([0399a29](https://github.com/kkhanhluu/e-shop/commit/0399a299413613f75672dcf02ed0a747de974616))
+
 ### [0.0.7](https://github.com/kkhanhluu/e-shop/compare/@user-service-app/v0.0.6...@user-service-app/v0.0.7) (2023-01-22)
 
 
