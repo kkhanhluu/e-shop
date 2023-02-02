@@ -1,3 +1,7 @@
-spring.sql.init.platform=postgres
-spring.jpa.generate-ddl=true
-spring.jpa.show-sql=true
+spring:
+  sql:
+    init:
+      platform: postgres
+  jpa:
+    generate-ddl: true
+    show-sql: true
