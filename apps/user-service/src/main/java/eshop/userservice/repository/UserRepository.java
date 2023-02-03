@@ -1,6 +1,6 @@
 package eshop.userservice.repository;
 
-import eshop.userservice.model.User;
+import eshop.userservice.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

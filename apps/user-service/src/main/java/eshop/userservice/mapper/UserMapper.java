@@ -1,7 +1,7 @@
 package eshop.userservice.mapper;
 
 import eshop.userservice.dto.UserDTO;
-import eshop.userservice.model.User;
+import eshop.userservice.entities.User;
 import org.mapstruct.Mapper;
 
 @Mapper
