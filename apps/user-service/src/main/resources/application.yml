@@ -16,3 +16,4 @@ logging:
   level:
     root: info
     eshop.api: debug
+    org.springframework.security: debug

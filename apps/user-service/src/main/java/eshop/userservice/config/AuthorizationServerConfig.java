@@ -17,6 +17,7 @@ import org.springframework.security.oauth2.server.authorization.config.annotatio
 import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -29,7 +30,16 @@ public class AuthorizationServerConfig {
     @Bean
     @Order(1)
     public SecurityFilterChain authorizationServerFilterChain(HttpSecurity httpSecurity) throws Exception {
-        OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(httpSecurity);
+        httpSecurity.csrf().disable();
+
+        OAuth2AuthorizationServerConfigurer authorizationServerConfigurer = new OAuth2AuthorizationServerConfigurer();
+        RequestMatcher endpointsMatcher = authorizationServerConfigurer.getEndpointsMatcher();
+        httpSecurity.securityMatcher(endpointsMatcher).authorizeHttpRequests((authorize) -> {
+            authorize.requestMatchers("/api/user/register/**").permitAll().anyRequest().authenticated();
+        }).csrf((csrf) -> {
+            csrf.ignoringRequestMatchers(new RequestMatcher[]{endpointsMatcher});
+        }).apply(authorizationServerConfigurer);
+
         httpSecurity.getConfigurer(OAuth2AuthorizationServerConfigurer.class).oidc(Customizer.withDefaults());
         httpSecurity.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
         httpSecurity.exceptionHandling(e -> e.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login")));

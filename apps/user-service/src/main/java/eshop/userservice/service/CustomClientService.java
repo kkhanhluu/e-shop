@@ -3,6 +3,7 @@ package eshop.userservice.service;
 import eshop.userservice.entities.Client;
 import eshop.userservice.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CustomClientService implements RegisteredClientRepository {
     private final ClientRepository clientRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void save(RegisteredClient registeredClient) {
@@ -58,7 +60,6 @@ public class CustomClientService implements RegisteredClientRepository {
         client.getScopes().stream().forEach(scope -> {
             builder.scope(scope);
         });
-        builder.build().getAuthorizationGrantTypes().stream().forEach(i -> System.out.println("i = " + i.getValue()));
         return builder.build();
     }
 
