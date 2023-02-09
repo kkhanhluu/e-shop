@@ -1,0 +1,13 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      username: mongo
+      password: mongo
+      database: review-service
+      port: 27017
+      authentication-database: admin
+
+logging:
+  level:
+    org.springframework.data.mongodb.core: DEBUG
