@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/user_service
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
+  flyway:
+    user: postgres
+    password: postgres
+    default-schema: public
+
+logging:
+  level:
+    root: info
+    eshop.api: debug
+    org.springframework.security: debug
