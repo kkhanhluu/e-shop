@@ -16,7 +16,7 @@ services:
     volumes:
       - ./init-multiple-database.sh:/docker-entrypoint-initdb.d/init-multiple-database.sh.sh
     environment:
-      - POSTGRES_MULTIPLE_DATABASES=product_service,user_service
+      - POSTGRES_MULTIPLE_DATABASES=product_service,user_service,order_service,inventory_service
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
 
