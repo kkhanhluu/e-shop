@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/kkhanhluu/e-shop/compare/@user-service-app/v0.0.10...@user-service-app/v0.0.11) (2023-02-09)
+
+
+### Bug Fixes
+
+* fix user service test ([a6a0558](https://github.com/kkhanhluu/e-shop/commit/a6a0558b95864cc06d438cb46388b8743602807b))
+
 ### [0.0.10](https://github.com/kkhanhluu/e-shop/compare/@user-service-app/v0.0.9...@user-service-app/v0.0.10) (2023-02-09)
 
 
