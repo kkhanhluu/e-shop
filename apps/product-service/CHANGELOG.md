@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/kkhanhluu/e-shop/compare/@product-service-app/v0.0.9...@product-service-app/v0.0.10) (2023-02-09)
+
+
+### Features
+
+* add create and delete product api ([26060c8](https://github.com/kkhanhluu/e-shop/commit/26060c8d45aac8ea4649df7aba52062c6c16fa6a))
+* add register api ([c955c0e](https://github.com/kkhanhluu/e-shop/commit/c955c0ef4766149762d1d885666a677921d3c88d))
+* add user role ([09ebd0e](https://github.com/kkhanhluu/e-shop/commit/09ebd0ebf78517fb76293ffd996bb7714d709777))
+* configure authorization server ([fae7cd8](https://github.com/kkhanhluu/e-shop/commit/fae7cd82ded259ef473ad578930520efaf06416d))
+* setup api gateway ([4a3e4cc](https://github.com/kkhanhluu/e-shop/commit/4a3e4ccca4c710efd9597d0e035cf541049e82f7))
+* store user and oauth2 client in database ([2ed20fa](https://github.com/kkhanhluu/e-shop/commit/2ed20fab6f59215020a5bd0404e48f4d09b30999))
+
 ### [0.0.9](https://github.com/kkhanhluu/e-shop/compare/@product-service-app/v0.0.8...@product-service-app/v0.0.9) (2023-02-02)
 
 
