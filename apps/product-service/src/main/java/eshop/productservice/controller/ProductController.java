@@ -1,8 +1,10 @@
-package eshop.productservice.product.controller;
+package eshop.productservice.controller;
 
 import eshop.api.exceptions.NotFoundException;
-import eshop.productservice.product.model.Product;
-import eshop.productservice.product.service.ProductService;
+import eshop.productservice.entities.Product;
+import eshop.productservice.model.CreateProductDTO;
+import eshop.productservice.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +25,7 @@ public class ProductController {
   private final ProductService productService;
 
   @GetMapping(value ="/{productId}", produces = "application/json")
-  public  Product getProductById(@PathVariable("productId") String productId) {
+  public Product getProductById(@PathVariable("productId") String productId) {
     return productService.findProductById(UUID.fromString(productId))
             .orElseThrow(() -> new NotFoundException("No found product for productId: " + productId));
   }
@@ -37,5 +39,17 @@ public class ProductController {
     } else {
       return new ResponseEntity<>(new ArrayList<Product>(), HttpStatus.OK);
     }
+  }
+
+  @PostMapping(produces = "application/json")
+  public ResponseEntity<Product> createProduct(@Valid @RequestBody CreateProductDTO request) {
+    Product product = productService.createProduct(request);
+    return new ResponseEntity<>(product, HttpStatus.CREATED);
+  }
+
+  @DeleteMapping(value = "/{productId}", produces = "application/json")
+  public ResponseEntity deleteProduct(@PathVariable("productId") String productId) {
+    productService.deleteProduct(UUID.fromString(productId));
+    return ResponseEntity.noContent().build();
   }
 }

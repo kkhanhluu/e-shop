@@ -3,8 +3,10 @@ package eshop.productservice.product.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
 import eshop.api.http.GlobalControllerExceptionHandler;
-import eshop.productservice.product.model.Product;
-import eshop.productservice.product.service.ProductService;
+import eshop.productservice.controller.ProductController;
+import eshop.productservice.entities.Product;
+import eshop.productservice.model.CreateProductDTO;
+import eshop.productservice.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,6 +17,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -28,6 +31,7 @@ import java.util.UUID;
 
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.willDoNothing;
 
 @WebMvcTest
 @AutoConfigureMockMvc
@@ -92,5 +96,28 @@ class ProductControllerTest {
 
     then(response.getStatus()).isEqualTo(HttpStatus.OK.value());
     then(objectMapper.readValue(response.getContentAsString(), Product[].class)).hasSize(products.size());
+  }
+  @Test
+  void createProduct() throws Exception {
+    CreateProductDTO createProductDTO = CreateProductDTO.builder()
+            .name(faker.commerce().productName())
+            .description(faker.commerce().material())
+            .price(new BigDecimal(faker.commerce().price())).build();
+    MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.post("/api/product").contentType(
+                    MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(createProductDTO))).andReturn()
+            .getResponse();
+
+    then(response.getStatus()).isEqualTo(HttpStatus.CREATED.value());
+  }
+
+  @Test
+  void deleteProduct() throws Exception {
+    UUID productId = UUID.randomUUID();
+    willDoNothing().given(productService).deleteProduct(productId);
+
+    MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.delete("/api/product/{productId}", productId.toString())).andReturn()
+            .getResponse();
+
+    then(response.getStatus()).isEqualTo(HttpStatus.NO_CONTENT.value());
   }
 }

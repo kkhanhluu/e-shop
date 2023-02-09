@@ -1,10 +1,9 @@
-package eshop.productservice.product.repository;
+package eshop.productservice.repository;
 
-import eshop.productservice.product.model.Product;
+import eshop.productservice.entities.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
