@@ -1,4 +1,4 @@
-package eshop.orderservice;
+package eshop.inventoryservice;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -10,9 +10,9 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
-@Testcontainers
 @SpringBootTest
-class OrderServiceApplicationTests {
+@Testcontainers
+class InventoryServiceApplicationTests {
 
 	@Container
 	static PostgreSQLContainer postgresContainer = new PostgreSQLContainer(DockerImageName.parse("postgres:15.1"));
@@ -32,4 +32,5 @@ class OrderServiceApplicationTests {
 	@Test
 	void contextLoads() {
 	}
+
 }

@@ -12,11 +12,12 @@
 			<url>https://maven.pkg.github.com/kkhanhluu/e-shop</url>
 		</repository>
 	</repositories>
+
 	<groupId>com.github.kkhanhluu.eshop</groupId>
-	<artifactId>order-service</artifactId>
+	<artifactId>inventory-service</artifactId>
 	<version>0.0.1</version>
-	<name>order-service</name>
-	<description>The order service of eshop project</description>
+	<name>inventory-service</name>
+	<description>The inventory service of eshop project</description>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -46,6 +47,10 @@
 			<version>1.17.6</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -60,7 +65,7 @@
 						</exclude>
 					</excludes>
 					<image>
-						<name>docker.io/kkhanhluu/order-service:${version}</name>
+						<name>docker.io/kkhanhluu/inventory-service:${version}</name>
 					</image>
 				</configuration>
 			</plugin>
