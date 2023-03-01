@@ -13,6 +13,9 @@ spring:
     generate-ddl: true
     show-sql: true
 
+eventstore:
+  connection-string: esdb://localhost:2113
+
 logging:
   level:
     root: info
