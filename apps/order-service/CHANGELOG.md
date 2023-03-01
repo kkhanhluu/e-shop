@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/kkhanhluu/e-shop/compare/@order-service-app/v0.0.2...@order-service-app/v0.0.3) (2023-03-01)
+
+
+### Features
+
+* implement payment state transition ([3c86d14](https://github.com/kkhanhluu/e-shop/commit/3c86d1441eb043aaefe0ed0845f0fc2ed3033e3d))
+* implementing cqrs pattern ([9e13517](https://github.com/kkhanhluu/e-shop/commit/9e135176cb07cf4dd53367196d5daa5136e19909))
+* implemnting cqrs pattern ([ce4d678](https://github.com/kkhanhluu/e-shop/commit/ce4d678957e7cf895490c3e162d9ebee339dfed8))
+* setup state machine in order service ([5a34c8c](https://github.com/kkhanhluu/e-shop/commit/5a34c8c565436ef6bf2aa9f5a79304f9563eacdd))
+
 ### 0.0.2 (2023-02-10)
 
 
