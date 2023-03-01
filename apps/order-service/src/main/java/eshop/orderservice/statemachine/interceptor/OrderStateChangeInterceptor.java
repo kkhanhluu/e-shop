@@ -1,8 +1,8 @@
 package eshop.orderservice.statemachine.interceptor;
 
-import eshop.orderservice.entities.Order;
+import eshop.orderservice.cqrs.command.model.OrderDomainEvent;
+import eshop.orderservice.cqrs.command.service.EventStoreService;
 import eshop.orderservice.entities.OrderStatus;
-import eshop.orderservice.repository.OrderRepository;
 import eshop.orderservice.statemachine.OrderEvent;
 import eshop.orderservice.statemachine.StateMachineConfig;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class OrderStateChangeInterceptor extends StateMachineInterceptorAdapter<OrderStatus, OrderEvent> {
-    private final OrderRepository orderRepository;
+    private final EventStoreService eventStoreService;
 
     @Override
     public void preStateChange(State<OrderStatus, OrderEvent> state, Message<OrderEvent> message,
@@ -30,9 +30,21 @@ public class OrderStateChangeInterceptor extends StateMachineInterceptorAdapter<
                 .flatMap(msg -> Optional.ofNullable(
                         (String) msg.getHeaders().getOrDefault(StateMachineConfig.ORDER_ID_HEADER, -1L)))
                 .ifPresent(orderId -> {
-                    Order order = orderRepository.findById(UUID.fromString(orderId)).orElseThrow();
-                    order.setStatus(state.getId());
-                    orderRepository.saveAndFlush(order);
+                    OrderDomainEvent orderDomainEvent = generateOrderDomainEventFromOrderStatus(
+                            UUID.fromString(orderId), state.getId());
+                    eventStoreService.appendOrderEvents(orderDomainEvent)
+//                    Order order = orderRepository.findById(UUID.fromString(orderId)).orElseThrow();
+//                    order.setStatus(state.getId());
+//                    orderRepository.saveAndFlush(order);
                 });
+    }
+
+    private OrderDomainEvent generateOrderDomainEventFromOrderStatus(UUID orderId, OrderStatus status) {
+        switch(status) {
+            case PAID:
+                return OrderDomainEvent.OrderPaidEvent.builder().orderId(orderId).build();
+            default:
+                throw new IllegalArgumentException("Invalid order status");
+        }
     }
 }

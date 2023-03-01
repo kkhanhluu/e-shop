@@ -1,6 +1,7 @@
 package eshop.orderservice.api.controller;
 
 import eshop.orderservice.api.request.CreateOrderRequest;
+import eshop.orderservice.cqrs.command.service.OrderQueryService;
 import eshop.orderservice.entities.Order;
 import eshop.orderservice.cqrs.command.service.OrderCommandService;
 import jakarta.validation.Valid;
@@ -18,10 +19,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class OrderController {
     private final OrderCommandService orderCommandService;
+    private final OrderQueryService orderQueryService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseEntity<void> createOrder(@Valid @RequestBody CreateOrderRequest request) throws URISyntaxException {
+    ResponseEntity createOrder(@Valid @RequestBody CreateOrderRequest request) throws URISyntaxException {
         UUID orderId = UUID.randomUUID();
         orderCommandService.createOrder(orderId, request.getUserId(), request.getOrderLineItems());
         return ResponseEntity.created(new URI("api/order/%s".formatted(orderId))).build();
@@ -30,6 +32,7 @@ public class OrderController {
     @GetMapping("/api/order/{orderId}")
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<Order> getOrderById(@PathVariable("orderId") UUID orderId) {
-
+        Order order = orderQueryService.getOrderById(orderId);
+        return ResponseEntity.ok(order);
     }
 }

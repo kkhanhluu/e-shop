@@ -1,5 +1,6 @@
 package eshop.orderservice.statemachine.services;
 
+import eshop.orderservice.cqrs.command.service.OrderQueryService;
 import eshop.orderservice.entities.Order;
 import eshop.orderservice.entities.OrderStatus;
 import eshop.orderservice.repository.OrderRepository;
@@ -19,13 +20,13 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class OrderManager implements IOrderManager {
-    private final OrderRepository orderRepository;
+    private final OrderQueryService orderQueryService;
     private final StateMachineFactory<OrderStatus, OrderEvent> stateMachineFactory;
     private final OrderStateChangeInterceptor orderStateChangeInterceptor;
 
     @Override
     public void processPaymentResponse(UUID orderId, boolean isPaymentSuccessful) {
-        Order order = orderRepository.findById(orderId).orElseThrow();
+        Order order = orderQueryService.getOrderById(orderId);
         if (isPaymentSuccessful) {
             sendOrderStateMachineEvent(order, OrderEvent.PAYMENT_SUCCESS);
             Order paidOrder = orderRepository.findById(orderId).orElseThrow();
