@@ -1,5 +1,6 @@
 package eshop.orderservice.entities;
 
+import eshop.orderservice.cqrs.command.model.OrderCreatedEvent;
 import eshop.orderservice.cqrs.command.model.OrderDomainEvent;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -39,13 +40,13 @@ public class Order {
 
     public void when(OrderDomainEvent event) {
         switch(event) {
-            case OrderDomainEvent.OrderCreatedEvent orderCreatedEvent:
-                id = orderCreatedEvent.orderId();
+            case OrderCreatedEvent orderCreatedEvent:
+                id = orderCreatedEvent.getOrderId();
                 userId = orderCreatedEvent.getUserId();
                 orderLines = orderCreatedEvent.getOrderLineItems();
                 status = OrderStatus.CREATED;
                 break;
-            case null:
+            default:
                 throw new IllegalArgumentException("Event cannot be null");
         }
     }

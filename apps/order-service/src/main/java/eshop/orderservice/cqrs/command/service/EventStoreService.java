@@ -2,6 +2,7 @@ package eshop.orderservice.cqrs.command.service;
 
 import com.eventstore.dbclient.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import eshop.orderservice.cqrs.command.model.OrderCreatedEvent;
 import eshop.orderservice.cqrs.command.model.OrderDomainEvent;
 import eshop.orderservice.cqrs.config.EventStoreConfig;
 import lombok.RequiredArgsConstructor;
@@ -48,8 +49,10 @@ public class EventStoreService {
         return readResult.getEvents().stream().map(resolvedEvent -> {
             RecordedEvent recordedEvent = resolvedEvent.getOriginalEvent();
             try {
-                return objectMapper.readValue(recordedEvent.getEventData(),
-                        OrderDomainEvent.class);
+                OrderDomainEvent orderDomainEvent = objectMapper.readValue(recordedEvent.getEventData(),
+                        OrderCreatedEvent.class);
+                System.out.println("orderDomainEvent = " + orderDomainEvent);
+                return orderDomainEvent;
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

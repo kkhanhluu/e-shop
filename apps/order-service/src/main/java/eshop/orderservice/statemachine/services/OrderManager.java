@@ -3,7 +3,6 @@ package eshop.orderservice.statemachine.services;
 import eshop.orderservice.cqrs.command.service.OrderQueryService;
 import eshop.orderservice.entities.Order;
 import eshop.orderservice.entities.OrderStatus;
-import eshop.orderservice.repository.OrderRepository;
 import eshop.orderservice.statemachine.OrderEvent;
 import eshop.orderservice.statemachine.StateMachineConfig;
 import eshop.orderservice.statemachine.interceptor.OrderStateChangeInterceptor;
@@ -29,7 +28,7 @@ public class OrderManager implements IOrderManager {
         Order order = orderQueryService.getOrderById(orderId);
         if (isPaymentSuccessful) {
             sendOrderStateMachineEvent(order, OrderEvent.PAYMENT_SUCCESS);
-            Order paidOrder = orderRepository.findById(orderId).orElseThrow();
+            Order paidOrder = orderQueryService.getOrderById(orderId);
             sendOrderStateMachineEvent(paidOrder, OrderEvent.VALIDATE_ORDER);
         } else {
             sendOrderStateMachineEvent(order, OrderEvent.PAYMENT_FAILED);

@@ -1,25 +1,12 @@
 package eshop.orderservice.cqrs.command.model;
 
-import eshop.orderservice.entities.OrderLine;
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Set;
 import java.util.UUID;
 
 @Data
-public sealed class OrderDomainEvent permits OrderCreatedEvent, OrderPaidEvent {
-    UUID orderId;
-}
-
-@Data
-@Builder
-final class OrderCreatedEvent extends OrderDomainEvent {
-    private UUID userId;
-    private Set<OrderLine> orderLineItems;
-}
-
-@Data
-@Builder
-final class OrderPaidEvent extends OrderDomainEvent {
+@NoArgsConstructor
+sealed public class OrderDomainEvent permits OrderCreatedEvent, OrderPaidEvent {
+   protected UUID orderId;
 }

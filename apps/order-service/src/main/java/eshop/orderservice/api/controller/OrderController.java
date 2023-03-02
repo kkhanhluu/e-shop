@@ -29,7 +29,7 @@ public class OrderController {
         return ResponseEntity.created(new URI("api/order/%s".formatted(orderId))).build();
     }
 
-    @GetMapping("/api/order/{orderId}")
+    @GetMapping("/{orderId}")
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<Order> getOrderById(@PathVariable("orderId") UUID orderId) {
         Order order = orderQueryService.getOrderById(orderId);

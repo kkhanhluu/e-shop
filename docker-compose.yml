@@ -21,7 +21,7 @@ services:
       - POSTGRES_USER=postgres
 
   eventstore:
-    image: eventstore/eventstore:21.10.0-buster-slim
+    image: eventstore/eventstore:22.10.1-alpha-arm64v8
     environment:
       - EVENTSTORE_CLUSTER_SIZE=1
       - EVENTSTORE_RUN_PROJECTIONS=All

@@ -18,6 +18,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
         Order order = Order.getEmptyOrder();
         List<OrderDomainEvent> events = eventStoreService.getOrderDomainEvents(orderId);
         for (OrderDomainEvent event : events) {
+            System.out.println("event = " + event);
             order.when(event);
         }
         return order;

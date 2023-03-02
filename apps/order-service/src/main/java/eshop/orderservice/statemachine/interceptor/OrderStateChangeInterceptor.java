@@ -1,6 +1,7 @@
 package eshop.orderservice.statemachine.interceptor;
 
 import eshop.orderservice.cqrs.command.model.OrderDomainEvent;
+import eshop.orderservice.cqrs.command.model.OrderPaidEvent;
 import eshop.orderservice.cqrs.command.service.EventStoreService;
 import eshop.orderservice.entities.OrderStatus;
 import eshop.orderservice.statemachine.OrderEvent;
@@ -32,7 +33,7 @@ public class OrderStateChangeInterceptor extends StateMachineInterceptorAdapter<
                 .ifPresent(orderId -> {
                     OrderDomainEvent orderDomainEvent = generateOrderDomainEventFromOrderStatus(
                             UUID.fromString(orderId), state.getId());
-                    eventStoreService.appendOrderEvents(orderDomainEvent)
+                    eventStoreService.appendOrderEvents(orderDomainEvent);
 //                    Order order = orderRepository.findById(UUID.fromString(orderId)).orElseThrow();
 //                    order.setStatus(state.getId());
 //                    orderRepository.saveAndFlush(order);
@@ -41,8 +42,10 @@ public class OrderStateChangeInterceptor extends StateMachineInterceptorAdapter<
 
     private OrderDomainEvent generateOrderDomainEventFromOrderStatus(UUID orderId, OrderStatus status) {
         switch(status) {
-            case PAID:
-                return OrderDomainEvent.OrderPaidEvent.builder().orderId(orderId).build();
+            case PAID: {
+                OrderPaidEvent event = OrderPaidEvent.builder().orderId(orderId).build();
+                return event;
+            }
             default:
                 throw new IllegalArgumentException("Invalid order status");
         }
