@@ -1,7 +1,5 @@
 package eshop.orderservice.entities;
 
-import eshop.orderservice.cqrs.command.model.OrderCreatedEvent;
-import eshop.orderservice.cqrs.command.model.OrderDomainEvent;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,19 +35,6 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
     private Set<OrderLine> orderLines;
-
-    public void when(OrderDomainEvent event) {
-        switch(event) {
-            case OrderCreatedEvent orderCreatedEvent:
-                id = orderCreatedEvent.getOrderId();
-                userId = orderCreatedEvent.getUserId();
-                orderLines = orderCreatedEvent.getOrderLineItems();
-                status = OrderStatus.CREATED;
-                break;
-            default:
-                throw new IllegalArgumentException("Event cannot be null");
-        }
-    }
 
     public static Order getEmptyOrder() {
         return new Order();

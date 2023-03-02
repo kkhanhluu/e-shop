@@ -1,7 +1,7 @@
 package eshop.orderservice.statemachine.interceptor;
 
 import eshop.orderservice.cqrs.command.model.OrderDomainEvent;
-import eshop.orderservice.cqrs.command.model.OrderPaidEvent;
+import eshop.orderservice.order.events.OrderPaidEvent;
 import eshop.orderservice.cqrs.command.service.EventStoreService;
 import eshop.orderservice.entities.OrderStatus;
 import eshop.orderservice.statemachine.OrderEvent;

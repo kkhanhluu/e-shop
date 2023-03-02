@@ -2,7 +2,7 @@ package eshop.orderservice.cqrs.command.service;
 
 import com.eventstore.dbclient.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import eshop.orderservice.cqrs.command.model.OrderCreatedEvent;
+import eshop.orderservice.order.events.OrderCreatedEvent;
 import eshop.orderservice.cqrs.command.model.OrderDomainEvent;
 import eshop.orderservice.cqrs.config.EventStoreConfig;
 import lombok.RequiredArgsConstructor;

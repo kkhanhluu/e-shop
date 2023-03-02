@@ -3,7 +3,8 @@ package eshop.orderservice.api.controller;
 import eshop.orderservice.api.request.CreateOrderRequest;
 import eshop.orderservice.cqrs.command.service.OrderQueryService;
 import eshop.orderservice.entities.Order;
-import eshop.orderservice.cqrs.command.service.OrderCommandService;
+import eshop.orderservice.order.command.CreateOrderCommand;
+import eshop.orderservice.order.command.service.OrderCommandService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,8 +26,9 @@ public class OrderController {
     @ResponseStatus(HttpStatus.CREATED)
     ResponseEntity createOrder(@Valid @RequestBody CreateOrderRequest request) throws URISyntaxException {
         UUID orderId = UUID.randomUUID();
-        orderCommandService.createOrder(orderId, request.getUserId(), request.getOrderLineItems());
-        return ResponseEntity.created(new URI("api/order/%s".formatted(orderId))).build();
+        UUID createdOrderId = orderCommandService.handle(
+                new CreateOrderCommand(orderId, request.getUserId(), request.getOrderLineItems()));
+        return ResponseEntity.created(new URI("api/order/%s".formatted(createdOrderId))).build();
     }
 
     @GetMapping("/{orderId}")

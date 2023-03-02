@@ -1,4 +1,4 @@
-package eshop.orderservice.cqrs.command.model;
+package eshop.orderservice.order.events;
 
 import eshop.orderservice.entities.OrderLine;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-public final class OrderCreatedEvent extends OrderDomainEvent {
+public final class OrderCreatedEvent extends OrderEvent {
     private UUID userId;
     private Set<OrderLine> orderLineItems;
 }
