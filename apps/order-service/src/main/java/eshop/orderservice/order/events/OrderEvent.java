@@ -1,6 +1,5 @@
 package eshop.orderservice.order.events;
 
-import eshop.orderservice.core.BaseEvent;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

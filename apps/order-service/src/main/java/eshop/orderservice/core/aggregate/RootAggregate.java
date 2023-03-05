@@ -1,32 +1,30 @@
 package eshop.orderservice.core.aggregate;
 
-import eshop.orderservice.core.BaseEvent;
+import eshop.orderservice.order.events.BaseEvent;
 import eshop.orderservice.core.exception.InvalidEventException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
 public abstract class RootAggregate<Event extends BaseEvent> {
     protected UUID id;
     protected long version;
-    protected final List<Event> events = new LinkedList<>();
+    protected final Queue<Event> uncommittedEvents = new LinkedList<>();
 
     public RootAggregate(UUID id) {
         this.id = id;
     }
 
     public abstract void when(final Event event);
+    public abstract String getStreamId();
 
     public void apply(final Event event) {
         this.validateEvent(event);
         when(event);
-        events.add(event);
+        uncommittedEvents.add(event);
         this.version++;
     }
 
@@ -38,5 +36,11 @@ public abstract class RootAggregate<Event extends BaseEvent> {
         if (Objects.isNull(event) || !event.getAggregateId().equals(this.id)) {
             throw new InvalidEventException(event.toString());
         }
+    }
+
+    public Object[] dequeueUncommittedEvens() {
+        Object[] dequeuedEvents = uncommittedEvents.toArray();
+        uncommittedEvents.clear();
+        return dequeuedEvents;
     }
 }

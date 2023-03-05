@@ -1,4 +1,4 @@
-package eshop.orderservice.core;
+package eshop.orderservice.order.events;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
