@@ -1,27 +1,36 @@
 package eshop.orderservice.core.event;
 
-import com.eventstore.dbclient.EventStoreDBClient;
-import com.eventstore.dbclient.ReadResult;
-import com.eventstore.dbclient.ReadStreamOptions;
+import com.eventstore.dbclient.*;
 import eshop.orderservice.core.aggregate.RootAggregate;
 import eshop.orderservice.core.serialization.EventSerializer;
 import eshop.orderservice.order.events.BaseEvent;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
-@Service
 @RequiredArgsConstructor
 public class EventStore<Entity extends RootAggregate, Event extends BaseEvent> {
     private final EventStoreDBClient eventStoreDBClient;
     private final Function<UUID, String> mapToStreamId;
     private final Supplier<Entity> getEmptyEntity;
+
+    public WriteResult appendEvents(Entity entity) {
+        String streamId = mapToStreamId.apply(entity.getId());
+        Stream<EventData> eventDataStream = Arrays.stream(entity.dequeueUncommittedEvens())
+                .map(EventSerializer::serialize);
+        try {
+            return eventStoreDBClient.appendToStream(streamId, eventDataStream.iterator()).get();
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public Optional<Entity> get(UUID id) {
         String streamId = mapToStreamId.apply(id);
@@ -30,6 +39,7 @@ public class EventStore<Entity extends RootAggregate, Event extends BaseEvent> {
             return Optional.empty();
         }
         Entity current = getEmptyEntity.get();
+        current.setId(id);
         for (Event event : events.get()) {
             current.apply(event);
         }

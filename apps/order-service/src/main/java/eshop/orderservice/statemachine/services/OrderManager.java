@@ -1,8 +1,8 @@
 package eshop.orderservice.statemachine.services;
 
-import eshop.orderservice.cqrs.command.service.OrderQueryService;
 import eshop.orderservice.entities.Order;
 import eshop.orderservice.entities.OrderStatus;
+import eshop.orderservice.order.query.service.OrderQueryService;
 import eshop.orderservice.statemachine.OrderEvent;
 import eshop.orderservice.statemachine.StateMachineConfig;
 import eshop.orderservice.statemachine.interceptor.OrderStateChangeInterceptor;

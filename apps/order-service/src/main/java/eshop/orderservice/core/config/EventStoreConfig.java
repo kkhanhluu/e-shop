@@ -1,4 +1,4 @@
-package eshop.orderservice.cqrs.config;
+package eshop.orderservice.core.config;
 
 import com.eventstore.dbclient.EventStoreDBClient;
 import com.eventstore.dbclient.EventStoreDBClientSettings;
@@ -11,8 +11,6 @@ import org.springframework.context.annotation.Configuration;
 public class EventStoreConfig {
     @Value("${eventstore.connection-string}")
     private String eventStoreConnectionString;
-    public static final String ORDER_CREATED_EVENT_NAME = "ORDER_CREATED_EVENT";
-    public static final String ORDER_STREAM = "ORDER_STREAM";
 
     @Bean
     public EventStoreDBClient eventStoreDBClusterClient() {

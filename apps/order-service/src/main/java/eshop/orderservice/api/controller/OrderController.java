@@ -1,10 +1,10 @@
 package eshop.orderservice.api.controller;
 
 import eshop.orderservice.api.request.CreateOrderRequest;
-import eshop.orderservice.cqrs.command.service.OrderQueryService;
 import eshop.orderservice.entities.Order;
 import eshop.orderservice.order.command.CreateOrderCommand;
 import eshop.orderservice.order.command.service.OrderCommandService;
+import eshop.orderservice.order.query.service.OrderQueryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

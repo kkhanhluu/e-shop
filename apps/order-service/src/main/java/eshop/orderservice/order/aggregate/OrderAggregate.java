@@ -5,7 +5,6 @@ import eshop.orderservice.entities.OrderLine;
 import eshop.orderservice.entities.OrderStatus;
 import eshop.orderservice.order.events.OrderCreatedEvent;
 import eshop.orderservice.order.events.OrderEvent;
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.Objects;
@@ -13,10 +12,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Data
-@Builder
 public class OrderAggregate extends RootAggregate<OrderEvent> {
-    private final String ORDER_STREAM_PREFIX = "ORDER_STREAM_";
-
     private UUID userId;
     private Set<OrderLine> orderLineItems;
     private OrderStatus status;
@@ -24,6 +20,8 @@ public class OrderAggregate extends RootAggregate<OrderEvent> {
     public OrderAggregate(UUID aggregateId) {
         super(aggregateId);
     }
+
+    private OrderAggregate() {}
 
     @Override
     public void when(OrderEvent event) {
@@ -37,20 +35,19 @@ public class OrderAggregate extends RootAggregate<OrderEvent> {
         }
     }
 
-    @Override
-    public String getStreamId() {
-        return ORDER_STREAM_PREFIX + this.id;
-    }
-
     public OrderCreatedEvent createOrder(UUID userId, Set<OrderLine> orderLineItems) {
-        OrderCreatedEvent orderCreatedEvent = OrderCreatedEvent.builder()
-                .userId(userId)
-                .orderLineItems(orderLineItems)
-                .build();
-        orderCreatedEvent.setAggregateId(id);
+        OrderCreatedEvent orderCreatedEvent = new OrderCreatedEvent(this.id, userId, orderLineItems);
 
         this.apply(orderCreatedEvent);
 
         return orderCreatedEvent;
+    }
+
+    public static String getStreamId(UUID orderId) {
+        return "Order-%s".formatted(orderId);
+    }
+
+    public static OrderAggregate getEmptyOrder() {
+        return new OrderAggregate();
     }
 }

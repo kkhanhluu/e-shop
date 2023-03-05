@@ -19,7 +19,6 @@ public abstract class RootAggregate<Event extends BaseEvent> {
     }
 
     public abstract void when(final Event event);
-    public abstract String getStreamId();
 
     public void apply(final Event event) {
         this.validateEvent(event);
@@ -33,6 +32,7 @@ public abstract class RootAggregate<Event extends BaseEvent> {
     }
 
     private void validateEvent(final Event event) {
+        System.out.println("event = " + event.getAggregateId() + " - " + this.id);
         if (Objects.isNull(event) || !event.getAggregateId().equals(this.id)) {
             throw new InvalidEventException(event.toString());
         }

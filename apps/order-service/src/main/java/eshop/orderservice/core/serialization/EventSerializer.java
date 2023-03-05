@@ -1,5 +1,6 @@
 package eshop.orderservice.core.serialization;
 
+import com.eventstore.dbclient.EventData;
 import com.eventstore.dbclient.ResolvedEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -9,10 +10,15 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.UUID;
 
 public final class EventSerializer {
     public static final ObjectMapper mapper = new JsonMapper();
     public static final Logger logger = LoggerFactory.getLogger(EventSerializer.class);
+
+    public static EventData serialize(Object event) {
+        return EventData.builderAsJson(UUID.randomUUID(), EventTypeMapper.toName(event.getClass()), event).build();
+    }
 
     public static <Event> Optional<Event> deserialize(ResolvedEvent resolvedEvent) {
         Optional<Class> eventClass = EventTypeMapper.toClass(resolvedEvent.getEvent().getEventType());

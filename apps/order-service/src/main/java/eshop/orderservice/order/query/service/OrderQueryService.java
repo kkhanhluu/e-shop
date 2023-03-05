@@ -1,9 +1,9 @@
-package eshop.orderservice.cqrs.command.service;
+package eshop.orderservice.order.query.service;
 
 import eshop.orderservice.entities.Order;
 
 import java.util.UUID;
 
 public interface OrderQueryService {
-    Order getOrderById(UUID orderId);
+    public Order getOrderById(UUID uuid);
 }
