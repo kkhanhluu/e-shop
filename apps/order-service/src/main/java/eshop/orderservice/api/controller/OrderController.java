@@ -1,7 +1,7 @@
 package eshop.orderservice.api.controller;
 
 import eshop.orderservice.api.request.CreateOrderRequest;
-import eshop.orderservice.entities.Order;
+import eshop.orderservice.order.query.entity.Order;
 import eshop.orderservice.order.command.CreateOrderCommand;
 import eshop.orderservice.order.command.service.OrderCommandService;
 import eshop.orderservice.order.query.service.OrderQueryService;

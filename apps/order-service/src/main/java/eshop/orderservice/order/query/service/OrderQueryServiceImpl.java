@@ -1,7 +1,7 @@
 package eshop.orderservice.order.query.service;
 
 import eshop.orderservice.core.event.EventStore;
-import eshop.orderservice.entities.Order;
+import eshop.orderservice.order.query.entity.Order;
 import eshop.orderservice.order.aggregate.OrderAggregate;
 import eshop.orderservice.order.events.OrderEvent;
 import jakarta.persistence.EntityNotFoundException;

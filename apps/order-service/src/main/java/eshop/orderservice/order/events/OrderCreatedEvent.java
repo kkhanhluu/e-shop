@@ -1,6 +1,6 @@
 package eshop.orderservice.order.events;
 
-import eshop.orderservice.entities.OrderLine;
+import eshop.orderservice.order.query.entity.OrderLine;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

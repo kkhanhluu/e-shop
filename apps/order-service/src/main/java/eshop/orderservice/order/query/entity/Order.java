@@ -1,4 +1,4 @@
-package eshop.orderservice.entities;
+package eshop.orderservice.order.query.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

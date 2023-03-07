@@ -1,6 +1,6 @@
 package eshop.orderservice.order.query.service;
 
-import eshop.orderservice.entities.Order;
+import eshop.orderservice.order.query.entity.Order;
 
 import java.util.UUID;
 

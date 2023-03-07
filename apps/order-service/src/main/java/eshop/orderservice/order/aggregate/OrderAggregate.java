@@ -1,8 +1,8 @@
 package eshop.orderservice.order.aggregate;
 
 import eshop.orderservice.core.aggregate.RootAggregate;
-import eshop.orderservice.entities.OrderLine;
-import eshop.orderservice.entities.OrderStatus;
+import eshop.orderservice.order.query.entity.OrderLine;
+import eshop.orderservice.order.query.entity.OrderStatus;
 import eshop.orderservice.order.events.OrderCreatedEvent;
 import eshop.orderservice.order.events.OrderEvent;
 import lombok.Data;
@@ -26,10 +26,7 @@ public class OrderAggregate extends RootAggregate<OrderEvent> {
     @Override
     public void when(OrderEvent event) {
         if (Objects.requireNonNull(event) instanceof OrderCreatedEvent orderCreatedEvent) {
-            id = orderCreatedEvent.getAggregateId();
-            userId = orderCreatedEvent.getUserId();
-            orderLineItems = orderCreatedEvent.getOrderLineItems();
-            status = OrderStatus.CREATED;
+            handle(orderCreatedEvent);
         } else {
             throw new IllegalArgumentException("Event cannot be null");
         }
@@ -49,5 +46,12 @@ public class OrderAggregate extends RootAggregate<OrderEvent> {
 
     public static OrderAggregate getEmptyOrder() {
         return new OrderAggregate();
+    }
+
+    private void handle(OrderCreatedEvent orderCreatedEvent) {
+        id = orderCreatedEvent.getAggregateId();
+        userId = orderCreatedEvent.getUserId();
+        orderLineItems = orderCreatedEvent.getOrderLineItems();
+        status = OrderStatus.CREATED;
     }
 }
