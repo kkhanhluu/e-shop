@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/kkhanhluu/e-shop/compare/@order-service-app/v0.0.3...@order-service-app/v0.0.4) (2023-03-08)
+
+
+### Features
+
+* add projection ([dfb7571](https://github.com/kkhanhluu/e-shop/commit/dfb75716b849b28468b32faeb5e1a80d0f9833a9))
+* add subscription and background worker ([0908de3](https://github.com/kkhanhluu/e-shop/commit/0908de3768664bf38786d6a7ff4d2128c899756e))
+* implementing event sourcing ([a353014](https://github.com/kkhanhluu/e-shop/commit/a35301449939c09f62fad0648febd718dcbb053e))
+
+
+### Bug Fixes
+
+* add event store and event serializer ([6a71ba1](https://github.com/kkhanhluu/e-shop/commit/6a71ba1e305d42fdbf64b1ff903b6ebc28e63ff7))
+* refactoring project structure ([4cc3ec1](https://github.com/kkhanhluu/e-shop/commit/4cc3ec1dfa35f68b7e4e164df46c0adff7cab239))
+
 ### [0.0.3](https://github.com/kkhanhluu/e-shop/compare/@order-service-app/v0.0.2...@order-service-app/v0.0.3) (2023-03-01)
 
 
