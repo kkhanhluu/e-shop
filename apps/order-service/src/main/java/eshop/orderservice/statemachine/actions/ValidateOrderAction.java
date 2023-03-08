@@ -1,6 +1,6 @@
 package eshop.orderservice.statemachine.actions;
 
-import eshop.orderservice.entities.OrderStatus;
+import eshop.orderservice.order.query.entity.OrderStatus;
 import eshop.orderservice.statemachine.OrderEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.statemachine.StateContext;

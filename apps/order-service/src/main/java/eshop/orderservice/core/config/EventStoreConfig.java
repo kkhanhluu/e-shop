@@ -1,9 +1,11 @@
-package eshop.orderservice.cqrs.config;
+package eshop.orderservice.core.config;
 
 import com.eventstore.dbclient.EventStoreDBClient;
 import com.eventstore.dbclient.EventStoreDBClientSettings;
 import com.eventstore.dbclient.EventStoreDBConnectionString;
+import eshop.orderservice.core.worker.EventStoreDBBackgroundWorker;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,8 +13,6 @@ import org.springframework.context.annotation.Configuration;
 public class EventStoreConfig {
     @Value("${eventstore.connection-string}")
     private String eventStoreConnectionString;
-    public static final String ORDER_CREATED_EVENT_NAME = "ORDER_CREATED_EVENT";
-    public static final String ORDER_STREAM = "ORDER_STREAM";
 
     @Bean
     public EventStoreDBClient eventStoreDBClusterClient() {
@@ -20,5 +20,10 @@ public class EventStoreConfig {
                 eventStoreConnectionString);
         EventStoreDBClient eventStoreDBClient = EventStoreDBClient.create(eventStoreDBClientSettings);
         return eventStoreDBClient;
+    }
+
+    @Bean
+    public EventStoreDBBackgroundWorker eventStoreDBBackgroundWorker(EventStoreDBClient eventStoreDBClient, ApplicationEventPublisher applicationEventPublisher) {
+        return new EventStoreDBBackgroundWorker(eventStoreDBClient, applicationEventPublisher);
     }
 }

@@ -21,7 +21,7 @@ services:
       - POSTGRES_USER=postgres
 
   eventstore:
-    image: eventstore/eventstore:21.10.0-buster-slim
+    image: eventstore/eventstore:22.10.1-alpha-arm64v8
     environment:
       - EVENTSTORE_CLUSTER_SIZE=1
       - EVENTSTORE_RUN_PROJECTIONS=All
@@ -34,13 +34,6 @@ services:
     ports:
       - "1113:1113"
       - "2113:2113"
-    volumes:
-      - type: volume
-        source: eventstore-volume-data
-        target: /var/lib/eventstore
-      - type: volume
-        source: eventstore-volume-logs
-        target: /var/log/eventstore
 
   mongo:
     image: mongo:6.0.3
@@ -50,7 +43,3 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongo
       MONGO_INITDB_ROOT_PASSWORD: mongo
-
-volumes:
-  eventstore-volume-data:
-  eventstore-volume-logs:

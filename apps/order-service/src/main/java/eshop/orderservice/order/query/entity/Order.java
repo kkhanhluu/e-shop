@@ -1,21 +1,23 @@
-package eshop.orderservice.entities;
+package eshop.orderservice.order.query.entity;
 
-import eshop.orderservice.cqrs.command.model.OrderDomainEvent;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Table(name = "orders")
-@Data
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class Order {
     @Id
@@ -31,26 +33,18 @@ public class Order {
 
     private UUID userId;
 
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
-    private Set<OrderLine> orderLines;
+    private Set<OrderLine> orderLineItems;
 
-    public void when(OrderDomainEvent event) {
-        switch(event) {
-            case OrderDomainEvent.OrderCreatedEvent orderCreatedEvent:
-                id = orderCreatedEvent.orderId();
-                userId = orderCreatedEvent.getUserId();
-                orderLines = orderCreatedEvent.getOrderLineItems();
-                status = OrderStatus.CREATED;
-                break;
-            case null:
-                throw new IllegalArgumentException("Event cannot be null");
+    public void addOrderLineItem(OrderLine orderLineItem) {
+        if (orderLineItems == null) {
+            this.orderLineItems = new HashSet<>();
         }
-    }
-
-    public static Order getEmptyOrder() {
-        return new Order();
+        orderLineItem.order = this;
+        this.orderLineItems.add(orderLineItem);
     }
 }

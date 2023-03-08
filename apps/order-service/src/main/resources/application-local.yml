@@ -14,7 +14,7 @@ spring:
     show-sql: true
 
 eventstore:
-  connection-string: esdb://localhost:2113
+  connection-string: esdb://localhost:2113?tls=false
 
 logging:
   level:

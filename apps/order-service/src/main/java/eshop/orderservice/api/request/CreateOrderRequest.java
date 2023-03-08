@@ -1,6 +1,6 @@
 package eshop.orderservice.api.request;
 
-import eshop.orderservice.entities.OrderLine;
+import eshop.orderservice.order.query.entity.OrderLine;
 import lombok.Data;
 
 import java.util.Set;

@@ -1,6 +1,6 @@
 package eshop.orderservice.statemachine;
 
-import eshop.orderservice.entities.OrderStatus;
+import eshop.orderservice.order.query.entity.OrderStatus;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.config.EnableStateMachineFactory;
 import org.springframework.statemachine.config.EnumStateMachineConfigurerAdapter;
