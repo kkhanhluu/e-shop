@@ -3,7 +3,7 @@ package eshop.orderservice.order.query.service;
 import eshop.orderservice.core.event.EventStore;
 import eshop.orderservice.order.query.entity.Order;
 import eshop.orderservice.order.aggregate.OrderAggregate;
-import eshop.orderservice.order.events.OrderEvent;
+import eshop.orderservice.order.event.OrderEvent;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,7 +27,7 @@ public class OrderQueryServiceImpl implements OrderQueryService{
         OrderAggregate orderAggregate = result.get();
         return Order.builder()
                 .id(orderAggregate.getId())
-                .orderLines(orderAggregate.getOrderLineItems())
+                .orderLineItems(orderAggregate.getOrderLineItems())
                 .userId(orderAggregate.getUserId())
                 .build();
     }

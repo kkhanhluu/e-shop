@@ -4,11 +4,15 @@ import com.eventstore.dbclient.EventStoreDBClient;
 import com.eventstore.dbclient.ResolvedEvent;
 import com.eventstore.dbclient.Subscription;
 import com.eventstore.dbclient.SubscriptionListener;
+import eshop.orderservice.core.event.EventTypeMapper;
+import eshop.orderservice.core.serialization.EventSerializer;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.retry.support.RetryTemplate;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class EventStoreDBSubscriptionToAll {
@@ -23,7 +27,7 @@ public class EventStoreDBSubscriptionToAll {
         @Override
         public void onEvent(Subscription subscription, ResolvedEvent event) {
             try {
-                applicationEventPublisher.publishEvent(event);
+                handleEvent(event);
             } catch (Throwable e) {
                 logger.error("Error while handling event", e);
                 throw new RuntimeException(e);
@@ -63,5 +67,15 @@ public class EventStoreDBSubscriptionToAll {
 
     public boolean isRunning() {
         return this.isRunning;
+    }
+
+    private void handleEvent(ResolvedEvent resolvedEvent) {
+        Optional<Class> eventClass = EventTypeMapper.toClass(resolvedEvent.getEvent().getEventType());
+        Optional eventData = eventClass.flatMap(c -> EventSerializer.deserialize(c, resolvedEvent));
+        if (eventData.isEmpty()) {
+            logger.error("Cannot deserialize event with id: %s".formatted(resolvedEvent.getEvent().getEventId()));
+            return;
+        }
+        applicationEventPublisher.publishEvent(eventData.get());
     }
 }

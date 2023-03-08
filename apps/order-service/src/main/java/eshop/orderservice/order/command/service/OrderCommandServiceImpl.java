@@ -3,7 +3,7 @@ package eshop.orderservice.order.command.service;
 import eshop.orderservice.core.event.EventStore;
 import eshop.orderservice.order.aggregate.OrderAggregate;
 import eshop.orderservice.order.command.CreateOrderCommand;
-import eshop.orderservice.order.events.OrderEvent;
+import eshop.orderservice.order.event.OrderEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

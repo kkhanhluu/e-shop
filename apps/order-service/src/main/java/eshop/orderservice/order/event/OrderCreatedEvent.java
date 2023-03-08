@@ -1,14 +1,16 @@
-package eshop.orderservice.order.events;
+package eshop.orderservice.order.event;
 
 import eshop.orderservice.order.query.entity.OrderLine;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Set;
 import java.util.UUID;
 
 @NoArgsConstructor
+@ToString
 public final class OrderCreatedEvent extends OrderEvent {
     @Getter
     @Setter

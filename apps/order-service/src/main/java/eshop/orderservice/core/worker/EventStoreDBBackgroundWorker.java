@@ -28,6 +28,9 @@ public class EventStoreDBBackgroundWorker implements SmartLifecycle {
 
     @Override
     public boolean isRunning() {
+        if (subscription == null) {
+            return false;
+        }
         return subscription.isRunning();
     }
 

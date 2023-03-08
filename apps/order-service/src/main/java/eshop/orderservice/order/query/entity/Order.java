@@ -1,22 +1,21 @@
 package eshop.orderservice.order.query.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Table(name = "orders")
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,13 +33,18 @@ public class Order {
 
     private UUID userId;
 
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
-    private Set<OrderLine> orderLines;
+    private Set<OrderLine> orderLineItems;
 
-    public static Order getEmptyOrder() {
-        return new Order();
+    public void addOrderLineItem(OrderLine orderLineItem) {
+        if (orderLineItems == null) {
+            this.orderLineItems = new HashSet<>();
+        }
+        orderLineItem.order = this;
+        this.orderLineItems.add(orderLineItem);
     }
 }

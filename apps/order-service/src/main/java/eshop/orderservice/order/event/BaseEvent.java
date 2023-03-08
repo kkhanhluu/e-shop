@@ -1,4 +1,4 @@
-package eshop.orderservice.order.events;
+package eshop.orderservice.order.event;
 
 import lombok.Data;
 

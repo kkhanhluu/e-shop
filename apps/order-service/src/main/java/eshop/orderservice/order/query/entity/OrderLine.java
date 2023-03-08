@@ -1,6 +1,5 @@
 package eshop.orderservice.order.query.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,9 +9,9 @@ import java.util.UUID;
 @Entity
 @Data
 public class OrderLine {
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "order_id")
     Order order;
-    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

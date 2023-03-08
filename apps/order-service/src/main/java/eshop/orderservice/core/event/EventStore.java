@@ -3,7 +3,7 @@ package eshop.orderservice.core.event;
 import com.eventstore.dbclient.*;
 import eshop.orderservice.core.aggregate.RootAggregate;
 import eshop.orderservice.core.serialization.EventSerializer;
-import eshop.orderservice.order.events.BaseEvent;
+import eshop.orderservice.order.event.BaseEvent;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;

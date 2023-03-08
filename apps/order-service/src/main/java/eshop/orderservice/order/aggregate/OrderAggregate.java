@@ -3,8 +3,8 @@ package eshop.orderservice.order.aggregate;
 import eshop.orderservice.core.aggregate.RootAggregate;
 import eshop.orderservice.order.query.entity.OrderLine;
 import eshop.orderservice.order.query.entity.OrderStatus;
-import eshop.orderservice.order.events.OrderCreatedEvent;
-import eshop.orderservice.order.events.OrderEvent;
+import eshop.orderservice.order.event.OrderCreatedEvent;
+import eshop.orderservice.order.event.OrderEvent;
 import lombok.Data;
 
 import java.util.Objects;
