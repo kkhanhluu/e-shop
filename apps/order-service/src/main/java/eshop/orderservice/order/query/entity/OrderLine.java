@@ -11,8 +11,8 @@ import java.util.UUID;
 @Data
 public class OrderLine {
     @ManyToOne
-    @JsonIgnore
     Order order;
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
