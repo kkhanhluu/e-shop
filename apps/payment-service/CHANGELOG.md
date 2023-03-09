@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/kkhanhluu/e-shop/compare/@payment-service-app/v0.0.2...@payment-service-app/v0.0.3) (2023-03-09)
+
+
+### Bug Fixes
+
+* update bom ([1142dd9](https://github.com/kkhanhluu/e-shop/commit/1142dd91d4d24274567587c0a25aba2243bd6e45))
+* update bom version and fix order service test ([92bcc55](https://github.com/kkhanhluu/e-shop/commit/92bcc55482c309a7c9a2a959b974e43386412776))
+
 ### [0.0.2](https://github.com/kkhanhluu/e-shop/compare/@payment-service-app/v1.1.0...@payment-service-app/v0.0.2) (2023-03-09)
 
 
