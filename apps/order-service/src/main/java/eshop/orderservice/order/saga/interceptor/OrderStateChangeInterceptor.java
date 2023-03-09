@@ -30,7 +30,7 @@ public class OrderStateChangeInterceptor extends StateMachineInterceptorAdapter<
 ////                    order.setStatus(state.getId());
 ////                    orderRepository.saveAndFlush(order);
 //                });
-        System.out.println("Pre state changed");
+        System.out.println("Pre state changed: %s to %s".formatted(transition.getSource(), transition.getTarget()));
     }
 
 //    private OrderDomainEvent generateOrderDomainEventFromOrderStatus(UUID orderId, OrderStatus status) {

@@ -31,12 +31,12 @@ public class OrderCommandServiceImpl implements OrderCommandService {
     private final EventStore<OrderAggregate, OrderEvent> eventStore;
 
     @Override
-    public UUID createOrder(CreateOrderCommand command) {
+    public UUID handle(CreateOrderCommand command) {
         OrderAggregate orderAggregate = new OrderAggregate(command.orderId());
         orderAggregate.createOrder(command.userId(), command.orderLineItems());
         eventStore.appendEvents(orderAggregate);
 
-        sendOrderStateMachineEvent(orderAggregate.getId(), orderAggregate.getStatus(), OrderStateMachineEvent.CREATE);
+        sendOrderStateMachineEvent(orderAggregate.getId(), OrderStatus.NEW, OrderStateMachineEvent.CREATE);
 
         return orderAggregate.getId();
     }
@@ -55,6 +55,7 @@ public class OrderCommandServiceImpl implements OrderCommandService {
 
 
     private void sendOrderStateMachineEvent(UUID machineId, OrderStatus status, OrderStateMachineEvent stateMachineEvent) {
+        System.out.println("send state machine event status = " + status);
         StateMachine<OrderStatus, OrderStateMachineEvent> stateMachine = build(machineId, status);
         stateMachine.sendEvent(Mono.just(MessageBuilder.withPayload(stateMachineEvent)
                 .setHeader(OrderStateMachineConfig.ORDER_ID_HEADER, machineId.toString())
