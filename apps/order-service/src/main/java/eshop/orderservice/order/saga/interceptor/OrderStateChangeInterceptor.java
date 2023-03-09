@@ -1,7 +1,7 @@
-package eshop.orderservice.statemachine.interceptor;
+package eshop.orderservice.order.saga.interceptor;
 
 import eshop.orderservice.order.query.entity.OrderStatus;
-import eshop.orderservice.statemachine.OrderEvent;
+import eshop.orderservice.order.saga.OrderStateMachineEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.Message;
 import org.springframework.statemachine.StateMachine;
@@ -12,13 +12,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class OrderStateChangeInterceptor extends StateMachineInterceptorAdapter<OrderStatus, OrderEvent> {
+public class OrderStateChangeInterceptor extends StateMachineInterceptorAdapter<OrderStatus, OrderStateMachineEvent> {
 
     @Override
-    public void preStateChange(State<OrderStatus, OrderEvent> state, Message<OrderEvent> message,
-                               Transition<OrderStatus, OrderEvent> transition,
-                               StateMachine<OrderStatus, OrderEvent> stateMachine,
-                               StateMachine<OrderStatus, OrderEvent> rootStateMachine) {
+    public void preStateChange(State<OrderStatus, OrderStateMachineEvent> state, Message<OrderStateMachineEvent> message,
+                               Transition<OrderStatus, OrderStateMachineEvent> transition,
+                               StateMachine<OrderStatus, OrderStateMachineEvent> stateMachine,
+                               StateMachine<OrderStatus, OrderStateMachineEvent> rootStateMachine) {
 //        Optional.of(message)
 //                .flatMap(msg -> Optional.ofNullable(
 //                        (String) msg.getHeaders().getOrDefault(StateMachineConfig.ORDER_ID_HEADER, -1L)))
@@ -30,7 +30,7 @@ public class OrderStateChangeInterceptor extends StateMachineInterceptorAdapter<
 ////                    order.setStatus(state.getId());
 ////                    orderRepository.saveAndFlush(order);
 //                });
-        System.out.println("Pre state changed");
+        System.out.println("Pre state changed: %s to %s".formatted(transition.getSource(), transition.getTarget()));
     }
 
 //    private OrderDomainEvent generateOrderDomainEventFromOrderStatus(UUID orderId, OrderStatus status) {

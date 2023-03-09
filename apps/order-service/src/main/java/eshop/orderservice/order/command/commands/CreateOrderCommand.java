@@ -1,4 +1,4 @@
-package eshop.orderservice.order.command;
+package eshop.orderservice.order.command.commands;
 
 import eshop.orderservice.order.query.entity.OrderLine;
 

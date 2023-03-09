@@ -1,4 +1,4 @@
-package eshop.orderservice.messagequeue.events;
+package eshop.orderservice.rabbitmq.events;
 
 import eshop.orderservice.order.query.entity.OrderLine;
 import lombok.Data;
