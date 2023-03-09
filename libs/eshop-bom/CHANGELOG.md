@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/kkhanhluu/e-shop/compare/@eshop-bom-lib/v0.0.12...@eshop-bom-lib/v0.0.13) (2023-03-09)
+
+
+### Bug Fixes
+
+* update bom ([1142dd9](https://github.com/kkhanhluu/e-shop/commit/1142dd91d4d24274567587c0a25aba2243bd6e45))
+
 ### [0.0.12](https://github.com/kkhanhluu/e-shop/compare/@eshop-bom-lib/v0.0.11...@eshop-bom-lib/v0.0.12) (2023-03-09)
 
 
