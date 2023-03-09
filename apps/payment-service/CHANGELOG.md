@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2](https://github.com/kkhanhluu/e-shop/compare/@payment-service-app/v1.1.0...@payment-service-app/v0.0.2) (2023-03-09)
+
+
+### Features
+
+* implement create order saga step ([254bcd7](https://github.com/kkhanhluu/e-shop/commit/254bcd7668752d0ed87b23e75453bdc87c0fbbf3))
+* implement payment saga step ([97fc84b](https://github.com/kkhanhluu/e-shop/commit/97fc84bd32fc803d28c7e4e0eef76a1939b0365d))
+
 ## 1.1.0 (2023-03-09)
 
 
