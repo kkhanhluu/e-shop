@@ -1,4 +1,4 @@
-package eshop.orderservice.messagequeue;
+package eshop.orderservice.rabbitmq;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

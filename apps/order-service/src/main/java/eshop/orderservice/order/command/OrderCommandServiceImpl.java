@@ -3,8 +3,9 @@ package eshop.orderservice.order.command;
 import eshop.orderservice.core.event.EventStore;
 import eshop.orderservice.order.aggregate.OrderAggregate;
 import eshop.orderservice.order.command.commands.CreateOrderCommand;
+import eshop.orderservice.order.command.commands.PayOrderFailedCommand;
+import eshop.orderservice.order.command.commands.PayOrderSuccessCommand;
 import eshop.orderservice.order.event.OrderEvent;
-import eshop.orderservice.order.query.entity.Order;
 import eshop.orderservice.order.query.entity.OrderStatus;
 import eshop.orderservice.order.query.service.OrderQueryService;
 import eshop.orderservice.order.saga.OrderStateMachineConfig;
@@ -19,6 +20,7 @@ import org.springframework.statemachine.support.DefaultStateMachineContext;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -33,42 +35,58 @@ public class OrderCommandServiceImpl implements OrderCommandService {
     @Override
     public UUID handle(CreateOrderCommand command) {
         OrderAggregate orderAggregate = new OrderAggregate(command.orderId());
+
+        sendOrderStateMachineEvent(orderAggregate, OrderStateMachineEvent.CREATE);
+
         orderAggregate.createOrder(command.userId(), command.orderLineItems());
         eventStore.appendEvents(orderAggregate);
-
-        sendOrderStateMachineEvent(orderAggregate.getId(), OrderStatus.NEW, OrderStateMachineEvent.CREATE);
-
         return orderAggregate.getId();
     }
 
     @Override
-    public void processPaymentResponse(UUID orderId, boolean isPaymentSuccessful) {
-        Order order = orderQueryService.getOrderById(orderId);
-        if (isPaymentSuccessful) {
-            sendOrderStateMachineEvent(orderId, order.getStatus(), OrderStateMachineEvent.PAYMENT_SUCCESS);
-            Order paidOrder = orderQueryService.getOrderById(orderId);
-            sendOrderStateMachineEvent(orderId, order.getStatus(), OrderStateMachineEvent.VALIDATE_ORDER);
-        } else {
-            sendOrderStateMachineEvent(orderId, order.getStatus(), OrderStateMachineEvent.PAYMENT_FAILED);
+    public void handle(PayOrderSuccessCommand command) {
+        Optional<OrderAggregate> orderAggregateOptional = eventStore.get(command.orderId());
+        if (orderAggregateOptional.isEmpty()) {
+            throw new IllegalArgumentException("Cannot find order with id: %s".formatted(command.orderId()));
         }
+        OrderAggregate orderAggregate = orderAggregateOptional.get();
+
+        sendOrderStateMachineEvent(orderAggregate, OrderStateMachineEvent.PAYMENT_SUCCESS);
+
+        orderAggregate.acceptPayment();
+        eventStore.appendEvents(orderAggregate);
+
+        sendOrderStateMachineEvent(orderAggregate, OrderStateMachineEvent.VALIDATE_ORDER);
     }
 
+    @Override
+    public void handle(PayOrderFailedCommand command) {
+        Optional<OrderAggregate> orderAggregateOptional = eventStore.get(command.orderId());
+        if (orderAggregateOptional.isEmpty()) {
+            throw new IllegalArgumentException("Cannot find order with id: %s".formatted(command.orderId()));
+        }
+        OrderAggregate orderAggregate = orderAggregateOptional.get();
 
-    private void sendOrderStateMachineEvent(UUID machineId, OrderStatus status, OrderStateMachineEvent stateMachineEvent) {
-        System.out.println("send state machine event status = " + status);
-        StateMachine<OrderStatus, OrderStateMachineEvent> stateMachine = build(machineId, status);
+        sendOrderStateMachineEvent(orderAggregate, OrderStateMachineEvent.PAYMENT_FAILED);
+
+        orderAggregate.rejectPayment();
+    }
+
+    private void sendOrderStateMachineEvent(OrderAggregate orderAggregate, OrderStateMachineEvent stateMachineEvent) {
+        System.out.println("send state machine event status = " + orderAggregate.getStatus());
+        StateMachine<OrderStatus, OrderStateMachineEvent> stateMachine = build(orderAggregate);
         stateMachine.sendEvent(Mono.just(MessageBuilder.withPayload(stateMachineEvent)
-                .setHeader(OrderStateMachineConfig.ORDER_ID_HEADER, machineId.toString())
+                .setHeader(OrderStateMachineConfig.ORDER_ID_HEADER, orderAggregate.getId().toString())
                 .build())).subscribe();
     }
 
-    private StateMachine<OrderStatus, OrderStateMachineEvent> build(UUID machineId, OrderStatus status) {
-        StateMachine<OrderStatus, OrderStateMachineEvent> stateMachine = stateMachineFactory.getStateMachine(machineId);
+    private StateMachine<OrderStatus, OrderStateMachineEvent> build(OrderAggregate orderAggregate) {
+        StateMachine<OrderStatus, OrderStateMachineEvent> stateMachine = stateMachineFactory.getStateMachine(orderAggregate.getId());
         stateMachine.stopReactively().block();
         stateMachine.getStateMachineAccessor().doWithAllRegions(stateMachineAccessor -> {
             stateMachineAccessor.addStateMachineInterceptor(orderStateChangeInterceptor);
             stateMachineAccessor.resetStateMachineReactively(
-                    new DefaultStateMachineContext<>(status, null, null, null, null)).block();
+                    new DefaultStateMachineContext<>(orderAggregate.getStatus(), null, null, null, null)).block();
         });
         stateMachine.startReactively().block();
         return stateMachine;

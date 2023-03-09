@@ -7,8 +7,8 @@ import java.util.UUID;
 
 @NoArgsConstructor
 @ToString
-public final class OrderPaidEvent extends OrderEvent {
-    public OrderPaidEvent(UUID orderId) {
+public final class OrderPaymentRejectedEvent extends OrderEvent {
+    public OrderPaymentRejectedEvent(UUID orderId) {
         this.setAggregateId(orderId);
     }
 }
