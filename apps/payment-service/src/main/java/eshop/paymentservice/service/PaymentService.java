@@ -1,6 +1,6 @@
 package eshop.paymentservice.service;
 
-import eshop.paymentservice.rabbitmq.RabbitMQConfig;
+import eshop.constants.RabbitMQConstants;
 import eshop.paymentservice.rabbitmq.events.PaymentResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -15,7 +15,7 @@ public class PaymentService {
 
     public void createPayment(UUID orderId) {
         boolean isSuccessful = Math.random() < 0.95;
-        rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.PAYMENT_RESPONSE_KEY,
+        rabbitTemplate.convertAndSend(RabbitMQConstants.EXCHANGE_NAME, RabbitMQConstants.PAYMENT_RESPONSE_KEY,
                 new PaymentResponse(orderId, isSuccessful));
     }
 }

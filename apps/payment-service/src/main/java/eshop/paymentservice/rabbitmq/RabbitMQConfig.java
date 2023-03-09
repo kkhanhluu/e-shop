@@ -11,8 +11,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class RabbitMQConfig {
-    public static final String EXCHANGE_NAME = "exchange.eshop";
-    public static final String PAYMENT_RESPONSE_KEY = "payment-response";
     private final ObjectMapper objectMapper;
     @Bean
     public RabbitTemplate rabbitTemplate(CachingConnectionFactory cachingConnectionFactory) {
