@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/kkhanhluu/e-shop/compare/@eshop-bom-lib/v0.0.11...@eshop-bom-lib/v0.0.12) (2023-03-09)
+
+
+### Features
+
+* implement create order saga step ([254bcd7](https://github.com/kkhanhluu/e-shop/commit/254bcd7668752d0ed87b23e75453bdc87c0fbbf3))
+* implement payment saga step ([97fc84b](https://github.com/kkhanhluu/e-shop/commit/97fc84bd32fc803d28c7e4e0eef76a1939b0365d))
+
 ### [0.0.11](https://github.com/kkhanhluu/e-shop/compare/@eshop-bom-lib/v0.0.10...@eshop-bom-lib/v0.0.11) (2023-03-09)
 
 
