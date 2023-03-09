@@ -1,0 +1,84 @@
+{
+  "name": "payment-service",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/payment-service/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nxrocks/nx-spring-boot:build",
+      "options": {
+        "root": "apps/payment-service"
+      },
+      "dependsOn": [
+        "^install"
+      ],
+      "outputs": [
+        "{workspaceRoot}/apps/payment-service/target"
+      ]
+    },
+    "install": {
+      "executor": "@nxrocks/nx-spring-boot:install",
+      "options": {
+        "root": "apps/payment-service"
+      },
+      "outputs": [
+        "{workspaceRoot}/apps/payment-service/target"
+      ]
+    },
+    "test": {
+      "executor": "@nxrocks/nx-spring-boot:test",
+      "options": {
+        "root": "apps/payment-service"
+      }
+    },
+    "clean": {
+      "executor": "@nxrocks/nx-spring-boot:clean",
+      "options": {
+        "root": "apps/payment-service"
+      }
+    },
+    "run": {
+      "executor": "@nxrocks/nx-spring-boot:run",
+      "options": {
+        "root": "apps/payment-service"
+      }
+    },
+    "serve": {
+      "executor": "@nxrocks/nx-spring-boot:serve",
+      "options": {
+        "root": "apps/payment-service"
+      }
+    },
+    "build-image": {
+      "executor": "@nxrocks/nx-spring-boot:build-image",
+      "options": {
+        "root": "apps/payment-service"
+      }
+    },
+    "build-info": {
+      "executor": "@nxrocks/nx-spring-boot:build-info",
+      "options": {
+        "root": "apps/payment-service"
+      }
+    },
+    "format": {
+      "executor": "@nxrocks/nx-spring-boot:format",
+      "options": {
+        "root": "apps/payment-service"
+      }
+    },
+    "apply-format": {
+      "executor": "@nxrocks/nx-spring-boot:apply-format",
+      "options": {
+        "root": "apps/payment-service"
+      }
+    },
+    "check-format": {
+      "executor": "@nxrocks/nx-spring-boot:check-format",
+      "options": {
+        "root": "apps/payment-service"
+      }
+    }
+  },
+  "tags": []
+}
