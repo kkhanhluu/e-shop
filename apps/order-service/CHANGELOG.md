@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/kkhanhluu/e-shop/compare/@order-service-app/v0.0.4...@order-service-app/v0.0.5) (2023-03-09)
+
+
+### Bug Fixes
+
+* do not create duplicated projections ([c693028](https://github.com/kkhanhluu/e-shop/commit/c693028abf810bdc6d77e452ba4fc12bf2d4ddc9))
+
 ### [0.0.4](https://github.com/kkhanhluu/e-shop/compare/@order-service-app/v0.0.3...@order-service-app/v0.0.4) (2023-03-08)
 
 
