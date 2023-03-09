@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/kkhanhluu/e-shop/compare/@inventory-service-app/v0.0.2...@inventory-service-app/v0.0.3) (2023-03-09)
+
+
+### Features
+
+* add payment service ([1823429](https://github.com/kkhanhluu/e-shop/commit/18234290edc2c4e8d98fcfbb6b4325855257b3c4))
+* add projection ([dfb7571](https://github.com/kkhanhluu/e-shop/commit/dfb75716b849b28468b32faeb5e1a80d0f9833a9))
+* add subscription and background worker ([0908de3](https://github.com/kkhanhluu/e-shop/commit/0908de3768664bf38786d6a7ff4d2128c899756e))
+* implement create order saga step ([254bcd7](https://github.com/kkhanhluu/e-shop/commit/254bcd7668752d0ed87b23e75453bdc87c0fbbf3))
+* implement payment saga step ([97fc84b](https://github.com/kkhanhluu/e-shop/commit/97fc84bd32fc803d28c7e4e0eef76a1939b0365d))
+* implement payment state transition ([3c86d14](https://github.com/kkhanhluu/e-shop/commit/3c86d1441eb043aaefe0ed0845f0fc2ed3033e3d))
+* implementing cqrs pattern ([9e13517](https://github.com/kkhanhluu/e-shop/commit/9e135176cb07cf4dd53367196d5daa5136e19909))
+* implementing event sourcing ([a353014](https://github.com/kkhanhluu/e-shop/commit/a35301449939c09f62fad0648febd718dcbb053e))
+* implemnting cqrs pattern ([ce4d678](https://github.com/kkhanhluu/e-shop/commit/ce4d678957e7cf895490c3e162d9ebee339dfed8))
+* setup state machine in order service ([5a34c8c](https://github.com/kkhanhluu/e-shop/commit/5a34c8c565436ef6bf2aa9f5a79304f9563eacdd))
+
+
+### Bug Fixes
+
+* add event store and event serializer ([6a71ba1](https://github.com/kkhanhluu/e-shop/commit/6a71ba1e305d42fdbf64b1ff903b6ebc28e63ff7))
+* do not create duplicated projections ([c693028](https://github.com/kkhanhluu/e-shop/commit/c693028abf810bdc6d77e452ba4fc12bf2d4ddc9))
+* refactoring project structure ([4cc3ec1](https://github.com/kkhanhluu/e-shop/commit/4cc3ec1dfa35f68b7e4e164df46c0adff7cab239))
+* update bom ([1142dd9](https://github.com/kkhanhluu/e-shop/commit/1142dd91d4d24274567587c0a25aba2243bd6e45))
+* update bom version and fix order service test ([92bcc55](https://github.com/kkhanhluu/e-shop/commit/92bcc55482c309a7c9a2a959b974e43386412776))
+
 ### 0.0.2 (2023-02-10)
 
 
