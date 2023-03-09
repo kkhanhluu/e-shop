@@ -1,6 +1,7 @@
 package eshop.orderservice.order.query.entity;
 
 public enum OrderStatus {
+    NEW,
     CREATED,
     PAYMENT_PENDING, PAID, PAYMENT_EXCEPTION,
     VALIDATION_PENDING, VALIDATED, VALIDATION_EXCEPTION,

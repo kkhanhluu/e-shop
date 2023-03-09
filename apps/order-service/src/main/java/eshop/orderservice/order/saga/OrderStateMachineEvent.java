@@ -1,6 +1,7 @@
-package eshop.orderservice.statemachine;
+package eshop.orderservice.order.saga;
 
-public enum OrderEvent {
+public enum OrderStateMachineEvent {
+    CREATE,
     PAYMENT_INIT, PAYMENT_SUCCESS, PAYMENT_FAILED,
     VALIDATE_ORDER, VALIDATION_PASSED, VALIDATION_FAILED,
     ALLOCATE_ORDER, ALLOCATION_PASSED, ALLOCATION_FAILED,
