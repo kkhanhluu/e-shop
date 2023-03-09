@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/kkhanhluu/e-shop/compare/@eshop-bom-lib/v0.0.10...@eshop-bom-lib/v0.0.11) (2023-03-09)
+
+
+### Features
+
+* add create and delete product api ([26060c8](https://github.com/kkhanhluu/e-shop/commit/26060c8d45aac8ea4649df7aba52062c6c16fa6a))
+* add inventory service ([5025846](https://github.com/kkhanhluu/e-shop/commit/5025846136533644d36e961cfe142c99ee762bbb))
+* add order service ([a0827e1](https://github.com/kkhanhluu/e-shop/commit/a0827e1f094bbc3179b138f74cf4c23abf8ab675))
+* add payment service ([1823429](https://github.com/kkhanhluu/e-shop/commit/18234290edc2c4e8d98fcfbb6b4325855257b3c4))
+* add projection ([dfb7571](https://github.com/kkhanhluu/e-shop/commit/dfb75716b849b28468b32faeb5e1a80d0f9833a9))
+* add register api ([c955c0e](https://github.com/kkhanhluu/e-shop/commit/c955c0ef4766149762d1d885666a677921d3c88d))
+* add subscription and background worker ([0908de3](https://github.com/kkhanhluu/e-shop/commit/0908de3768664bf38786d6a7ff4d2128c899756e))
+* add user role ([09ebd0e](https://github.com/kkhanhluu/e-shop/commit/09ebd0ebf78517fb76293ffd996bb7714d709777))
+* configure authorization server ([fae7cd8](https://github.com/kkhanhluu/e-shop/commit/fae7cd82ded259ef473ad578930520efaf06416d))
+* implement payment state transition ([3c86d14](https://github.com/kkhanhluu/e-shop/commit/3c86d1441eb043aaefe0ed0845f0fc2ed3033e3d))
+* implementing cqrs pattern ([9e13517](https://github.com/kkhanhluu/e-shop/commit/9e135176cb07cf4dd53367196d5daa5136e19909))
+* implementing event sourcing ([a353014](https://github.com/kkhanhluu/e-shop/commit/a35301449939c09f62fad0648febd718dcbb053e))
+* implemnting cqrs pattern ([ce4d678](https://github.com/kkhanhluu/e-shop/commit/ce4d678957e7cf895490c3e162d9ebee339dfed8))
+* setup api gateway ([4a3e4cc](https://github.com/kkhanhluu/e-shop/commit/4a3e4ccca4c710efd9597d0e035cf541049e82f7))
+* setup review service ([cd6e735](https://github.com/kkhanhluu/e-shop/commit/cd6e735999d6001c42cad3f5e5ff4bd54606a7a3))
+* setup state machine in order service ([5a34c8c](https://github.com/kkhanhluu/e-shop/commit/5a34c8c565436ef6bf2aa9f5a79304f9563eacdd))
+* store user and oauth2 client in database ([2ed20fa](https://github.com/kkhanhluu/e-shop/commit/2ed20fab6f59215020a5bd0404e48f4d09b30999))
+
+
+### Bug Fixes
+
+* add event store and event serializer ([6a71ba1](https://github.com/kkhanhluu/e-shop/commit/6a71ba1e305d42fdbf64b1ff903b6ebc28e63ff7))
+* change to property yaml files ([31db64c](https://github.com/kkhanhluu/e-shop/commit/31db64c34c9501220ecd87df786d2e2eba25b651))
+* do not create duplicated projections ([c693028](https://github.com/kkhanhluu/e-shop/commit/c693028abf810bdc6d77e452ba4fc12bf2d4ddc9))
+* fix user service test ([a6a0558](https://github.com/kkhanhluu/e-shop/commit/a6a0558b95864cc06d438cb46388b8743602807b))
+* refactoring project structure ([4cc3ec1](https://github.com/kkhanhluu/e-shop/commit/4cc3ec1dfa35f68b7e4e164df46c0adff7cab239))
+
 ### [0.0.10](https://github.com/kkhanhluu/e-shop/compare/@eshop-bom-lib/v0.0.9...@eshop-bom-lib/v0.0.10) (2023-02-02)
 
 
