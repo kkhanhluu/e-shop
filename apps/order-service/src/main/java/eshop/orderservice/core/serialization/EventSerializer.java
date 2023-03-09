@@ -4,6 +4,7 @@ import com.eventstore.dbclient.EventData;
 import com.eventstore.dbclient.ResolvedEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import eshop.orderservice.core.event.BaseEvent;
 import eshop.orderservice.core.event.EventTypeMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,7 @@ public final class EventSerializer {
         return EventData.builderAsJson(UUID.randomUUID(), EventTypeMapper.toName(event.getClass()), event).build();
     }
 
-    public static <Event> Optional<Event> deserialize(ResolvedEvent resolvedEvent) {
+    public static <Event extends BaseEvent> Optional<Event> deserialize(ResolvedEvent resolvedEvent) {
         Optional<Class> eventClass = EventTypeMapper.toClass(resolvedEvent.getEvent().getEventType());
         if (eventClass.isEmpty()) {
             return Optional.empty();
@@ -28,9 +29,10 @@ public final class EventSerializer {
         return deserialize(eventClass.get(), resolvedEvent);
     }
 
-    public static <Event> Optional<Event> deserialize(Class<Event> eventClass, ResolvedEvent resolvedEvent) {
+    public static <Event extends BaseEvent> Optional<Event> deserialize(Class<Event> eventClass, ResolvedEvent resolvedEvent) {
         try {
             Event result = mapper.readValue(resolvedEvent.getEvent().getEventData(), eventClass);
+            result.setLogPosition(resolvedEvent.getEvent().getPosition().getCommitUnsigned());
             if (result == null) {
                 return Optional.empty();
             }

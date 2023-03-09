@@ -1,6 +1,6 @@
 package eshop.orderservice.core.aggregate;
 
-import eshop.orderservice.order.event.BaseEvent;
+import eshop.orderservice.core.event.BaseEvent;
 import eshop.orderservice.core.exception.InvalidEventException;
 import lombok.Data;
 import lombok.NoArgsConstructor;

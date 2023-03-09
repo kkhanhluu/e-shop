@@ -1,5 +1,6 @@
 package eshop.orderservice.order.query.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -21,7 +22,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @CreationTimestamp
@@ -39,6 +39,10 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
     private Set<OrderLine> orderLineItems;
+
+    @Column(nullable = false)
+    @JsonIgnore
+    private long lastProcessedPosition;
 
     public void addOrderLineItem(OrderLine orderLineItem) {
         if (orderLineItems == null) {

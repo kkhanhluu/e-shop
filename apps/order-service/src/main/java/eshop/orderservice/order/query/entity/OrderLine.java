@@ -13,7 +13,6 @@ public class OrderLine {
     @JoinColumn(name = "order_id")
     Order order;
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private UUID productId;
     private BigDecimal productPrice;

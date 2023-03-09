@@ -26,6 +26,9 @@ public class OrderController {
     @ResponseStatus(HttpStatus.CREATED)
     ResponseEntity createOrder(@Valid @RequestBody CreateOrderRequest request) throws URISyntaxException {
         UUID orderId = UUID.randomUUID();
+        request.getOrderLineItems().forEach(orderLineItem -> {
+            orderLineItem.setId(UUID.randomUUID());
+        });
         UUID createdOrderId = orderCommandService.handle(
                 new CreateOrderCommand(orderId, request.getUserId(), request.getOrderLineItems()));
         return ResponseEntity.created(new URI("api/order/%s".formatted(createdOrderId))).build();

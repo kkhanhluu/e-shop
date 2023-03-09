@@ -15,13 +15,15 @@ public class OrderProjection {
 
     @EventListener
     void handleOrderCreatedEvent(OrderCreatedEvent event) {
-        System.out.println("event.getUserId() = " + event.toString());
         Order order = Order.builder()
+                .id(event.getAggregateId())
                 .userId(event.getUserId())
                 .status(OrderStatus.CREATED)
+                .lastProcessedPosition(event.getLogPosition())
                 .build();
         event.getOrderLineItems().forEach(orderLineItem -> {
             order.addOrderLineItem(orderLineItem);
+            System.out.println("orderLineItem = " + orderLineItem.getId());
         });
         orderRepository.saveAndFlush(order);
     }

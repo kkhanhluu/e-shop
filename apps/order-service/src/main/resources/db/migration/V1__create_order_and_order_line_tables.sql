@@ -15,7 +15,8 @@ create table orders
     id                 uuid not null,
     created_date       timestamp(6),
     last_modified_date timestamp(6),
-    status             smallint,
+    last_processed_position bigint not null,
+    status             varchar(255),
     user_id            uuid,
     primary key (id)
 );
