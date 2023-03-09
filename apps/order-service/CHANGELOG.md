@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/kkhanhluu/e-shop/compare/@order-service-app/v0.0.5...@order-service-app/v0.0.6) (2023-03-09)
+
+
+### Features
+
+* add payment service ([1823429](https://github.com/kkhanhluu/e-shop/commit/18234290edc2c4e8d98fcfbb6b4325855257b3c4))
+* implement create order saga step ([254bcd7](https://github.com/kkhanhluu/e-shop/commit/254bcd7668752d0ed87b23e75453bdc87c0fbbf3))
+* implement payment saga step ([97fc84b](https://github.com/kkhanhluu/e-shop/commit/97fc84bd32fc803d28c7e4e0eef76a1939b0365d))
+
+
+### Bug Fixes
+
+* update bom ([1142dd9](https://github.com/kkhanhluu/e-shop/commit/1142dd91d4d24274567587c0a25aba2243bd6e45))
+* update bom version and fix order service test ([92bcc55](https://github.com/kkhanhluu/e-shop/commit/92bcc55482c309a7c9a2a959b974e43386412776))
+
 ### [0.0.5](https://github.com/kkhanhluu/e-shop/compare/@order-service-app/v0.0.4...@order-service-app/v0.0.5) (2023-03-09)
 
 
