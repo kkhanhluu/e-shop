@@ -1,6 +1,10 @@
 package eshop.orderservice.order.saga;
 
 import eshop.orderservice.order.query.entity.OrderStatus;
+import eshop.orderservice.order.saga.actions.CreateOrderAction;
+import eshop.orderservice.order.saga.actions.PaymentFailedAction;
+import eshop.orderservice.order.saga.actions.PaymentSuccessAction;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.config.EnableStateMachineFactory;
 import org.springframework.statemachine.config.EnumStateMachineConfigurerAdapter;
@@ -11,7 +15,13 @@ import java.util.EnumSet;
 
 @Configuration
 @EnableStateMachineFactory
+@RequiredArgsConstructor
 public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<OrderStatus, OrderStateMachineEvent> {
+    private final CreateOrderAction createOrderAction;
+    private final PaymentFailedAction paymentFailedAction;
+    private final PaymentSuccessAction paymentSuccessAction;
+    public static final String ORDER_USER_ID_HEADER = "ORDER_USER_ID_HEADER";
+    public static final String ORDER_LINES_HEADER = "ORDER_LINES_HEADER";
     public static final String ORDER_ID_HEADER = "ORDER_ID_HEADER";
     @Override
     public void configure(StateMachineStateConfigurer<OrderStatus, OrderStateMachineEvent> states) throws Exception {
@@ -27,13 +37,11 @@ public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<O
 
     @Override
     public void configure(StateMachineTransitionConfigurer<OrderStatus, OrderStateMachineEvent> transitions) throws Exception {
-        transitions.withExternal().source(OrderStatus.NEW).target(OrderStatus.CREATED).event(OrderStateMachineEvent.CREATE)
-                .and().withExternal().source(OrderStatus.CREATED).target(OrderStatus.PAYMENT_PENDING).event(
-                        OrderStateMachineEvent.PAYMENT_INIT)
-                .and().withExternal().source(OrderStatus.PAYMENT_PENDING).target(OrderStatus.PAID).event(
-                        OrderStateMachineEvent.PAYMENT_SUCCESS)
-                .and().withExternal().source(OrderStatus.PAYMENT_PENDING).target(OrderStatus.PAYMENT_EXCEPTION).event(
-                        OrderStateMachineEvent.PAYMENT_FAILED)
+        transitions.withExternal().source(OrderStatus.NEW).target(OrderStatus.CREATED).event(OrderStateMachineEvent.CREATE).action(createOrderAction)
+                .and().withExternal().source(OrderStatus.CREATED).target(OrderStatus.PAID).event(
+                        OrderStateMachineEvent.PAYMENT_SUCCESS).action(paymentSuccessAction)
+                .and().withExternal().source(OrderStatus.CREATED).target(OrderStatus.PAYMENT_EXCEPTION).event(
+                        OrderStateMachineEvent.PAYMENT_FAILED).action(paymentFailedAction)
                 .and().withExternal().source(OrderStatus.PAID).target(OrderStatus.VALIDATION_PENDING).event(
                         OrderStateMachineEvent.VALIDATE_ORDER)
                 .and().withExternal().source(OrderStatus.VALIDATION_PENDING).target(OrderStatus.VALIDATED).event(
