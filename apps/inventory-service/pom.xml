@@ -15,7 +15,7 @@
 
 	<groupId>com.github.kkhanhluu.eshop</groupId>
 	<artifactId>inventory-service</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<name>inventory-service</name>
 	<description>The inventory service of eshop project</description>
 	<dependencies>
