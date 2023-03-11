@@ -7,7 +7,7 @@
 		<version>0.0.13</version>
 	</parent>
 	<artifactId>user-service</artifactId>
-	<version>0.0.12</version>
+	<version>0.0.13</version>
 	<name>user-service</name>
 	<description>User service of e-shop project</description>
 
