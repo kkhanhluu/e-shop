@@ -24,7 +24,16 @@ public class OrderAggregate extends RootAggregate<OrderEvent> {
         this.status = OrderStatus.NEW;
     }
 
-    private OrderAggregate() {}
+    private OrderAggregate() {
+    }
+
+    public static String getStreamId(UUID orderId) {
+        return "Order-%s".formatted(orderId);
+    }
+
+    public static OrderAggregate getEmptyOrder() {
+        return new OrderAggregate();
+    }
 
     @Override
     public void when(OrderEvent event) {
@@ -33,7 +42,7 @@ public class OrderAggregate extends RootAggregate<OrderEvent> {
         } else if (Objects.requireNonNull(event) instanceof OrderPaidEvent orderPaidEvent) {
             handle(orderPaidEvent);
         } else if (Objects.requireNonNull(event) instanceof OrderPaymentRejectedEvent orderPaymentRejectedEvent) {
-           handle(orderPaymentRejectedEvent);
+            handle(orderPaymentRejectedEvent);
         } else {
             throw new IllegalArgumentException("Event cannot be null");
         }
@@ -53,14 +62,6 @@ public class OrderAggregate extends RootAggregate<OrderEvent> {
     public void rejectPayment() {
         OrderPaymentRejectedEvent orderPaymentRejectedEvent = new OrderPaymentRejectedEvent(this.id);
         this.apply(orderPaymentRejectedEvent);
-    }
-
-    public static String getStreamId(UUID orderId) {
-        return "Order-%s".formatted(orderId);
-    }
-
-    public static OrderAggregate getEmptyOrder() {
-        return new OrderAggregate();
     }
 
     private void handle(OrderCreatedEvent orderCreatedEvent) {

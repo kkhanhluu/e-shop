@@ -32,7 +32,6 @@ public abstract class RootAggregate<Event extends BaseEvent> {
     }
 
     private void validateEvent(final Event event) {
-        System.out.println("event = " + event.getAggregateId() + " - " + this.id);
         if (Objects.isNull(event) || !event.getAggregateId().equals(this.id)) {
             throw new InvalidEventException(event.toString());
         }
