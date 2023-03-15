@@ -47,7 +47,7 @@ public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<O
                 .and().withExternal().source(OrderStatus.PAID).target(OrderStatus.VALIDATION_PENDING).event(
                         OrderStateMachineEvent.VALIDATE_ORDER).action(validateOrderAction)
                 .and().withExternal().source(OrderStatus.VALIDATION_PENDING).target(OrderStatus.VALIDATED).event(
-                        OrderStateMachineEvent.VALIDATION_PASSED)
+                        OrderStateMachineEvent.VALIDATION_PASSED).action(validateOrderAction)
                 .and().withExternal().source(OrderStatus.VALIDATION_PENDING).target(OrderStatus.VALIDATION_EXCEPTION).event(
                         OrderStateMachineEvent.VALIDATION_FAILED)
                 .and().withExternal().source(OrderStatus.VALIDATED).target(OrderStatus.BEING_DELIVERED).event(

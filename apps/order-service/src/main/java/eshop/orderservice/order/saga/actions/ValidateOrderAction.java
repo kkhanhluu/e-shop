@@ -30,6 +30,9 @@ public class ValidateOrderAction implements Action<OrderStatus, OrderStateMachin
         String orderId = (String) context.getMessage().getHeaders().get(OrderStateMachineConfig.ORDER_ID_HEADER);
         OrderAggregate orderAggregate = eventStore.get(UUID.fromString(orderId)).orElseThrow(NotFoundException::new);
 
+        orderAggregate.validateOrder();
+        eventStore.appendEvents(orderAggregate);
+
         rabbitTemplate.convertAndSend(RabbitMQConstants.EXCHANGE_NAME, RabbitMQConstants.VALIDATE_ORDER_KEY,
                 ValidateOrderRequest.builder().orderID(orderAggregate.getId()).orderLines(orderAggregate.getOrderLineItems()).build());
     }

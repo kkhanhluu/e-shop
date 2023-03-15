@@ -6,6 +6,7 @@ import eshop.inventoryservice.rabbitmq.event.ValidateOrderRequest;
 import eshop.inventoryservice.rabbitmq.event.ValidateOrderResponse;
 import eshop.inventoryservice.repository.InventoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -22,17 +23,21 @@ public class ValidateOrderListener {
 
     @RabbitListener(queues = RabbitMQConstants.PAYMENT_RESPONSE_QUEUE)
     public void listen(@Payload ValidateOrderRequest validateOrderRequest) {
-       validateOrderRequest.getOrderLines().forEach(orderLine -> {
-           Optional<ProductInventory> inventoryOptional = inventoryRepository.findByProductId(orderLine.getProductId());
-           if (inventoryOptional.isEmpty()) {
-                handleValidateOrderFail(validateOrderRequest.getOrderID());
-           }
-           ProductInventory productInventory = inventoryOptional.get();
-           if (productInventory.getQuantityOnHand() < orderLine.getQuantity()) {
-               handleValidateOrderFail(validateOrderRequest.getOrderID());
-           }
-       });
-       handleValidateOrderSuccess(validateOrderRequest.getOrderID());
+        try {
+            validateOrderRequest.getOrderLines().forEach(orderLine -> {
+                Optional<ProductInventory> inventoryOptional = inventoryRepository.findByProductId(orderLine.getProductId());
+                if (inventoryOptional.isEmpty()) {
+                     handleValidateOrderFail(validateOrderRequest.getOrderID());
+                }
+                ProductInventory productInventory = inventoryOptional.get();
+                if (productInventory.getQuantityOnHand() < orderLine.getQuantity()) {
+                    handleValidateOrderFail(validateOrderRequest.getOrderID());
+                }
+            });
+            handleValidateOrderSuccess(validateOrderRequest.getOrderID());
+        } catch (Exception e) {
+            throw new AmqpRejectAndDontRequeueException(e);
+        }
     }
 
     private void handleValidateOrderSuccess(UUID orderId) {

@@ -5,9 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import eshop.api.exceptions.NotFoundException;
 import eshop.orderservice.core.event.EventStore;
 import eshop.orderservice.order.aggregate.OrderAggregate;
-import eshop.orderservice.order.command.commands.CreateOrderCommand;
-import eshop.orderservice.order.command.commands.PayOrderFailedCommand;
-import eshop.orderservice.order.command.commands.PayOrderSuccessCommand;
+import eshop.orderservice.order.command.commands.*;
 import eshop.orderservice.order.event.OrderEvent;
 import eshop.orderservice.order.saga.OrderStateMachineConfig;
 import eshop.orderservice.order.saga.OrderStateMachineEvent;
@@ -56,5 +54,17 @@ public class OrderCommandServiceImpl implements OrderCommandService {
     public void handle(PayOrderFailedCommand command) {
         OrderAggregate orderAggregate = eventStore.get(command.orderId()).orElseThrow(NotFoundException::new);
         orderStateMachineService.sendOrderStateMachineEvent(orderAggregate, OrderStateMachineEvent.PAYMENT_FAILED);
+    }
+
+    @Override
+    public void handle(ValidateOrderSuccessCommand command) {
+        OrderAggregate orderAggregate = eventStore.get(command.orderId()).orElseThrow(NotFoundException::new);
+        orderStateMachineService.sendOrderStateMachineEvent(orderAggregate, OrderStateMachineEvent.VALIDATION_PASSED);
+    }
+
+    @Override
+    public void handle(ValidateOrderFailedCommand command) {
+        OrderAggregate orderAggregate = eventStore.get(command.orderId()).orElseThrow(NotFoundException::new);
+        orderStateMachineService.sendOrderStateMachineEvent(orderAggregate, OrderStateMachineEvent.VALIDATION_FAILED);
     }
 }

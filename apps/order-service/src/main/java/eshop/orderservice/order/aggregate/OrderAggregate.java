@@ -1,12 +1,9 @@
 package eshop.orderservice.order.aggregate;
 
 import eshop.orderservice.core.aggregate.RootAggregate;
-import eshop.orderservice.order.event.OrderPaidEvent;
-import eshop.orderservice.order.event.OrderPaymentRejectedEvent;
+import eshop.orderservice.order.event.*;
 import eshop.orderservice.order.query.entity.OrderLine;
 import eshop.orderservice.order.query.entity.OrderStatus;
-import eshop.orderservice.order.event.OrderCreatedEvent;
-import eshop.orderservice.order.event.OrderEvent;
 import lombok.Data;
 
 import java.util.Objects;
@@ -38,11 +35,16 @@ public class OrderAggregate extends RootAggregate<OrderEvent> {
     @Override
     public void when(OrderEvent event) {
         if (Objects.requireNonNull(event) instanceof OrderCreatedEvent orderCreatedEvent) {
-            handle(orderCreatedEvent);
+            id = orderCreatedEvent.getAggregateId();
+            userId = orderCreatedEvent.getUserId();
+            orderLineItems = orderCreatedEvent.getOrderLineItems();
+            status = OrderStatus.CREATED;
         } else if (Objects.requireNonNull(event) instanceof OrderPaidEvent orderPaidEvent) {
-            handle(orderPaidEvent);
+            status = OrderStatus.PAID;
         } else if (Objects.requireNonNull(event) instanceof OrderPaymentRejectedEvent orderPaymentRejectedEvent) {
-            handle(orderPaymentRejectedEvent);
+            status = OrderStatus.PAYMENT_EXCEPTION;
+        } else if (Objects.requireNonNull(event) instanceof OrderValidationStartedEvent orderValidationStartedEvent) {
+            status = OrderStatus.VALIDATION_PENDING;
         } else {
             throw new IllegalArgumentException("Event cannot be null");
         }
@@ -64,18 +66,18 @@ public class OrderAggregate extends RootAggregate<OrderEvent> {
         this.apply(orderPaymentRejectedEvent);
     }
 
-    private void handle(OrderCreatedEvent orderCreatedEvent) {
-        id = orderCreatedEvent.getAggregateId();
-        userId = orderCreatedEvent.getUserId();
-        orderLineItems = orderCreatedEvent.getOrderLineItems();
-        status = OrderStatus.CREATED;
+    public void validateOrder() {
+        OrderValidationStartedEvent orderValidationStartedEvent = new OrderValidationStartedEvent(this.id);
+        this.apply(orderValidationStartedEvent);
     }
 
-    private void handle(OrderPaidEvent orderPaidEvent) {
-        status = OrderStatus.PAID;
+    public void validateOrderSuccess() {
+        OrderValidatedEvent orderValidatedEvent = new OrderValidatedEvent(this.id);
+        this.apply(orderValidatedEvent);
     }
 
-    private void handle(OrderPaymentRejectedEvent orderPaymentRejectedEvent) {
-        status = OrderStatus.PAYMENT_EXCEPTION;
+    public void validateOrderFailed() {
+        OrderValidationFailedEvent orderValidationFailedEvent = new OrderValidationFailedEvent(this.id);
+        this.apply(orderValidationFailedEvent);
     }
 }
