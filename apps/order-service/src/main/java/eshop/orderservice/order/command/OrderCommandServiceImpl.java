@@ -40,7 +40,6 @@ public class OrderCommandServiceImpl implements OrderCommandService {
         }
 
         orderStateMachineService.sendOrderStateMachineEvent(orderAggregate, OrderStateMachineEvent.CREATE, messageHeaders);
-        orderStateMachineService.sendOrderStateMachineEvent(orderAggregate, OrderStateMachineEvent.PAYMENT_INIT);
 
         return orderAggregate.getId();
     }
@@ -49,6 +48,8 @@ public class OrderCommandServiceImpl implements OrderCommandService {
     public void handle(PayOrderSuccessCommand command) {
         OrderAggregate orderAggregate = eventStore.get(command.orderId()).orElseThrow(NotFoundException::new);
         orderStateMachineService.sendOrderStateMachineEvent(orderAggregate, OrderStateMachineEvent.PAYMENT_SUCCESS);
+        OrderAggregate paidOrderAggregate = eventStore.get(command.orderId()).orElseThrow(NotFoundException::new);
+        orderStateMachineService.sendOrderStateMachineEvent(paidOrderAggregate, OrderStateMachineEvent.VALIDATE_ORDER);
     }
 
     @Override
