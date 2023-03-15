@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.14](https://github.com/kkhanhluu/e-shop/compare/@product-service-app/v0.0.13...@product-service-app/v0.0.14) (2023-03-15)
+
 ### [0.0.13](https://github.com/kkhanhluu/e-shop/compare/@product-service-app/v0.0.12...@product-service-app/v0.0.13) (2023-03-15)
 
 
