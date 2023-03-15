@@ -21,14 +21,14 @@
     "prisma-migrate-dev": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["npx prisma migrate dev"],
+        "commands": ["npx prisma migrate dev --skip-generate"],
         "cwd": "apps/inventory-service"
       }
     },
     "prisma-migrate-reset": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["npx prisma migrate reset"],
+        "commands": ["npx prisma migrate reset --force"],
         "cwd": "apps/inventory-service"
       }
     },
@@ -81,7 +81,10 @@
     "serve": {
       "executor": "@nxrocks/nx-spring-boot:serve",
       "options": {
-        "root": "apps/inventory-service"
+        "root": "apps/inventory-service",
+        "dependsOn": [
+          "^prisma-migrate-deploy"
+        ]
       }
     },
     "build-image": {
