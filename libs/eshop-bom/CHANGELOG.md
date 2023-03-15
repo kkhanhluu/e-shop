@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.14](https://github.com/kkhanhluu/e-shop/compare/@eshop-bom-lib/v0.0.13...@eshop-bom-lib/v0.0.14) (2023-03-15)
+
+
+### Features
+
+* add prisma to order service ([7a7bc88](https://github.com/kkhanhluu/e-shop/commit/7a7bc880377199bf885378fb29f5abfdd1c46922))
+* add prisma to product service ([d2e64a4](https://github.com/kkhanhluu/e-shop/commit/d2e64a465c57e93ba0bca8911ffdc1cbd186599e))
+* add prisma to product service ([2047e94](https://github.com/kkhanhluu/e-shop/commit/2047e94357a45280f7d5b502149b3fa9df0bed27))
+* add prisma to user service ([eca4245](https://github.com/kkhanhluu/e-shop/commit/eca4245be3f311dbac0884227eb765d866418ba6))
+* add seed script ([0a36ec0](https://github.com/kkhanhluu/e-shop/commit/0a36ec0e07b2b9f8cd88eb8948a9c4c711cec638))
+
+
+### Bug Fixes
+
+* replace prisma in inventory service ([cb7fce6](https://github.com/kkhanhluu/e-shop/commit/cb7fce666dd0105b59bfa546ba2e8b63f76c2ddb))
+* update bom version and fix order service test ([92bcc55](https://github.com/kkhanhluu/e-shop/commit/92bcc55482c309a7c9a2a959b974e43386412776))
+
 ### [0.0.13](https://github.com/kkhanhluu/e-shop/compare/@eshop-bom-lib/v0.0.12...@eshop-bom-lib/v0.0.13) (2023-03-09)
 
 
