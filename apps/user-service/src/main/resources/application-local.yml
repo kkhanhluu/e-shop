@@ -4,13 +4,6 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
-  jpa:
-    generate-ddl: true
-    show-sql: true
-  flyway:
-    user: postgres
-    password: postgres
-    default-schema: public
 
 logging:
   level:

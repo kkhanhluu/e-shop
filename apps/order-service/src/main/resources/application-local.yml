@@ -7,11 +7,6 @@ spring:
   sql:
     init:
       platform: postgres
-  jpa:
-#    hibernate:
-#      ddl-auto: create
-    generate-ddl: true
-    show-sql: true
 
 eventstore:
   connection-string: esdb://localhost:2113?tls=false

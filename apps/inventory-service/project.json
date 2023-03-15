@@ -4,6 +4,41 @@
   "sourceRoot": "apps/inventory-service/src",
   "projectType": "application",
   "targets": {
+    "prisma-init": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma init --url postgresql://postgres:postgres@localhost:5432/inventory_service"],
+        "cwd": "apps/inventory-service"
+      }
+    },
+    "prisma-pull": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma db pull"],
+        "cwd": "apps/inventory-service"
+      }
+    },
+    "prisma-migrate-dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma migrate dev --skip-generate"],
+        "cwd": "apps/inventory-service"
+      }
+    },
+    "prisma-migrate-reset": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma migrate reset --force"],
+        "cwd": "apps/inventory-service"
+      }
+    },
+    "prisma-migrate-deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma migrate deploy"],
+        "cwd": "apps/inventory-service"
+      }
+    },
     "build": {
       "executor": "@nxrocks/nx-spring-boot:build",
       "options": {
@@ -46,7 +81,10 @@
     "serve": {
       "executor": "@nxrocks/nx-spring-boot:serve",
       "options": {
-        "root": "apps/inventory-service"
+        "root": "apps/inventory-service",
+        "dependsOn": [
+          "^prisma-migrate-deploy"
+        ]
       }
     },
     "build-image": {

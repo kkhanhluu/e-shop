@@ -3,6 +3,3 @@ spring:
     init:
       platform: postgres
       driver-class-name: org.postgresql.Driver
-  jpa:
-    generate-ddl: true
-    show-sql: true

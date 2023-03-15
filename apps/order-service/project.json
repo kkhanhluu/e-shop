@@ -4,6 +4,41 @@
   "sourceRoot": "apps/order-service/src",
   "projectType": "application",
   "targets": {
+    "prisma-init": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma init --url postgresql://postgres:postgres@localhost:5432/order_service"],
+        "cwd": "apps/order-service"
+      }
+    },
+    "prisma-pull": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma db pull"],
+        "cwd": "apps/order-service"
+      }
+    },
+    "prisma-migrate-dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma migrate dev --skip-generate"],
+        "cwd": "apps/order-service"
+      }
+    },
+    "prisma-migrate-reset": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma migrate reset --force"],
+        "cwd": "apps/order-service"
+      }
+    },
+    "prisma-migrate-deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma migrate deploy"],
+        "cwd": "apps/order-service"
+      }
+    },
     "build": {
       "executor": "@nxrocks/nx-spring-boot:build",
       "options": {

@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model order_line {
+  id            String   @id @db.Uuid
+  product_id    String?  @db.Uuid
+  product_price Decimal? @db.Decimal(38, 2)
+  quantity      Int?
+  order_id      String   @db.Uuid
+  orders        orders   @relation(fields: [order_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fkk9f9t1tmkbq5w27u8rrjbxxg6")
+}
+
+model orders {
+  id                      String       @id @db.Uuid
+  created_date            DateTime?    @db.Timestamp(6)
+  last_modified_date      DateTime?    @db.Timestamp(6)
+  last_processed_position BigInt
+  status                  String?      @db.VarChar(255)
+  user_id                 String?      @db.Uuid
+  order_line              order_line[]
+}
