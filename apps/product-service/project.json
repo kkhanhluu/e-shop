@@ -4,6 +4,41 @@
   "sourceRoot": "apps/product-service/src",
   "projectType": "application",
   "targets": {
+    "prisma-init": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma init --url postgresql://postgres:postgres@localhost:5432/product_service"],
+        "cwd": "apps/product-service"
+      }
+    },
+    "prisma-pull": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma db pull"],
+        "cwd": "apps/product-service"
+      }
+    },
+    "prisma-migrate-dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma migrate dev --skip-generate"],
+        "cwd": "apps/product-service"
+      }
+    },
+    "prisma-migrate-reset": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma migrate reset --force"],
+        "cwd": "apps/product-service"
+      }
+    },
+    "prisma-migrate-deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx prisma migrate deploy"],
+        "cwd": "apps/product-service"
+      }
+    },
     "build": {
       "executor": "@nxrocks/nx-spring-boot:build",
       "options": {
