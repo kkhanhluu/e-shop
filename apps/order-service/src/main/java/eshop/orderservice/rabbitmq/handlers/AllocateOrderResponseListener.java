@@ -4,8 +4,6 @@ import eshop.constants.RabbitMQConstants;
 import eshop.orderservice.order.command.OrderCommandService;
 import eshop.orderservice.order.command.commands.AllocateOrderFailedCommand;
 import eshop.orderservice.order.command.commands.AllocateOrderSuccessCommand;
-import eshop.orderservice.order.command.commands.PayOrderFailedCommand;
-import eshop.orderservice.order.command.commands.PayOrderSuccessCommand;
 import eshop.orderservice.rabbitmq.events.AllocateOrderResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
@@ -18,7 +16,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class AllocateOrderResponseListener {
-    private OrderCommandService orderCommandService;
+    private final OrderCommandService orderCommandService;
 
     @RabbitListener(queues = RabbitMQConstants.ALLOCATE_ORDER_RESPONSE_QUEUE)
     public void listen(@Payload AllocateOrderResponse allocateOrderResponse) {
