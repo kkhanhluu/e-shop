@@ -4,15 +4,14 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
-  "dependencies": {
-    "pg": "^8.10.0"
-  },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
     "@nrwl/nx-cloud": "latest",
     "@nrwl/workspace": "15.5.0",
     "@nxrocks/nx-spring-boot": "^6.2.1",
     "@prisma/client": "^4.11.0",
+    "pg": "^8.10.0",
+    "mongodb": "^5.1.0",
     "nx": "15.5.0",
     "prettier": "^2.6.2",
     "prisma": "^4.11.0",
