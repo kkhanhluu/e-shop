@@ -1,9 +1,7 @@
 package eshop.orderservice.order.saga;
 
 import eshop.orderservice.order.query.entity.OrderStatus;
-import eshop.orderservice.order.saga.actions.CreateOrderAction;
-import eshop.orderservice.order.saga.actions.PaymentFailedAction;
-import eshop.orderservice.order.saga.actions.PaymentSuccessAction;
+import eshop.orderservice.order.saga.actions.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.config.EnableStateMachineFactory;
@@ -20,6 +18,9 @@ public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<O
     private final CreateOrderAction createOrderAction;
     private final PaymentFailedAction paymentFailedAction;
     private final PaymentSuccessAction paymentSuccessAction;
+    private final ValidateOrderAction validateOrderAction;
+    private final ValidateOrderSuccessAction validateOrderSuccessAction;
+    private final ValidateOrderFailedAction validateOrderFailedAction;
     public static final String ORDER_USER_ID_HEADER = "ORDER_USER_ID_HEADER";
     public static final String ORDER_LINES_HEADER = "ORDER_LINES_HEADER";
     public static final String ORDER_ID_HEADER = "ORDER_ID_HEADER";
@@ -43,11 +44,11 @@ public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<O
                 .and().withExternal().source(OrderStatus.CREATED).target(OrderStatus.PAYMENT_EXCEPTION).event(
                         OrderStateMachineEvent.PAYMENT_FAILED).action(paymentFailedAction)
                 .and().withExternal().source(OrderStatus.PAID).target(OrderStatus.VALIDATION_PENDING).event(
-                        OrderStateMachineEvent.VALIDATE_ORDER)
+                        OrderStateMachineEvent.VALIDATE_ORDER).action(validateOrderAction)
                 .and().withExternal().source(OrderStatus.VALIDATION_PENDING).target(OrderStatus.VALIDATED).event(
-                        OrderStateMachineEvent.VALIDATION_PASSED)
+                        OrderStateMachineEvent.VALIDATION_PASSED).action(validateOrderSuccessAction)
                 .and().withExternal().source(OrderStatus.VALIDATION_PENDING).target(OrderStatus.VALIDATION_EXCEPTION).event(
-                        OrderStateMachineEvent.VALIDATION_FAILED)
+                        OrderStateMachineEvent.VALIDATION_FAILED).action(validateOrderFailedAction)
                 .and().withExternal().source(OrderStatus.VALIDATED).target(OrderStatus.BEING_DELIVERED).event(
                         OrderStateMachineEvent.DELIVERY_ORDER)
                 .and().withExternal().source(OrderStatus.BEING_DELIVERED).target(OrderStatus.DELIVERED).event(
