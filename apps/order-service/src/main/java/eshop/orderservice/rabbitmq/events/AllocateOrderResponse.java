@@ -1,15 +1,13 @@
 package eshop.orderservice.rabbitmq.events;
 
-import eshop.orderservice.order.query.entity.OrderLine;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.Set;
 import java.util.UUID;
 
 @Data
 @Builder
-public class AllocateOrderRequest {
+public class AllocateOrderResponse {
     private UUID orderId;
-    private Set<OrderLine> orderLines;
+    private boolean isSuccessful;
 }

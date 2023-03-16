@@ -21,6 +21,9 @@ public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<O
     private final ValidateOrderAction validateOrderAction;
     private final ValidateOrderSuccessAction validateOrderSuccessAction;
     private final ValidateOrderFailedAction validateOrderFailedAction;
+    private final AllocateOrderAction allocateOrderAction;
+    private final AllocateOrderSuccessAction allocateOrderSuccessAction;
+    private final AllocateOrderFailedAction allocateOrderFailedAction;
     public static final String ORDER_USER_ID_HEADER = "ORDER_USER_ID_HEADER";
     public static final String ORDER_LINES_HEADER = "ORDER_LINES_HEADER";
     public static final String ORDER_ID_HEADER = "ORDER_ID_HEADER";
@@ -49,11 +52,11 @@ public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<O
                         OrderStateMachineEvent.VALIDATION_PASSED).action(validateOrderSuccessAction)
                 .and().withExternal().source(OrderStatus.VALIDATION_PENDING).target(OrderStatus.VALIDATION_EXCEPTION).event(
                         OrderStateMachineEvent.VALIDATION_FAILED).action(validateOrderFailedAction)
-                .and().withExternal().source(OrderStatus.VALIDATED).target(OrderStatus.BEING_DELIVERED).event(
-                        OrderStateMachineEvent.DELIVERY_ORDER)
-                .and().withExternal().source(OrderStatus.BEING_DELIVERED).target(OrderStatus.DELIVERED).event(
-                        OrderStateMachineEvent.DELIVERY_SUCCESS)
-                .and().withExternal().source(OrderStatus.BEING_DELIVERED).target(OrderStatus.DELIVERY_EXCEPTION).event(
-                        OrderStateMachineEvent.DELIVERY_FAILED);
+                .and().withExternal().source(OrderStatus.VALIDATED).target(OrderStatus.ALLOCATION_PENDING).event(
+                        OrderStateMachineEvent.ALLOCATE_ORDER).action(allocateOrderAction)
+                .and().withExternal().source(OrderStatus.ALLOCATION_PENDING).target(OrderStatus.ALLOCATED).event(
+                        OrderStateMachineEvent.ALLOCATION_PASSED).action(allocateOrderSuccessAction)
+                .and().withExternal().source(OrderStatus.ALLOCATION_PENDING).target(OrderStatus.ALLOCATION_EXCEPTION).event(
+                        OrderStateMachineEvent.ALLOCATION_FAILED).action(allocateOrderFailedAction);
     }
 }

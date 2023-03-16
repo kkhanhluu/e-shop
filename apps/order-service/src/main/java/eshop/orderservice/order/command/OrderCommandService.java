@@ -10,4 +10,6 @@ public interface OrderCommandService {
     void handle(PayOrderFailedCommand createOrderCommand);
     void handle(ValidateOrderSuccessCommand validateOrderSuccessCommand);
     void handle(ValidateOrderFailedCommand validateOrderFailedCommand);
+    void handle(AllocateOrderSuccessCommand allocateOrderSuccessCommand);
+    void handle(AllocateOrderFailedCommand allocateOrderFailedCommand);
 }

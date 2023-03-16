@@ -6,5 +6,5 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public sealed class OrderEvent extends BaseEvent permits OrderCreatedEvent, OrderPaidEvent, OrderPaymentRejectedEvent, OrderValidationStartedEvent, OrderValidatedEvent, OrderValidationFailedEvent {
+public sealed class OrderEvent extends BaseEvent permits OrderCreatedEvent, OrderPaidEvent, OrderPaymentRejectedEvent, OrderValidationStartedEvent, OrderValidatedEvent, OrderValidationFailedEvent, OrderAllocationStartedEvent, OrderAllocatedEvent, OrderAllocationFailedEvent {
 }
