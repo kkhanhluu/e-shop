@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/kkhanhluu/e-shop/compare/@payment-service-app/v0.0.5...@payment-service-app/v0.0.6) (2023-03-16)
+
+
+### Features
+
+* implement validate order in aggregate ([9353e3b](https://github.com/kkhanhluu/e-shop/commit/9353e3b0b7fd7d246595cd4a7a9122093a1fb1d8))
+* implement validate order in inventory service ([8e1088b](https://github.com/kkhanhluu/e-shop/commit/8e1088bfb19b595e2965a5c911241ceab80685cf))
+* implement validation process ([e6480ee](https://github.com/kkhanhluu/e-shop/commit/e6480ee85022f8e0f8a38857b154445d0b7d8ec6))
+* send validate order event to queue ([a35aba5](https://github.com/kkhanhluu/e-shop/commit/a35aba5d2baa72327b5d50f742d4fad74a71432e))
+
+
+### Bug Fixes
+
+* intergration test are failing ([1003c73](https://github.com/kkhanhluu/e-shop/commit/1003c731d2efb3aa853e2b49a9819fafa48452b9))
+
 ### [0.0.5](https://github.com/kkhanhluu/e-shop/compare/@payment-service-app/v0.0.4...@payment-service-app/v0.0.5) (2023-03-15)
 
 
