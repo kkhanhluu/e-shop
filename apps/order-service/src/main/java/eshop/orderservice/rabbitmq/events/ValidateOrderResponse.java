@@ -6,6 +6,6 @@ import java.util.UUID;
 
 @Data
 public class ValidateOrderResponse {
-    private UUID orderID;
+    private UUID orderId;
     private boolean isValid;
 }

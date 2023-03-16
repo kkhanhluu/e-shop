@@ -45,6 +45,10 @@ public class OrderAggregate extends RootAggregate<OrderEvent> {
             status = OrderStatus.PAYMENT_EXCEPTION;
         } else if (Objects.requireNonNull(event) instanceof OrderValidationStartedEvent orderValidationStartedEvent) {
             status = OrderStatus.VALIDATION_PENDING;
+        } else if (Objects.requireNonNull(event) instanceof OrderValidatedEvent orderValidatedEvent) {
+            status = OrderStatus.VALIDATED;
+        } else if (Objects.requireNonNull(event) instanceof OrderValidationFailedEvent orderValidationFailedEvent) {
+            status = OrderStatus.VALIDATION_EXCEPTION;
         } else {
             throw new IllegalArgumentException("Event cannot be null");
         }
@@ -79,5 +83,9 @@ public class OrderAggregate extends RootAggregate<OrderEvent> {
     public void validateOrderFailed() {
         OrderValidationFailedEvent orderValidationFailedEvent = new OrderValidationFailedEvent(this.id);
         this.apply(orderValidationFailedEvent);
+    }
+
+    public void allocateOrder() {
+        System.out.println("Allocate orders");
     }
 }

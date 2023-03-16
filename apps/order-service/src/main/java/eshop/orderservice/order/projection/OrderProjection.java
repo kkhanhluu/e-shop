@@ -1,9 +1,7 @@
 package eshop.orderservice.order.projection;
 
 import eshop.api.exceptions.NotFoundException;
-import eshop.orderservice.order.event.OrderCreatedEvent;
-import eshop.orderservice.order.event.OrderPaidEvent;
-import eshop.orderservice.order.event.OrderPaymentRejectedEvent;
+import eshop.orderservice.order.event.*;
 import eshop.orderservice.order.query.entity.Order;
 import eshop.orderservice.order.query.entity.OrderStatus;
 import eshop.orderservice.order.repository.OrderRepository;
@@ -41,6 +39,27 @@ public class OrderProjection {
     void handleOrderPaymentRejectedEvent(OrderPaymentRejectedEvent event) {
         Order order = orderRepository.findById(event.getAggregateId()).orElseThrow(NotFoundException::new);
         order.setStatus(OrderStatus.PAYMENT_EXCEPTION);
+        orderRepository.save(order);
+    }
+
+    @EventListener
+    void handleOrderValidationStartedEvent(OrderValidationStartedEvent event) {
+        Order order = orderRepository.findById(event.getAggregateId()).orElseThrow(NotFoundException::new);
+        order.setStatus(OrderStatus.VALIDATION_PENDING);
+        orderRepository.save(order);
+    }
+
+    @EventListener
+    void handleOrderValidatedEvent(OrderValidatedEvent event) {
+        Order order = orderRepository.findById(event.getAggregateId()).orElseThrow(NotFoundException::new);
+        order.setStatus(OrderStatus.VALIDATED);
+        orderRepository.save(order);
+    }
+
+    @EventListener
+    void handleOrderValidationFailedEvent(OrderValidationFailedEvent event) {
+        Order order = orderRepository.findById(event.getAggregateId()).orElseThrow(NotFoundException::new);
+        order.setStatus(OrderStatus.VALIDATION_EXCEPTION);
         orderRepository.save(order);
     }
 }
