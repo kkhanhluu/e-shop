@@ -49,6 +49,12 @@ public class OrderAggregate extends RootAggregate<OrderEvent> {
             status = OrderStatus.VALIDATED;
         } else if (Objects.requireNonNull(event) instanceof OrderValidationFailedEvent orderValidationFailedEvent) {
             status = OrderStatus.VALIDATION_EXCEPTION;
+        } else if (Objects.requireNonNull(event) instanceof OrderAllocationStartedEvent orderAllocationStartedEvent) {
+            status = OrderStatus.ALLOCATION_PENDING;
+        } else if (Objects.requireNonNull(event) instanceof OrderAllocatedEvent orderAllocatedEvent) {
+            status = OrderStatus.ALLOCATED;
+        } else if (Objects.requireNonNull(event) instanceof OrderAllocationFailedEvent orderAllocationFailedEvent) {
+            status = OrderStatus.ALLOCATION_EXCEPTION;
         } else {
             throw new IllegalArgumentException("Event cannot be null");
         }
@@ -86,6 +92,17 @@ public class OrderAggregate extends RootAggregate<OrderEvent> {
     }
 
     public void allocateOrder() {
-        System.out.println("Allocate orders");
+        OrderAllocationStartedEvent orderAllocationStartedEvent = new OrderAllocationStartedEvent(this.id);
+        this.apply(orderAllocationStartedEvent);
+    }
+
+    public void allocateOrderSuccess() {
+        OrderAllocatedEvent orderAllocatedEvent = new OrderAllocatedEvent(this.id);
+        this.apply(orderAllocatedEvent);
+    }
+
+    public void allocateOrderFailed() {
+        OrderAllocationFailedEvent orderAllocationFailedEvent = new OrderAllocationFailedEvent(this.id);
+        this.apply(orderAllocationFailedEvent);
     }
 }

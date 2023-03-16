@@ -70,4 +70,16 @@ public class OrderCommandServiceImpl implements OrderCommandService {
         OrderAggregate orderAggregate = eventStore.get(command.orderId()).orElseThrow(NotFoundException::new);
         orderStateMachineService.sendOrderStateMachineEvent(orderAggregate, OrderStateMachineEvent.VALIDATION_FAILED);
     }
+
+    @Override
+    public void handle(AllocateOrderSuccessCommand command) {
+        OrderAggregate orderAggregate = eventStore.get(command.orderId()).orElseThrow(NotFoundException::new);
+        orderStateMachineService.sendOrderStateMachineEvent(orderAggregate, OrderStateMachineEvent.ALLOCATION_PASSED);
+    }
+
+    @Override
+    public void handle(AllocateOrderFailedCommand command) {
+        OrderAggregate orderAggregate = eventStore.get(command.orderId()).orElseThrow(NotFoundException::new);
+        orderStateMachineService.sendOrderStateMachineEvent(orderAggregate, OrderStateMachineEvent.ALLOCATION_FAILED);
+    }
 }

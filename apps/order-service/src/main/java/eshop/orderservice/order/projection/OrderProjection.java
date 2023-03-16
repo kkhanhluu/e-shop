@@ -62,4 +62,18 @@ public class OrderProjection {
         order.setStatus(OrderStatus.VALIDATION_EXCEPTION);
         orderRepository.save(order);
     }
+
+    @EventListener
+    void handleOrderAllocatedEvent(OrderAllocatedEvent event) {
+        Order order = orderRepository.findById(event.getAggregateId()).orElseThrow(NotFoundException::new);
+        order.setStatus(OrderStatus.ALLOCATED);
+        orderRepository.save(order);
+    }
+
+    @EventListener
+    void handelOrderAllocationFailedEvent(OrderAllocationFailedEvent event) {
+        Order order = orderRepository.findById(event.getAggregateId()).orElseThrow(NotFoundException::new);
+        order.setStatus(OrderStatus.ALLOCATION_EXCEPTION);
+        orderRepository.save(order);
+    }
 }
