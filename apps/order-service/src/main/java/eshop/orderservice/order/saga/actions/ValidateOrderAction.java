@@ -35,6 +35,5 @@ public class ValidateOrderAction implements Action<OrderStatus, OrderStateMachin
 
         rabbitTemplate.convertAndSend(RabbitMQConstants.EXCHANGE_NAME, RabbitMQConstants.VALIDATE_ORDER_KEY,
                 ValidateOrderRequest.builder().orderID(orderAggregate.getId()).orderLines(orderAggregate.getOrderLineItems()).build());
-        System.out.println("ValidateOrderRequest.builder().orderID(orderAggregate.getId()).orderLines(orderAggregate.getOrderLineItems()).build() = " + ValidateOrderRequest.builder().orderID(orderAggregate.getId()).orderLines(orderAggregate.getOrderLineItems()).build());
     }
 }

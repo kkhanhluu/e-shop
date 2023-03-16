@@ -24,10 +24,8 @@ public class ValidateOrderListener {
 
     @RabbitListener(queues = RabbitMQConstants.VALIDATE_ORDER_QUEUE)
     public void listen(@Payload ValidateOrderRequest validateOrderRequest) {
-        System.out.println("validate order request() = " + validateOrderRequest.getOrderID());
         try {
             for(OrderLine orderLine : validateOrderRequest.getOrderLines()) {
-                System.out.println("orderLine.getProductId() = " + orderLine.getProductId());
                 Optional<ProductInventory> inventoryOptional = inventoryRepository.findByProductId(orderLine.getProductId());
                 if (inventoryOptional.isEmpty()) {
                     handleValidateOrderFail(validateOrderRequest.getOrderID());

@@ -20,7 +20,6 @@ public class ValidateOrderResponseListener {
 
     @RabbitListener(queues = RabbitMQConstants.VALIDATE_ORDER_RESPONSE_QUEUE)
     public void listen(@Payload ValidateOrderResponse validateOrderResponse) {
-        System.out.println("validateOrderResponse = " + validateOrderResponse);
         try {
             final UUID orderId = validateOrderResponse.getOrderId();
             if (validateOrderResponse.isValid()) {
