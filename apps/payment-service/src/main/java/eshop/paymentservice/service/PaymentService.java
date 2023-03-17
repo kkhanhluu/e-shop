@@ -13,9 +13,10 @@ import java.util.UUID;
 public class PaymentService {
     private final RabbitTemplate rabbitTemplate;
 
-    public void createPayment(UUID orderId) {
+    public boolean createPayment(UUID orderId) {
         boolean isSuccessful = Math.random() < 0.95;
         rabbitTemplate.convertAndSend(RabbitMQConstants.EXCHANGE_NAME, RabbitMQConstants.PAYMENT_RESPONSE_KEY,
                 new PaymentResponse(orderId, isSuccessful));
+        return isSuccessful;
     }
 }

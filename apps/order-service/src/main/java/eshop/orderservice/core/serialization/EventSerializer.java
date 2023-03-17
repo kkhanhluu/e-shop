@@ -11,14 +11,13 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Optional;
-import java.util.UUID;
 
 public final class EventSerializer {
     public static final ObjectMapper mapper = new JsonMapper();
     public static final Logger logger = LoggerFactory.getLogger(EventSerializer.class);
 
     public static EventData serialize(Object event) {
-        return EventData.builderAsJson(UUID.randomUUID(), EventTypeMapper.toName(event.getClass()), event).build();
+        return EventData.builderAsJson(((BaseEvent)event).getEventId(), EventTypeMapper.toName(event.getClass()), event).build();
     }
 
     public static <Event extends BaseEvent> Optional<Event> deserialize(ResolvedEvent resolvedEvent) {

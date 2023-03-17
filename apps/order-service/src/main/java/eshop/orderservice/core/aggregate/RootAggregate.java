@@ -38,7 +38,7 @@ public abstract class RootAggregate<Event extends BaseEvent> {
     }
 
     public Object[] dequeueUncommittedEvens() {
-        Object[] dequeuedEvents = uncommittedEvents.toArray();
+        Object[] dequeuedEvents =  uncommittedEvents.toArray();
         uncommittedEvents.clear();
         return dequeuedEvents;
     }

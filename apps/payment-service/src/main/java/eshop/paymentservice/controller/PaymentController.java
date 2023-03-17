@@ -2,6 +2,7 @@ package eshop.paymentservice.controller;
 
 import eshop.paymentservice.service.PaymentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,8 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     @PostMapping(value = "/{orderId}")
-    void createPayment(@PathVariable("orderId") UUID orderId) {
-        paymentService.createPayment(orderId);
+    ResponseEntity createPayment(@PathVariable("orderId") UUID orderId) {
+        boolean isSuccessful = paymentService.createPayment(orderId);
+        return ResponseEntity.ok(isSuccessful);
     }
 }

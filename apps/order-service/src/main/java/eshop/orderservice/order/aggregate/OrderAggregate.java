@@ -62,7 +62,6 @@ public class OrderAggregate extends RootAggregate<OrderEvent> {
 
     public void createOrder(UUID userId, Set<OrderLine> orderLineItems) {
         OrderCreatedEvent orderCreatedEvent = new OrderCreatedEvent(this.id, userId, orderLineItems);
-
         this.apply(orderCreatedEvent);
     }
 

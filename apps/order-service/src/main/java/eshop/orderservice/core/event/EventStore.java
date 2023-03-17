@@ -20,15 +20,18 @@ public class EventStore<Entity extends RootAggregate, Event extends BaseEvent> {
     private final Function<UUID, String> mapToStreamId;
     private final Supplier<Entity> getEmptyEntity;
 
-    public WriteResult appendEvents(Entity entity) {
+    public void appendEvents(Entity entity) {
         String streamId = mapToStreamId.apply(entity.getId());
         Stream<EventData> eventDataStream = Arrays.stream(entity.dequeueUncommittedEvens())
                 .map(EventSerializer::serialize);
-        try {
-            return eventStoreDBClient.appendToStream(streamId, eventDataStream.iterator()).get();
-        } catch (Throwable e) {
-            throw new RuntimeException(e);
-        }
+        eventDataStream.forEach(eventData -> {
+            try {
+                eventStoreDBClient.appendToStream(streamId,
+                        AppendToStreamOptions.get().expectedRevision(ExpectedRevision.any()), eventData).get();
+            } catch (Throwable e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     public Optional<Entity> get(UUID id) {

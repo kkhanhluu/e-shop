@@ -8,4 +8,5 @@ import java.util.UUID;
 public abstract class BaseEvent {
     private UUID aggregateId;
     private long logPosition;
+    private UUID eventId = UUID.randomUUID();
 }

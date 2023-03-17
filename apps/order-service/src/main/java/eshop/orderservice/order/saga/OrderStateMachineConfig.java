@@ -32,8 +32,6 @@ public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<O
         states.withStates()
                 .initial(OrderStatus.NEW)
                 .states(EnumSet.allOf(OrderStatus.class))
-                .end(OrderStatus.DELIVERED)
-                .end(OrderStatus.DELIVERY_EXCEPTION)
                 .end(OrderStatus.VALIDATION_EXCEPTION)
                 .end(OrderStatus.ALLOCATION_EXCEPTION)
                 .end(OrderStatus.PAYMENT_EXCEPTION);
