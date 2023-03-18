@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.16](https://github.com/kkhanhluu/e-shop/compare/@user-service-app/v0.0.13...@user-service-app/v0.0.16) (2023-03-18)
+
+
+### Features
+
+* add compensate payment queue ([dadbb39](https://github.com/kkhanhluu/e-shop/commit/dadbb398df494ad449da0803d860c461dce98714))
+* add prisma to order service ([7a7bc88](https://github.com/kkhanhluu/e-shop/commit/7a7bc880377199bf885378fb29f5abfdd1c46922))
+* add prisma to product service ([d2e64a4](https://github.com/kkhanhluu/e-shop/commit/d2e64a465c57e93ba0bca8911ffdc1cbd186599e))
+* add prisma to product service ([2047e94](https://github.com/kkhanhluu/e-shop/commit/2047e94357a45280f7d5b502149b3fa9df0bed27))
+* add prisma to user service ([eca4245](https://github.com/kkhanhluu/e-shop/commit/eca4245be3f311dbac0884227eb765d866418ba6))
+* add seed script ([0a36ec0](https://github.com/kkhanhluu/e-shop/commit/0a36ec0e07b2b9f8cd88eb8948a9c4c711cec638))
+* add seed script for reviews ([cc90cdc](https://github.com/kkhanhluu/e-shop/commit/cc90cdce0933a3b54c552a89fc994e8148bb6c49))
+* implement allocation in inventory service ([49ca846](https://github.com/kkhanhluu/e-shop/commit/49ca846b7e467ad560936ca4a4aaafc3a51d6bf1))
+* implement allocation process in order service ([6aafb56](https://github.com/kkhanhluu/e-shop/commit/6aafb56f4da1a3ee9ae05bd72eb15adbc56f74d8))
+* implement validate order in aggregate ([9353e3b](https://github.com/kkhanhluu/e-shop/commit/9353e3b0b7fd7d246595cd4a7a9122093a1fb1d8))
+* implement validate order in inventory service ([8e1088b](https://github.com/kkhanhluu/e-shop/commit/8e1088bfb19b595e2965a5c911241ceab80685cf))
+* implement validation process ([e6480ee](https://github.com/kkhanhluu/e-shop/commit/e6480ee85022f8e0f8a38857b154445d0b7d8ec6))
+* send validate order event to queue ([a35aba5](https://github.com/kkhanhluu/e-shop/commit/a35aba5d2baa72327b5d50f742d4fad74a71432e))
+
+
+### Bug Fixes
+
+* intergration test are failing ([1003c73](https://github.com/kkhanhluu/e-shop/commit/1003c731d2efb3aa853e2b49a9819fafa48452b9))
+* prevent event duplication ([b6b2305](https://github.com/kkhanhluu/e-shop/commit/b6b2305b6551cc20895232e704529c3b5b0db70c))
+* remove unused events and status ([ef0a8ca](https://github.com/kkhanhluu/e-shop/commit/ef0a8ca4f5a06c5952926b939b83941aa86e1ee9))
+* replace prisma in inventory service ([cb7fce6](https://github.com/kkhanhluu/e-shop/commit/cb7fce666dd0105b59bfa546ba2e8b63f76c2ddb))
+
 ### [0.0.15](https://github.com/kkhanhluu/e-shop/compare/@user-service-app/v0.0.14...@user-service-app/v0.0.15) (2023-03-15)
 
 ### [0.0.14](https://github.com/kkhanhluu/e-shop/compare/@user-service-app/v0.0.13...@user-service-app/v0.0.14) (2023-03-15)
