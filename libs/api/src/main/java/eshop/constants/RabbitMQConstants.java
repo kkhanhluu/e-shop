@@ -12,8 +12,9 @@ public class RabbitMQConstants {
     public static final String ALLOCATE_ORDER_KEY = "allocate-order";
     public static final String ALLOCATE_ORDER_RESPONSE_QUEUE = "q.allocate-order-response";
     public static final String ALLOCATE_ORDER_RESPONSE_KEY = "allocate-order-response";
-    public static final String DELIVER_ORDER_QUEUE = "q.deliver-order";
-    public static final String DELIVER_ORDER_KEY = "deliver-order";
-    public static final String DELIVER_ORDER_RESPONSE_QUEUE = "q.deliver-order-response";
-    public static final String DELIVER_ORDER_RESPONSE_KEY = "deliver-order-response";
+    public static final String COMPENSATE_PAYMENT_QUEUE = "q.compensate-payment";
+    public static final String COMPENSATE_PAYMENT_KEY = "compensate-payment";
+    public static final String COMPENSATE_PAYMENT_RESPONSE_QUEUE = "q.compensate-payment-response";
+    public static final String COMPENSATE_PAYMENT_RESPONSE_KEY = "compensate-payment-response";
+
 }
