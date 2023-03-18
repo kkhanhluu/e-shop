@@ -34,7 +34,7 @@
     </repositories>
     <groupId>com.github.kkhanhluu.eshop</groupId>
     <artifactId>order-service</artifactId>
-    <version>0.0.10</version>
+    <version>0.0.11</version>
     <name>order-service</name>
     <description>The order service of eshop project</description>
     <dependencies>
