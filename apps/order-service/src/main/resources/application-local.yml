@@ -10,6 +10,8 @@ spring:
 
 eventstore:
   connection-string: esdb://localhost:2113?tls=false
+payment:
+  api-host: http://localhost:8081
 
 logging:
   level:

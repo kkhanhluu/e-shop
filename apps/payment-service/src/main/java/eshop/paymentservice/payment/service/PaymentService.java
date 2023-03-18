@@ -21,7 +21,7 @@ public class PaymentService {
         boolean isSuccessful = Math.random() < 0.95;
         if (isSuccessful) {
             Payment payment = Payment.builder().orderId(createPaymentRequest.getOrderId().toString()).userId(
-                    createPaymentRequest.getUserId().toString()).value(createPaymentRequest.getValue()).build();
+                    createPaymentRequest.getUserId().toString()).value(createPaymentRequest.getValue()).isCompensated(false).build();
             paymentRepository.save(payment);
         }
 
@@ -34,5 +34,7 @@ public class PaymentService {
         Payment payment = paymentRepository.findPaymentByOrderId(request.getOrderId().toString())
                 .orElseThrow(NotFoundException::new);
         payment.setIsCompensated(true);
+        System.out.println("payment = " + payment);
+        paymentRepository.save(payment);
     }
 }
