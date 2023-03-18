@@ -1,2 +1,15 @@
 server:
   port: 8081
+spring:
+  data:
+    mongodb:
+      host: localhost
+      username: mongo
+      password: mongo
+      database: payment-service
+      port: 27017
+      authentication-database: admin
+
+logging:
+  level:
+    org.springframework.data.mongodb.core: DEBUG
