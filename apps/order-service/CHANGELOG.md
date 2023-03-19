@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/kkhanhluu/e-shop/compare/@order-service-app/v0.0.11...@order-service-app/v0.0.12) (2023-03-19)
+
+
+### Features
+
+* add compensate payment endpoint ([7c000aa](https://github.com/kkhanhluu/e-shop/commit/7c000aad9d2a4a5ec7ee82d4de519965c58ab357))
+* compensating transaction by queue ([1190945](https://github.com/kkhanhluu/e-shop/commit/1190945653c3898f3e516ebd8aa33a730cbb51f5))
+* save pyament to mongodb ([10f1240](https://github.com/kkhanhluu/e-shop/commit/10f1240e1919f68cda1158d81f5a52e938a28aae))
+* send request to compensate payment from order serivce ([089ba97](https://github.com/kkhanhluu/e-shop/commit/089ba975b8f6fa201b543a77471b75eee35b659d))
+
+
+### Bug Fixes
+
+* remove overhead logs ([9492cdb](https://github.com/kkhanhluu/e-shop/commit/9492cdb95698929b491687e493e7ef5437bacb1c))
+* update bom ([2da3d81](https://github.com/kkhanhluu/e-shop/commit/2da3d818bb835cdf66f519f54389f9a2a8f1afa6))
+
 ### [0.0.11](https://github.com/kkhanhluu/e-shop/compare/@order-service-app/v0.0.7...@order-service-app/v0.0.11) (2023-03-18)
 
 
