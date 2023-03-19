@@ -2,7 +2,6 @@ package eshop.paymentservice.payment.service;
 
 import eshop.api.exceptions.NotFoundException;
 import eshop.constants.RabbitMQConstants;
-import eshop.paymentservice.api.request.CompensatePaymentRequest;
 import eshop.paymentservice.api.request.CreatePaymentRequest;
 import eshop.paymentservice.payment.Payment;
 import eshop.paymentservice.payment.repository.PaymentRepository;
@@ -10,6 +9,8 @@ import eshop.paymentservice.rabbitmq.events.PaymentResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -30,11 +31,10 @@ public class PaymentService {
         return isSuccessful;
     }
 
-    public void compensatePayment(CompensatePaymentRequest request) {
-        Payment payment = paymentRepository.findPaymentByOrderId(request.getOrderId().toString())
+    public void compensatePayment(UUID orderId) {
+        Payment payment = paymentRepository.findPaymentByOrderId(orderId.toString())
                 .orElseThrow(NotFoundException::new);
         payment.setIsCompensated(true);
-        System.out.println("payment = " + payment);
         paymentRepository.save(payment);
     }
 }

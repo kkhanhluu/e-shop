@@ -100,23 +100,11 @@ public class RabbitMQConfig {
         deliver order queue
    */
     @Bean
-    public Queue deliverOrderQueue() {
-        return new Queue(DELIVER_ORDER_QUEUE);
+    public Queue compensatePaymentQueue() {
+        return new Queue(COMPENSATE_PAYMENT_QUEUE);
     }
     @Bean
-    public Binding bindingDeliveryOrderQueue() {
-        return BindingBuilder.bind(deliverOrderQueue()).to(appExchange()).with(DELIVER_ORDER_KEY);
-    }
-
-    /*
-       deliver order response queue
-   */
-    @Bean
-    public Queue deliverOrderResponseQueue() {
-        return new Queue(DELIVER_ORDER_RESPONSE_QUEUE);
-    }
-    @Bean
-    public Binding bindingDeliverResponseQueue() {
-        return BindingBuilder.bind(deliverOrderResponseQueue()).to(appExchange()).with(DELIVER_ORDER_RESPONSE_KEY);
+    public Binding bindingCompensatePaymentQueue() {
+        return BindingBuilder.bind(compensatePaymentQueue()).to(appExchange()).with(COMPENSATE_PAYMENT_KEY);
     }
 }

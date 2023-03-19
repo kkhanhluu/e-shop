@@ -1,6 +1,5 @@
 package eshop.paymentservice.api.controller;
 
-import eshop.paymentservice.api.request.CompensatePaymentRequest;
 import eshop.paymentservice.api.request.CreatePaymentRequest;
 import eshop.paymentservice.payment.service.PaymentService;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +19,5 @@ public class PaymentController {
     ResponseEntity createPayment(@RequestBody CreatePaymentRequest request) {
         boolean isSuccessful = paymentService.createPayment(request);
         return ResponseEntity.ok(isSuccessful);
-    }
-
-    @PostMapping(value = "/compensation")
-    ResponseEntity compensatePayment(@RequestBody CompensatePaymentRequest request) {
-        System.out.println("Compensating payment");
-        paymentService.compensatePayment(request);
-        return ResponseEntity.ok(true);
     }
 }

@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.kkhanhluu.eshop</groupId>
         <artifactId>eshop-bom</artifactId>
-        <version>0.0.13</version>
+        <version>0.0.16</version>
     </parent>
     <properties>
         <spring-statemachine.version>3.2.0</spring-statemachine.version>

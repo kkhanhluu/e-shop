@@ -7,8 +7,9 @@ import eshop.orderservice.order.event.OrderEvent;
 import eshop.orderservice.order.query.entity.OrderStatus;
 import eshop.orderservice.order.saga.OrderStateMachineConfig;
 import eshop.orderservice.order.saga.OrderStateMachineEvent;
-import eshop.orderservice.order.service.PaymentService;
+import eshop.orderservice.rabbitmq.events.CompensatePaymentRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.statemachine.StateContext;
 import org.springframework.statemachine.action.Action;
@@ -21,7 +22,7 @@ import java.util.UUID;
 public class AllocateOrderFailedAction implements Action<OrderStatus, OrderStateMachineEvent> {
     @Qualifier("orderEventStore")
     private final EventStore<OrderAggregate, OrderEvent> eventStore;
-    private final PaymentService paymentService;
+    private final RabbitTemplate rabbitTemplate;
 
     @Override
     public void execute(StateContext<OrderStatus, OrderStateMachineEvent> context) {
@@ -31,6 +32,6 @@ public class AllocateOrderFailedAction implements Action<OrderStatus, OrderState
         orderAggregate.allocateOrderFailed();
         eventStore.appendEvents(orderAggregate);
 
-        paymentService.compensatePayment(UUID.fromString(orderId));
+        rabbitTemplate.convertAndSend("exchange.eshop", "compensate-payment",  CompensatePaymentRequest.builder().orderId(UUID.fromString(orderId)).build());
     }
 }

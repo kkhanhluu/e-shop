@@ -22,7 +22,7 @@ public class AllocateOrderListener {
     @RabbitListener(queues = RabbitMQConstants.ALLOCATE_ORDER_QUEUE)
     public void listen(@Payload AllocateOrderRequest allocateOrderRequest) {
         try {
-            if (Math.random() < 0.8) {
+            if (Math.random() > 0.8) {
                 rabbitTemplate.convertAndSend(RabbitMQConstants.EXCHANGE_NAME,
                         RabbitMQConstants.ALLOCATE_ORDER_RESPONSE_KEY,
                         AllocateOrderResponse.builder()
