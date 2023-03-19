@@ -73,7 +73,10 @@ public class EventStoreDBSubscriptionToAll {
         Optional<Class> eventClass = EventTypeMapper.toClass(resolvedEvent.getEvent().getEventType());
         Optional eventData = eventClass.flatMap(c -> EventSerializer.deserialize(c, resolvedEvent));
         if (eventData.isEmpty()) {
-            logger.error("Cannot deserialize event with id: %s".formatted(resolvedEvent.getEvent().getEventId()));
+            if (!resolvedEvent.getEvent().getEventType().startsWith("$")) {
+                logger.error("Cannot deserialize event with id: %s, %s".formatted(resolvedEvent.getEvent().getEventId(),
+                        resolvedEvent.getEvent().getEventType()));
+            }
             return;
         }
         applicationEventPublisher.publishEvent(eventData.get());
