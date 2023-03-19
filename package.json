@@ -2,7 +2,10 @@
   "name": "eshop",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "db:seed": "node tools/seed-db.js",
+    "db:migrate:up": "nx run-many --target=prisma-migrate-deploy"
+  },
   "private": true,
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
@@ -16,8 +19,5 @@
     "prettier": "^2.6.2",
     "prisma": "^4.11.0",
     "typescript": "~4.8.2"
-  },
-  "prisma": {
-    "seed": "npx ts-node --transpile-only --compiler-options {\"module\":\"CommonJS\"} ./prisma/seed.ts"
   }
 }
