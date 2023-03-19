@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "seed": "node tools/seed-db.js"
+    "db:seed": "node tools/seed-db.js",
+    "db:migrate:up": "nx run-many --target=prisma-migrate-deploy"
   },
   "private": true,
   "devDependencies": {
