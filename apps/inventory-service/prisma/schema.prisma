@@ -12,3 +12,9 @@ model product_inventory {
   product_id       String? @db.Uuid
   quantity_on_hand Int?
 }
+
+model allocate_order_outbox {
+  id               String  @id @db.Uuid
+  order_id         String? @db.Uuid
+  is_successful    Boolean?
+}
