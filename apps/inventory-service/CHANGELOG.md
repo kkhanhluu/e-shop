@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/kkhanhluu/e-shop/compare/@inventory-service-app/v0.0.7...@inventory-service-app/v0.0.8) (2023-03-20)
+
+
+### Features
+
+* add compensate payment endpoint ([7c000aa](https://github.com/kkhanhluu/e-shop/commit/7c000aad9d2a4a5ec7ee82d4de519965c58ab357))
+* add outbox table ([b665730](https://github.com/kkhanhluu/e-shop/commit/b6657307d048e92d72905e026145f1e35977007e))
+* compensating transaction by queue ([1190945](https://github.com/kkhanhluu/e-shop/commit/1190945653c3898f3e516ebd8aa33a730cbb51f5))
+* save pyament to mongodb ([10f1240](https://github.com/kkhanhluu/e-shop/commit/10f1240e1919f68cda1158d81f5a52e938a28aae))
+* saving outbox messages in database and schedule sending them ([8140d7b](https://github.com/kkhanhluu/e-shop/commit/8140d7bdd8dad59d2bc390b72380146295762668))
+* send request to compensate payment from order serivce ([089ba97](https://github.com/kkhanhluu/e-shop/commit/089ba975b8f6fa201b543a77471b75eee35b659d))
+
+
+### Bug Fixes
+
+* remove overhead logs ([9492cdb](https://github.com/kkhanhluu/e-shop/commit/9492cdb95698929b491687e493e7ef5437bacb1c))
+* update bom ([2da3d81](https://github.com/kkhanhluu/e-shop/commit/2da3d818bb835cdf66f519f54389f9a2a8f1afa6))
+
 ### [0.0.7](https://github.com/kkhanhluu/e-shop/compare/@inventory-service-app/v0.0.4...@inventory-service-app/v0.0.7) (2023-03-18)
 
 
