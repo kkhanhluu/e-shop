@@ -2,6 +2,7 @@ package eshop.orderservice.order.query.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Entity
 @Data
+@Builder
 public class OrderLine {
     @ManyToOne(optional = false)
     @JoinColumn(name = "order_id")
