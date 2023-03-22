@@ -48,6 +48,10 @@ public class ProductServiceProtoServiceImpl extends ProductServiceGrpc.ProductSe
                         .build();
                 responseBuilder.addProducts(productResponse);
             });
+            responseBuilder.setHasNext(pageResult.hasNext());
+            responseBuilder.setHasPrevious(pageResult.hasPrevious());
+            responseBuilder.setTotalElements(pageResult.getTotalElements());
+            responseBuilder.setTotalPage(pageResult.getTotalPages());
         }
 
         responseObserver.onNext(responseBuilder.build());

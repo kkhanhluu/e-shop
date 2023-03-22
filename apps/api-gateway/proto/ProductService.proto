@@ -28,5 +28,9 @@ message GetProductsRequest {
 }
 
 message GetProductsResponse {
-  repeated Product products = 1;
+  int32 totalPage = 1;
+  int64 totalElements = 2;
+  bool hasNext = 3;
+  bool hasPrevious = 4;
+  repeated Product products = 5;
 }

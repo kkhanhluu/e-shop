@@ -1,7 +1,7 @@
 import { credentials } from '@grpc/grpc-js';
-import { InventoryServiceClient } from '../../../generated/proto/InventoryService';
+import { ProductServiceClient } from '../../../generated/proto/ProductService';
 
-export const inventoryServiceClient = new InventoryServiceClient(
-  'localhost:9092',
+export const productServiceClient = new ProductServiceClient(
+  'localhost:9093',
   credentials.createInsecure()
 );

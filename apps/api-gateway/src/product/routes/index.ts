@@ -1,11 +1,15 @@
 import { publicProcedure, router } from '../../context';
+import { getProductById, GetProductByIdInput } from '../handlers/get';
 import {
-  getInventoryByProductId,
-  GetInventoryByProductIdInput,
-} from '../handlers/get';
+  getPaginatedListOfProducts,
+  GetProductsInput,
+} from '../handlers/get-list';
 
-export const inventoryRouter = router({
+export const productRouter = router({
   get: publicProcedure
-    .input(GetInventoryByProductIdInput)
-    .query(({ input }) => getInventoryByProductId(input)),
+    .input(GetProductByIdInput)
+    .query(({ input }) => getProductById(input)),
+  list: publicProcedure
+    .input(GetProductsInput)
+    .query(({ input }) => getPaginatedListOfProducts(input)),
 });
