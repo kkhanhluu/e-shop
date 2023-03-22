@@ -1,3 +1,4 @@
+import { create } from 'domain';
 import { z } from 'zod';
 import {
   CreateOrderRequest,
@@ -21,6 +22,7 @@ export function createOrder(
 ): Promise<CreateOrderResponse> {
   return new Promise((resolve, reject) => {
     const createOrderRequest = CreateOrderRequest.fromJSON(input);
+    console.log(JSON.stringify(createOrderRequest, null, 4));
     orderServiceClient.createOrder(createOrderRequest, (error, response) => {
       if (error) {
         console.error(error);

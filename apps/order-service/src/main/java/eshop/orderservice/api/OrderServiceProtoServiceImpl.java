@@ -9,6 +9,7 @@ import eshop.orderservice.order.query.entity.OrderLine;
 import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -17,6 +18,7 @@ import java.util.UUID;
 
 @GrpcService
 @RequiredArgsConstructor
+@Service
 public class OrderServiceProtoServiceImpl extends OrderServiceGrpc.OrderServiceImplBase {
     private final OrderCommandService orderCommandService;
 
@@ -36,7 +38,7 @@ public class OrderServiceProtoServiceImpl extends OrderServiceGrpc.OrderServiceI
         UUID createdOrderId = orderCommandService.handle(
                 new CreateOrderCommand(orderId, UUID.fromString(request.getUserId()), orderLineItems));
 
-        CreateOrderResponse createOrderResponse = CreateOrderResponse.newBuilder().setOrderId(orderId.toString()).build();
+        CreateOrderResponse createOrderResponse = CreateOrderResponse.newBuilder().setOrderId(createdOrderId.toString()).build();
         responseObserver.onNext(createOrderResponse);
         responseObserver.onCompleted();
     }
