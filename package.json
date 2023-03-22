@@ -8,6 +8,7 @@
   },
   "private": true,
   "devDependencies": {
+    "@bufbuild/buf": "^1.15.0-1",
     "@faker-js/faker": "^7.6.0",
     "@nrwl/eslint-plugin-nx": "15.8.7",
     "@nrwl/express": "^15.8.7",
@@ -37,6 +38,7 @@
     "trpc-playground": "^1.0.4",
     "ts-jest": "^29.0.5",
     "ts-node": "10.9.1",
+    "ts-proto": "^1.143.0",
     "typescript": "~4.9.5"
   },
   "dependencies": {

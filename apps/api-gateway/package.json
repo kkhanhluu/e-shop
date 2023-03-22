@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "buf:lint": "npx buf lint",
+    "buf:generate": "npx buf generate"
+  }
+}

@@ -17,3 +17,7 @@ logging:
   level:
     root: info
     eshop.api: debug
+    grpc: debug
+grpc:
+  server:
+    port: 9090
