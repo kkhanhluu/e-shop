@@ -3,7 +3,7 @@ import { createOrder, CreateOrderInput } from '../handlers/create';
 import { getOrderById, GetOrderByIdInput } from '../handlers/get';
 
 export const orderRouter = router({
-  createOrder: publicProcedure
+  create: publicProcedure
     .input(CreateOrderInput)
     .query(({ input }) => createOrder(input)),
   get: publicProcedure
