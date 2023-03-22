@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface ReviewService {
     Review createReview(ReviewDTO reviewDTO);
-
     Page<Review> findReviewByProductId(String productId, Pageable pageable);
+
+    double getAverageRatingForProduct(String productId);
 }
