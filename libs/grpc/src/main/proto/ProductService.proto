@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package eshop.productservice.grpc;
+
+option java_multiple_files = true;
+option java_package = "eshop.productservice.grpc";
+option java_outer_classname = "ProductServiceProto";
+
+service ProductService {
+  rpc getProductById(GetProductByIdRequest) returns (Product) {}
+  rpc getProducts(GetProductsRequest) returns (GetProductsResponse) {}
+}
+
+message Product {
+  string id = 1;
+  string description = 2;
+  string name = 3;
+  double price = 4;
+}
+
+message GetProductByIdRequest {
+  string productId = 1;
+}
+
+message GetProductsRequest {
+  int32 page = 1;
+  int32 size = 2;
+}
+
+message GetProductsResponse {
+  repeated Product products = 1;
+}

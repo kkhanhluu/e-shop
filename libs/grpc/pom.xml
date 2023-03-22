@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.kkhanhluu.eshop</groupId>
     <artifactId>grpc</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>grpc</name>
     <description>gRPC services and messages definition for the project eshop</description>
     <properties>

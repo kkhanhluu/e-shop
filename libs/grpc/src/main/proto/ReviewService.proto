@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package eshop.reviewservice.grpc;
+
+option java_multiple_files = true;
+option java_package = "eshop.reviewservice.grpc";
+option java_outer_classname = "ReviewServiceProto";
+
+service ReviewService {
+  rpc getReviewsByProductId(GetReviewsByProductIdRequest) returns (GetReviewsByProductIdResponse) {}
+}
+
+message Review {
+  string id = 1;
+  string text = 2;
+  int32 rate = 3;
+  string productId = 4;
+  string createdAt = 5;
+}
+
+message GetReviewsByProductIdRequest {
+  string productId = 1;
+}
+
+message GetReviewsByProductIdResponse {
+  repeated Review reviews = 1;
+}
