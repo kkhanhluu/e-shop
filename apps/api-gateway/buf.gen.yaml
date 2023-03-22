@@ -4,3 +4,4 @@ plugins:
     out: ./generated
     opt:
       - outputServices=grpc-js
+      - esModuleInterop=true
