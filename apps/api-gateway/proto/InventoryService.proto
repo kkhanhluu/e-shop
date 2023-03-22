@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package eshop.inventoryService.grpc;
+
+option java_multiple_files = true;
+option java_package = "eshop.inventoryService.grpc";
+option java_outer_classname = "InventoryServiceProto";
+
+service InventoryService {
+  rpc getInventoryByProductId(GetInventoryByProductIdRequest) returns (Inventory) {}
+}
+
+message Inventory {
+  string id = 1;
+  string productId = 2;
+  int64 quantityOnHand = 3;
+}
+
+message GetInventoryByProductIdRequest {
+  string productId = 1;
+}

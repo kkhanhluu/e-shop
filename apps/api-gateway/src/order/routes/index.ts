@@ -1,12 +1,12 @@
 import { publicProcedure, router } from '../../context';
-import { z } from 'zod';
 import { createOrder, CreateOrderInput } from '../handlers/create';
+import { getOrderById, GetOrderByIdInput } from '../handlers/get';
 
 export const orderRouter = router({
   createOrder: publicProcedure
     .input(CreateOrderInput)
     .query(({ input }) => createOrder(input)),
-  get: publicProcedure.input(z.string().uuid()).query((req) => {
-    return `Hello world from getOrder: ${req.input}`;
-  }),
+  get: publicProcedure
+    .input(GetOrderByIdInput)
+    .query(({ input }) => getOrderById(input)),
 });

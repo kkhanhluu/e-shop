@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package eshop.paymentservice.grpc;
+
+option java_multiple_files = true;
+option java_package = "eshop.paymentservice.grpc";
+option java_outer_classname = "PaymentServiceProto";
+
+service PaymentService {
+  rpc createPayment(CreatePaymentRequest) returns (CreatePaymentResponse) {}
+  rpc getPaymentByOrderId(GetPaymentByOrderIdRequest) returns (GetPaymentByOrderIdResponse) {}
+}
+
+message CreatePaymentRequest {
+  string userId = 1;
+  string orderId = 2;
+  double value = 3;
+}
+
+message CreatePaymentResponse {
+  bool isSuccessful = 1;
+}
+
+message GetPaymentByOrderIdRequest {
+  string orderId = 1;
+}
+
+message GetPaymentByOrderIdResponse {
+  string id = 1;
+  double value = 2;
+  string isCompensated = 3;
+}

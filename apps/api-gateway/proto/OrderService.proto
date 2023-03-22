@@ -8,6 +8,7 @@ option java_outer_classname = "OrderServiceProto";
 
 service OrderService {
   rpc createOrder(CreateOrderRequest) returns (CreateOrderResponse) {}
+  rpc getOrderById(GetOrderByIdRequest) returns (GetOrderByIdResponse) {}
 }
 
 message CreateOrderRequest {
@@ -23,4 +24,24 @@ message OrderLine {
 
 message CreateOrderResponse {
   string orderId = 1;
+}
+
+message GetOrderByIdRequest {
+  string orderId = 1;
+}
+
+message GetOrderByIdResponse {
+  string id = 1;
+  string userId = 2;
+  string status = 3;
+  repeated OrderLineResponse orderLineItems = 4;
+  string createdDate = 5;
+  string lastModifiedDate = 6;
+}
+
+message OrderLineResponse {
+  string id = 1;
+  string productId = 2;
+  double productPrice = 3;
+  int32 quantity = 4;
 }
