@@ -2,6 +2,61 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.16](https://github.com/kkhanhluu/e-shop/compare/@product-service-app/v0.0.12...@product-service-app/v0.0.16) (2023-03-23)
+
+
+### Features
+
+* add compensate payment endpoint ([7c000aa](https://github.com/kkhanhluu/e-shop/commit/7c000aad9d2a4a5ec7ee82d4de519965c58ab357))
+* add compensate payment queue ([dadbb39](https://github.com/kkhanhluu/e-shop/commit/dadbb398df494ad449da0803d860c461dce98714))
+* add grpc client ([6f12755](https://github.com/kkhanhluu/e-shop/commit/6f12755048b622d955838b58c991fbc870c535fc))
+* add grpc client for review service ([3d447a9](https://github.com/kkhanhluu/e-shop/commit/3d447a94638685e8babf79ef5dc23cbc0d3f30fb))
+* add grpc server for review service ([5e4f1c4](https://github.com/kkhanhluu/e-shop/commit/5e4f1c4ad64d2e014679eab2c8e85504a12ef37a))
+* add grpc server for review service ([fe436bb](https://github.com/kkhanhluu/e-shop/commit/fe436bbc96ddcb4c58165cc5e326d81fdfa7af3d))
+* add more grpc defintions ([8106f00](https://github.com/kkhanhluu/e-shop/commit/8106f001ab691596ce36d2db61f01215042c9ccc))
+* add outbox table ([b665730](https://github.com/kkhanhluu/e-shop/commit/b6657307d048e92d72905e026145f1e35977007e))
+* add prisma to order service ([7a7bc88](https://github.com/kkhanhluu/e-shop/commit/7a7bc880377199bf885378fb29f5abfdd1c46922))
+* add prisma to product service ([d2e64a4](https://github.com/kkhanhluu/e-shop/commit/d2e64a465c57e93ba0bca8911ffdc1cbd186599e))
+* add prisma to product service ([2047e94](https://github.com/kkhanhluu/e-shop/commit/2047e94357a45280f7d5b502149b3fa9df0bed27))
+* add prisma to user service ([eca4245](https://github.com/kkhanhluu/e-shop/commit/eca4245be3f311dbac0884227eb765d866418ba6))
+* add seed script ([0a36ec0](https://github.com/kkhanhluu/e-shop/commit/0a36ec0e07b2b9f8cd88eb8948a9c4c711cec638))
+* add seed script for reviews ([cc90cdc](https://github.com/kkhanhluu/e-shop/commit/cc90cdce0933a3b54c552a89fc994e8148bb6c49))
+* compensating transaction by queue ([1190945](https://github.com/kkhanhluu/e-shop/commit/1190945653c3898f3e516ebd8aa33a730cbb51f5))
+* get order by id using grpc ([13d1942](https://github.com/kkhanhluu/e-shop/commit/13d19420bc6d6bba04d863e14d13d18f14aea2ef))
+* implement allocation in inventory service ([49ca846](https://github.com/kkhanhluu/e-shop/commit/49ca846b7e467ad560936ca4a4aaafc3a51d6bf1))
+* implement allocation process in order service ([6aafb56](https://github.com/kkhanhluu/e-shop/commit/6aafb56f4da1a3ee9ae05bd72eb15adbc56f74d8))
+* implement create order with grpc ([8b93ec3](https://github.com/kkhanhluu/e-shop/commit/8b93ec39b3db571df3bb95fb5a99902ae6c2e897))
+* implement create order with grpc ([476d80f](https://github.com/kkhanhluu/e-shop/commit/476d80fa6a92607e1760d128950bc284639bd753))
+* implement grpc client for inventory service in gateway ([0803257](https://github.com/kkhanhluu/e-shop/commit/0803257c92b7f80fd4f1b1610578cdb413f01dfa))
+* implement grpc client for payment service in gateway ([5a92f87](https://github.com/kkhanhluu/e-shop/commit/5a92f871cb9b5c54a49d97abc15dc26e737e5915))
+* implement grpc client for product service ([17996fe](https://github.com/kkhanhluu/e-shop/commit/17996fea575e17b210c96e19d69a79cb48fe1b90))
+* implement grpc client in gateway ([4ac99bd](https://github.com/kkhanhluu/e-shop/commit/4ac99bd55443b826203a7f2c993c6da9d931d10a))
+* implement grpc server in inventory service ([7bd39b4](https://github.com/kkhanhluu/e-shop/commit/7bd39b433f570750fce85afe232dc7df67315860))
+* implement grpc server in payment service ([15d675a](https://github.com/kkhanhluu/e-shop/commit/15d675a9c80d62c895a7e7b4f5d219611ae35a8d))
+* implement grpc server in product service ([d4c7356](https://github.com/kkhanhluu/e-shop/commit/d4c73568c3576a84197ea29b7f0e47b9f3b56979))
+* implement validate order in aggregate ([9353e3b](https://github.com/kkhanhluu/e-shop/commit/9353e3b0b7fd7d246595cd4a7a9122093a1fb1d8))
+* implement validate order in inventory service ([8e1088b](https://github.com/kkhanhluu/e-shop/commit/8e1088bfb19b595e2965a5c911241ceab80685cf))
+* implement validation process ([e6480ee](https://github.com/kkhanhluu/e-shop/commit/e6480ee85022f8e0f8a38857b154445d0b7d8ec6))
+* save pyament to mongodb ([10f1240](https://github.com/kkhanhluu/e-shop/commit/10f1240e1919f68cda1158d81f5a52e938a28aae))
+* saving outbox messages in database and schedule sending them ([8140d7b](https://github.com/kkhanhluu/e-shop/commit/8140d7bdd8dad59d2bc390b72380146295762668))
+* send request to compensate payment from order serivce ([089ba97](https://github.com/kkhanhluu/e-shop/commit/089ba975b8f6fa201b543a77471b75eee35b659d))
+* send validate order event to queue ([a35aba5](https://github.com/kkhanhluu/e-shop/commit/a35aba5d2baa72327b5d50f742d4fad74a71432e))
+* setup trpc server ([b42cc23](https://github.com/kkhanhluu/e-shop/commit/b42cc2307d8619d57e192db29a74dfe925cb3869))
+* update proto file for product service ([e16a2ea](https://github.com/kkhanhluu/e-shop/commit/e16a2ea7f910f569a15870348de27a256d6402a4))
+
+
+### Bug Fixes
+
+* intergration test are failing ([1003c73](https://github.com/kkhanhluu/e-shop/commit/1003c731d2efb3aa853e2b49a9819fafa48452b9))
+* migrate to nx 15.8.7 ([7d08922](https://github.com/kkhanhluu/e-shop/commit/7d089228c4e9f830d34f87e03bb927644cea416a))
+* migrate to nx 15.8.7 ([efaa338](https://github.com/kkhanhluu/e-shop/commit/efaa338cf6fb8a4a2da6d3533e07b61ae946523d))
+* prevent event duplication ([b6b2305](https://github.com/kkhanhluu/e-shop/commit/b6b2305b6551cc20895232e704529c3b5b0db70c))
+* remove overhead logs ([9492cdb](https://github.com/kkhanhluu/e-shop/commit/9492cdb95698929b491687e493e7ef5437bacb1c))
+* remove unused events and status ([ef0a8ca](https://github.com/kkhanhluu/e-shop/commit/ef0a8ca4f5a06c5952926b939b83941aa86e1ee9))
+* replace prisma in inventory service ([cb7fce6](https://github.com/kkhanhluu/e-shop/commit/cb7fce666dd0105b59bfa546ba2e8b63f76c2ddb))
+* update bom ([2da3d81](https://github.com/kkhanhluu/e-shop/commit/2da3d818bb835cdf66f519f54389f9a2a8f1afa6))
+* update proto file for review service ([cc5f0c6](https://github.com/kkhanhluu/e-shop/commit/cc5f0c6f2b3f005879a04ffe240c0e59dbc1d63f))
+
 ### [0.0.15](https://github.com/kkhanhluu/e-shop/compare/@product-service-app/v0.0.12...@product-service-app/v0.0.15) (2023-03-18)
 
 
