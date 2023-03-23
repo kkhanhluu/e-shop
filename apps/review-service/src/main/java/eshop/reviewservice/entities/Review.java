@@ -32,4 +32,5 @@ public class Review {
     private String text;
 
     private String userId;
+    private int rate;
 }

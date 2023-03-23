@@ -1,3 +1,4 @@
+
 spring:
   data:
     mongodb:
@@ -11,3 +12,9 @@ spring:
 logging:
   level:
     org.springframework.data.mongodb.core: DEBUG
+
+grpc:
+  server:
+    port: 9094
+server:
+  port: 8084

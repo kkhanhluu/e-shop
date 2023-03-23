@@ -7,13 +7,11 @@ spring:
   sql:
     init:
       platform: postgres
-  jpa:
-    hibernate:
-      ddl-auto: create
-    generate-ddl: true
-    show-sql: true
 
 logging:
   level:
     root: info
     eshop.api: debug
+grpc:
+  server:
+    port: 9093

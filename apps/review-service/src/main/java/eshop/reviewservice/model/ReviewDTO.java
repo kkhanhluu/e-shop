@@ -8,5 +8,5 @@ import lombok.Data;
 public class ReviewDTO {
     private String productId;
     private String text;
-    private String userId;
+    private int rate;
 }

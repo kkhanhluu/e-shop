@@ -5,7 +5,7 @@ import {
 } from '../../../generated/proto/InventoryService';
 import { inventoryServiceClient } from '../clients/grpc';
 
-export const GetInventoryByProductIdInput = z.object({
+const GetInventoryByProductIdInput = z.object({
   productId: z.string().uuid(),
 });
 
@@ -14,7 +14,6 @@ export function getInventoryByProductId(
 ): Promise<Inventory> {
   return new Promise((resolve, reject) => {
     const request = GetInventoryByProductIdRequest.fromJSON(input);
-    console.log(request);
     inventoryServiceClient.getInventoryByProductId(
       request,
       (error, response) => {
