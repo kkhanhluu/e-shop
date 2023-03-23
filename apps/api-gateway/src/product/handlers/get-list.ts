@@ -4,6 +4,7 @@ import {
   GetProductsResponse,
 } from '../../../generated/proto/ProductService';
 import { getInventoryByProductId } from '../../inventory/handlers/get';
+import { getAverageRatingForProduct } from '../../review/handlers/get-average-rating-for-product';
 import { productServiceClient } from '../clients/grpc';
 
 export const GetProductsInput = z.object({
@@ -20,9 +21,11 @@ export async function getPaginatedListOfProducts(
       const { quantityOnHand } = await getInventoryByProductId({
         productId: product.id,
       });
+      const { rating } = await getAverageRatingForProduct(product.id);
       return {
         ...product,
         quantityOnHand,
+        rating,
       };
     })
   );

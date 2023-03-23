@@ -1,7 +1,7 @@
 import { credentials } from '@grpc/grpc-js';
-import { ProductServiceClient } from '../../../generated/proto/ProductService';
+import { ReviewServiceClient } from '../../../generated/proto/ReviewService';
 
-export const productServiceClient = new ProductServiceClient(
-  'localhost:9093',
+export const reviewServiceClient = new ReviewServiceClient(
+  'localhost:9094',
   credentials.createInsecure()
 );

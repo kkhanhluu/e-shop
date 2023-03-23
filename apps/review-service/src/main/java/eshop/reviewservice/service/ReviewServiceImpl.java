@@ -37,10 +37,9 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public double getAverageRatingForProduct(String productId) {
         MatchOperation filterReviews = match(new Criteria("productId").is(productId));
-        GroupOperation sumRating = group("productId").sum("rate").as("sumRate");
-        GroupOperation averageRating = group("_id").avg("sumRate").as("average");
+        GroupOperation averageRating = group("productId").avg("rate").as("average");
         LimitOperation limitToOnlyFirstDoc = limit(1);
-        Aggregation aggregation = Aggregation.newAggregation(filterReviews, sumRating, averageRating, limitToOnlyFirstDoc);
+        Aggregation aggregation = Aggregation.newAggregation(filterReviews, averageRating, limitToOnlyFirstDoc);
         AggregationResults<AverageRatingForProduct> result = mongoTemplate.aggregate(aggregation, "reviews",
                 AverageRatingForProduct.class);
         result.forEach(i -> System.out.println("i = " + i));

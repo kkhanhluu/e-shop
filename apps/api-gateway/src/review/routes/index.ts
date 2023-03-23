@@ -1,15 +1,15 @@
 import { publicProcedure, router } from '../../context';
-import { getProductById, GetProductByIdInput } from '../handlers/get';
+import { createReview, CreateReviewInput } from '../handlers/create';
 import {
-  getPaginatedListOfProducts,
-  GetProductsInput,
-} from '../handlers/get-list';
+  getPaginatedListOfReviewsForProduct,
+  GetPaginatedListOfReviewsForProductInput,
+} from '../handlers/get-list-reviews-for-product';
 
-export const productRouter = router({
-  get: publicProcedure
-    .input(GetProductByIdInput)
-    .query(({ input }) => getProductById(input)),
-  list: publicProcedure
-    .input(GetProductsInput)
-    .query(({ input }) => getPaginatedListOfProducts(input)),
+export const reviewRouter = router({
+  create: publicProcedure
+    .input(CreateReviewInput)
+    .query(({ input }) => createReview(input)),
+  getListForProduct: publicProcedure
+    .input(GetPaginatedListOfReviewsForProductInput)
+    .query(({ input }) => getPaginatedListOfReviewsForProduct(input)),
 });
