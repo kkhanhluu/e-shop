@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/kkhanhluu/e-shop/compare/@order-service-app/v0.0.11...@order-service-app/v0.0.13) (2023-03-23)
+
+
+### Features
+
+* add compensate payment endpoint ([7c000aa](https://github.com/kkhanhluu/e-shop/commit/7c000aad9d2a4a5ec7ee82d4de519965c58ab357))
+* add grpc client ([6f12755](https://github.com/kkhanhluu/e-shop/commit/6f12755048b622d955838b58c991fbc870c535fc))
+* add grpc client for review service ([3d447a9](https://github.com/kkhanhluu/e-shop/commit/3d447a94638685e8babf79ef5dc23cbc0d3f30fb))
+* add grpc server for review service ([5e4f1c4](https://github.com/kkhanhluu/e-shop/commit/5e4f1c4ad64d2e014679eab2c8e85504a12ef37a))
+* add grpc server for review service ([fe436bb](https://github.com/kkhanhluu/e-shop/commit/fe436bbc96ddcb4c58165cc5e326d81fdfa7af3d))
+* add more grpc defintions ([8106f00](https://github.com/kkhanhluu/e-shop/commit/8106f001ab691596ce36d2db61f01215042c9ccc))
+* add outbox table ([b665730](https://github.com/kkhanhluu/e-shop/commit/b6657307d048e92d72905e026145f1e35977007e))
+* compensating transaction by queue ([1190945](https://github.com/kkhanhluu/e-shop/commit/1190945653c3898f3e516ebd8aa33a730cbb51f5))
+* get order by id using grpc ([13d1942](https://github.com/kkhanhluu/e-shop/commit/13d19420bc6d6bba04d863e14d13d18f14aea2ef))
+* implement create order with grpc ([8b93ec3](https://github.com/kkhanhluu/e-shop/commit/8b93ec39b3db571df3bb95fb5a99902ae6c2e897))
+* implement create order with grpc ([476d80f](https://github.com/kkhanhluu/e-shop/commit/476d80fa6a92607e1760d128950bc284639bd753))
+* implement grpc client for inventory service in gateway ([0803257](https://github.com/kkhanhluu/e-shop/commit/0803257c92b7f80fd4f1b1610578cdb413f01dfa))
+* implement grpc client for payment service in gateway ([5a92f87](https://github.com/kkhanhluu/e-shop/commit/5a92f871cb9b5c54a49d97abc15dc26e737e5915))
+* implement grpc client for product service ([17996fe](https://github.com/kkhanhluu/e-shop/commit/17996fea575e17b210c96e19d69a79cb48fe1b90))
+* implement grpc client in gateway ([4ac99bd](https://github.com/kkhanhluu/e-shop/commit/4ac99bd55443b826203a7f2c993c6da9d931d10a))
+* implement grpc server in inventory service ([7bd39b4](https://github.com/kkhanhluu/e-shop/commit/7bd39b433f570750fce85afe232dc7df67315860))
+* implement grpc server in payment service ([15d675a](https://github.com/kkhanhluu/e-shop/commit/15d675a9c80d62c895a7e7b4f5d219611ae35a8d))
+* implement grpc server in product service ([d4c7356](https://github.com/kkhanhluu/e-shop/commit/d4c73568c3576a84197ea29b7f0e47b9f3b56979))
+* save pyament to mongodb ([10f1240](https://github.com/kkhanhluu/e-shop/commit/10f1240e1919f68cda1158d81f5a52e938a28aae))
+* saving outbox messages in database and schedule sending them ([8140d7b](https://github.com/kkhanhluu/e-shop/commit/8140d7bdd8dad59d2bc390b72380146295762668))
+* send request to compensate payment from order serivce ([089ba97](https://github.com/kkhanhluu/e-shop/commit/089ba975b8f6fa201b543a77471b75eee35b659d))
+* setup trpc server ([b42cc23](https://github.com/kkhanhluu/e-shop/commit/b42cc2307d8619d57e192db29a74dfe925cb3869))
+* update proto file for product service ([e16a2ea](https://github.com/kkhanhluu/e-shop/commit/e16a2ea7f910f569a15870348de27a256d6402a4))
+
+
+### Bug Fixes
+
+* migrate to nx 15.8.7 ([7d08922](https://github.com/kkhanhluu/e-shop/commit/7d089228c4e9f830d34f87e03bb927644cea416a))
+* migrate to nx 15.8.7 ([efaa338](https://github.com/kkhanhluu/e-shop/commit/efaa338cf6fb8a4a2da6d3533e07b61ae946523d))
+* remove overhead logs ([9492cdb](https://github.com/kkhanhluu/e-shop/commit/9492cdb95698929b491687e493e7ef5437bacb1c))
+* update bom ([2da3d81](https://github.com/kkhanhluu/e-shop/commit/2da3d818bb835cdf66f519f54389f9a2a8f1afa6))
+* update proto file for review service ([cc5f0c6](https://github.com/kkhanhluu/e-shop/commit/cc5f0c6f2b3f005879a04ffe240c0e59dbc1d63f))
+
 ### [0.0.12](https://github.com/kkhanhluu/e-shop/compare/@order-service-app/v0.0.11...@order-service-app/v0.0.12) (2023-03-19)
 
 
