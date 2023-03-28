@@ -11,9 +11,9 @@ spec:
     - ReadWriteOnce
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: eventstore-deployment
+  name: eventstore-stateful-set
 spec:
   replicas: 1
   selector:
@@ -24,12 +24,28 @@ spec:
       labels:
         component: eventstore
     spec:
+      volumes:
+        - name: eventstore-storage
+          persistentVolumeClaim:
+            claimName: eventstore-persistent-volume-claim
       containers:
         - name: eventstore
           image: eventstore/eventstore:22.10.1-alpha-arm64v8
           ports:
             - containerPort: 2113
+            - containerPort: 1113
+          volumeMounts:
+            - mountPath: /usr/data/eventstore
+              name: eventstore-storage
           env:
+            - name: EVENTSTORE_INT_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: EVENTSTORE_EXT_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
             - name: EVENTSTORE_CLUSTER_SIZE
               value: '1'
             - name: EVENTSTORE_RUN_PROJECTIONS

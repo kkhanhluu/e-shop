@@ -7,5 +7,7 @@ spec:
   selector:
     component: eventstore
   ports:
-    - port: 2113
+    - protocol: 'TCP'
+      port: 2113
       targetPort: 2113
+  clusterIP: None
