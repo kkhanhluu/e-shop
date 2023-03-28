@@ -30,7 +30,7 @@ spec:
             claimName: postgres-persistent-volume-claim
       containers:
         - name: postgres
-          image: kkhanhluu/eshop-postgres:15.1
+          image: kkhanhluu/eshop-postgres:1.0.0
           ports:
             - containerPort: 5432
           volumeMounts:

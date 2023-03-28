@@ -1,3 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: eventstore-persistent-volume-claim
+spec:
+  resources:
+    requests:
+      storage: 2Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,11 +28,7 @@ spec:
         - name: eventstore
           image: eventstore/eventstore:22.10.1-alpha-arm64v8
           ports:
-            - containerPort: 5432
-          volumeMounts:
-            - mountPath: var/lib/eventstoreql/data
-              name: eventstore-storage
-              subPath: eventstore
+            - containerPort: 2113
           env:
             - name: EVENTSTORE_CLUSTER_SIZE
               value: '1'

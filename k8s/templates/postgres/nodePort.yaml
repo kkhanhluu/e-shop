@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: postgres-service
+spec:
+  type: NodePort
+  selector:
+    component: postgres
+  ports:
+    - port: 5432
+      nodePort: 30001
+      name: sql-port
