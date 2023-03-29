@@ -16,7 +16,7 @@
 	</repositories>
 	<groupId>com.github.kkhanhluu.eshop</groupId>
 	<artifactId>payment-service</artifactId>
-	<version>0.0.9</version>
+	<version>0.0.10</version>
 	<name>payment-service</name>
 	<description>The payment service of eshop project</description>
 	<dependencies>
