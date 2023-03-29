@@ -15,3 +15,6 @@ kubectl apply -f ./k8s/templates/rabbitmq/service.yaml
 
 kubectl apply -f ./k8s/templates/order-service/service.yaml
 kubectl apply -f ./k8s/templates/order-service/deployment.yaml
+
+kubectl apply -f ./k8s/templates/payment-service/service.yaml
+kubectl apply -f ./k8s/templates/payment-service/deployment.yaml

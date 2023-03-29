@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: payment-service
+  template:
+    metadata:
+      labels:
+        component: payment-service
+    spec:
+      containers:
+        - name: payment-service
+          image: kkhanhluu/payment-service:0.0.8
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_APPLICATION_JSON
+              value: '{"spring":{"data":{"mongodb":{"host":"mongo-cluster-ip-service","username":"mongo","password":"mongo","database":"payment-service","port":27017,"authentication-database":"admin"}}}}'
