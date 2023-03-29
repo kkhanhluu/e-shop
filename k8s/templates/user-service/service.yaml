@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: user-service-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: user-service
+  ports:
+    - port: 80
+      targetPort: 8080
