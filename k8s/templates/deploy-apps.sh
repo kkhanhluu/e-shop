@@ -18,3 +18,6 @@ kubectl apply -f ./k8s/templates/order-service/deployment.yaml
 
 kubectl apply -f ./k8s/templates/payment-service/service.yaml
 kubectl apply -f ./k8s/templates/payment-service/deployment.yaml
+
+kubectl apply -f ./k8s/templates/product-service/service.yaml
+kubectl apply -f ./k8s/templates/product-service/deployment.yaml

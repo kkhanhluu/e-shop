@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: payment-service
-          image: kkhanhluu/payment-service:0.0.8
+          image: kkhanhluu/payment-service:0.0.9
           ports:
             - containerPort: 8080
           env:

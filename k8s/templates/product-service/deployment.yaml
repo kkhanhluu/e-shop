@@ -19,4 +19,4 @@ spec:
             - containerPort: 8080
           env:
             - name: SPRING_APPLICATION_JSON
-              value: '{"spring":{"data":{"mongodb":{"host":"mongo-cluster-ip-service","username":"mongo","password":"mongo","database":"payment-service","port":27017,"authentication-database":"admin"}}}}'
+              value: '{"spring":{"datasource":{"url":"jdbc:postgresql://postgres-cluster-ip-service:5432/product_service","username":"postgres","password":"postgres","driver-class-name":"org.postgresql.Driver"},"sql":{"init":{"platform":"postgres"}}}}'
