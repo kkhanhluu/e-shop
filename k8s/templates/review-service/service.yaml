@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: review-service-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: review-service
+  ports:
+    - port: 80
+      targetPort: 8080

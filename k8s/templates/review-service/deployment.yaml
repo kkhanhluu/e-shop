@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: review-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: review-service
+  template:
+    metadata:
+      labels:
+        component: review-service
+    spec:
+      containers:
+        - name: review-service
+          image: kkhanhluu/review-service:0.0.7
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_APPLICATION_JSON
+              value: '{"spring":{"data":{"mongodb":{"host":"mongo-cluster-ip-service","username":"mongo","password":"mongo","database":"review-service","port":27017,"authentication-database":"admin"}}}}'
