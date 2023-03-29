@@ -21,3 +21,12 @@ kubectl apply -f ./k8s/templates/payment-service/deployment.yaml
 
 kubectl apply -f ./k8s/templates/product-service/service.yaml
 kubectl apply -f ./k8s/templates/product-service/deployment.yaml
+
+kubectl apply -f ./k8s/templates/review-service/service.yaml
+kubectl apply -f ./k8s/templates/review-service/deployment.yaml
+
+kubectl apply -f ./k8s/templates/user-service/service.yaml
+kubectl apply -f ./k8s/templates/user-service/deployment.yaml
+
+kubectl apply -f ./k8s/templates/inventory-service/service.yaml
+kubectl apply -f ./k8s/templates/inventory-service/deployment.yaml
