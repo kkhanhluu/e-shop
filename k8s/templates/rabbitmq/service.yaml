@@ -1,0 +1,19 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: rabbitmq-service
+spec:
+  type: NodePort
+  selector:
+    component: rabbitmq
+  ports:
+    - name: rabbit-amqp
+      protocol: TCP
+      port: 5672
+      targetPort: 5672
+      nodePort: 30672
+    - name: rabbit-ui
+      protocol: TCP
+      port: 15672
+      targetPort: 15672
+      nodePort: 31672
