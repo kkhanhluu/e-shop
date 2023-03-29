@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/kkhanhluu/e-shop/compare/@payment-service-app/v0.0.8...@payment-service-app/v0.0.9) (2023-03-29)
+
+
+### Bug Fixes
+
+* fix test for payment service ([4f55f47](https://github.com/kkhanhluu/e-shop/commit/4f55f479a00f0b7f4329becd4dfe9d61ea614ed9))
+
 ### [0.0.8](https://github.com/kkhanhluu/e-shop/compare/@payment-service-app/v0.0.4...@payment-service-app/v0.0.8) (2023-03-23)
 
 
