@@ -1,11 +1,11 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: order-service-svc
+  name: payment-service-cluster-ip-service
 spec:
   type: ClusterIP
   selector:
-    component: order-service
+    component: payment-service
   ports:
     - port: 80
       targetPort: 8080
