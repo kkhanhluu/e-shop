@@ -7,6 +7,9 @@ spring:
   sql:
     init:
       platform: postgres
+  rabbitmq:
+    host: localhost
+    port: 5672
 
 eventstore:
   connection-string: esdb://localhost:2113?tls=false
