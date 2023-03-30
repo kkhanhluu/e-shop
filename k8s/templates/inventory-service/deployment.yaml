@@ -17,7 +17,7 @@ spec:
           image: kkhanhluu/inventory-service:0.0.9
           ports:
             - containerPort: 8080
-				- containerPort: 9090
+            - containerPort: 9090
           env:
             - name: SPRING_APPLICATION_JSON
               value: '{"spring":{"datasource":{"url":"jdbc:postgresql://postgres-cluster-ip-service:5432/inventory_service","username":"postgres","password":"postgres","driver-class-name":"org.postgresql.Driver"},"sql":{"init":{"platform":"postgres"}}}}'

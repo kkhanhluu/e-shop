@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: api-gateway-svc
+spec:
+  type: NodePort
+  selector:
+    component: api-gateway
+  ports:
+    - port: 80
+      targetPort: 3000
+		nodePort: 30030
