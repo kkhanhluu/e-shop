@@ -18,6 +18,9 @@ kubectl delete service/product-service-cluster-ip-service
 kubectl delete deploy/inventory-service-deployment
 kubectl delete service/inventory-service-cluster-ip-service
 
+kubectl delete deploy/api-gateway-deployment
+kubectl delete service/api-gateway-cluster-ip-service
+
 if [ "$1" = "all" ]; then
 	kubectl delete deploy/mongo-deployment
 	kubectl delete service/mongo-cluster-ip-service

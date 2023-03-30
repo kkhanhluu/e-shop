@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: api-gateway
+  template:
+    metadata:
+      labels:
+        component: api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: kkhanhluu/api-gateway:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: INVENTORY_SERVICE_GRPC_URI
+              value: inventory-service-cluster-ip-service:9090
+            - name: ORDER_SERVICE_GRPC_URI
+              value: order-service:9090
+				- name: PAYMENT_SERVICE_GRPC_URI
+              value: payment-service-cluster-ip-service:9090
+				- name: PRODUCT_SERVICE_GRPC_URI
+              value: product-service-cluster-ip-service:9090
+				- name: REVIEW_SERVICE_GRPC_URI
+              value: review-service-cluster-ip-service:9090
+				- name: USER_SERVICE_GRPC_URI
+              value: user-service-cluster-ip-service:9090

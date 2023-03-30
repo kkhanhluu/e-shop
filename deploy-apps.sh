@@ -17,6 +17,9 @@ kubectl apply -f ./k8s/templates/user-service/deployment.yaml
 kubectl apply -f ./k8s/templates/inventory-service/service.yaml
 kubectl apply -f ./k8s/templates/inventory-service/deployment.yaml
 
+kubectl apply -f ./k8s/templates/api-gateway/service.yaml
+kubectl apply -f ./k8s/templates/api-gateway/deployment.yaml
+
 if [ "$1" = "all" ]; then
 	kubectl apply -f ./k8s/templates/postgres/deployment.yaml
 	kubectl apply -f ./k8s/templates/postgres/service.yaml
