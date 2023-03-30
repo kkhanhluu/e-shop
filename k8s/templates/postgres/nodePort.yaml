@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: postgres-nodeport-service
+  name: postgres-cluster-ip-service
 spec:
   type: NodePort
   selector:
@@ -9,5 +9,5 @@ spec:
   ports:
     - port: 5432
       targetPort: 5432
-      nodePort: 30001
+      nodePort: 30432
       name: sql-port
