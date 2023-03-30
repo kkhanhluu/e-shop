@@ -1693,6 +1693,21 @@
     tmp "~0.2.1"
     tslib "^2.3.0"
 
+"@nrwl/esbuild@15.8.7":
+  version "15.8.7"
+  resolved "https://registry.yarnpkg.com/@nrwl/esbuild/-/esbuild-15.8.7.tgz#30d9208b014c73c19fb45fbcb0ac0fbe9568d970"
+  integrity sha512-GdoR1psM10FZBqIWItXN5XLG14eo3FqhcPzTijYPt4+6TIDVtavseFDFkgD4p/Zt2vTTD17NezZp03Ln2WyrRg==
+  dependencies:
+    "@nrwl/devkit" "15.8.7"
+    "@nrwl/js" "15.8.7"
+    "@nrwl/workspace" "15.8.7"
+    chalk "^4.1.0"
+    dotenv "~10.0.0"
+    fast-glob "3.2.7"
+    fs-extra "^11.1.0"
+    tsconfig-paths "^4.1.2"
+    tslib "^2.3.0"
+
 "@nrwl/eslint-plugin-nx@15.8.7":
   version "15.8.7"
   resolved "https://registry.yarnpkg.com/@nrwl/eslint-plugin-nx/-/eslint-plugin-nx-15.8.7.tgz#a01bb8cdb4e2c39c5ab3701b1e32b9cc5726ffc5"
@@ -7782,7 +7797,7 @@ tree-kill@1.2.2:
   resolved "https://registry.yarnpkg.com/tree-kill/-/tree-kill-1.2.2.tgz#4ca09a9092c88b73a7cdc5e8a01b507b0790a0cc"
   integrity sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==
 
-trpc-playground@^1.0.4:
+trpc-playground@1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/trpc-playground/-/trpc-playground-1.0.4.tgz#48fa26695545f1c6ff21800829301a9c780800cd"
   integrity sha512-6nVf1o2LNoo1g6oTS24yajoH7xV4CFjxGAbAH7qLXqa3yo9qB5QHsWLbrm1hNt51SyCG++P0zHJaCdVfgvEVDg==

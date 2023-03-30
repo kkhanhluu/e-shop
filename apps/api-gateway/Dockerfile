@@ -4,7 +4,7 @@
 # Tip: Modify "docker-build" options in project.json to change docker build args.
 #
 # Run the container with `docker run -p 3000:3000 -t api-gateway`.
-FROM docker.io/node:lts-alpine
+FROM node:18-alpine
 
 ENV HOST=0.0.0.0
 ENV PORT=3000
@@ -14,8 +14,10 @@ WORKDIR /app
 RUN addgroup --system api-gateway && \
           adduser --system -G api-gateway api-gateway
 
-COPY node_modules api-gateway/node_modules
 COPY dist/apps/api-gateway api-gateway
+COPY apps/api-gateway/node_modules api-gateway
 RUN chown -R api-gateway:api-gateway .
 
-CMD [ "node", "api-gateway/main" ]
+RUN npm --prefix api-gateway --omit=dev -f install
+
+CMD [ "node", "api-gateway" ]

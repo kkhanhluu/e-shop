@@ -22,14 +22,16 @@ async function main() {
     })
   );
 
-  app.use(
-    '/trpc-playground',
-    await expressHandler({
-      trpcApiEndpoint: '/trpc',
-      router: appRouter,
-      playgroundEndpoint: '/trpc-playground',
-    })
-  );
+  if (process.env.NODE_ENV === 'development') {
+    app.use(
+      '/trpc-playground',
+      await expressHandler({
+        trpcApiEndpoint: '/trpc',
+        router: appRouter,
+        playgroundEndpoint: '/trpc-playground',
+      })
+    );
+  }
 
   const port = process.env.PORT || 3333;
   const server = app.listen(port, () => {
