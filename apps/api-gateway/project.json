@@ -58,6 +58,10 @@
           "codeCoverage": true
         }
       }
+    },
+    "docker:build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f ./apps/api-gateway/Dockerfile . -t kkhanhluu/api-gateway:latest"
     }
   },
   "tags": []
