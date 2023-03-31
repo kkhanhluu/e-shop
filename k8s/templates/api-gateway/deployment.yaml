@@ -38,3 +38,5 @@ spec:
               value: postgres
             - name: MONGODB_URI
               value: mongodb://mongo:mongo@mongo-cluster-ip-service:27017?authMechanism=DEFAULT
+            - name: NODE_ENV
+              value: production

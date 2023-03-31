@@ -21,14 +21,22 @@
         "outputPath": "dist/apps/api-gateway",
         "main": "apps/api-gateway/src/main.ts",
         "tsConfig": "apps/api-gateway/tsconfig.app.json",
-        "assets": ["apps/api-gateway/src/assets"],
+        "assets": [
+          "apps/api-gateway/src/assets",
+          "apps/api-gateway/src/inventory/prisma",
+          "apps/api-gateway/src/order/prisma",
+          "apps/api-gateway/src/product/prisma",
+          "apps/api-gateway/src/user/prisma"
+        ],
         "isolatedConfig": true,
         "webpackConfig": "apps/api-gateway/webpack.config.js",
         "generatePackageJson": true
       },
       "configurations": {
         "development": {},
-        "production": {}
+        "production": {
+          "optimization": true
+        }
       }
     },
     "serve": {
