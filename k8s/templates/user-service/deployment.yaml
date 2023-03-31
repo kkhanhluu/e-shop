@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: user-service
+  template:
+    metadata:
+      labels:
+        component: user-service
+    spec:
+      containers:
+        - name: user-service
+          image: kkhanhluu/user-service:0.0.17
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_APPLICATION_JSON
+              value: '{"spring":{"datasource":{"url":"jdbc:postgresql://postgres-cluster-ip-service:5432/user_service","username":"postgres","password":"postgres","driver-class-name":"org.postgresql.Driver"}}}'

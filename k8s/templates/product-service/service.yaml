@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: product-service-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: product-service
+  ports:
+    - port: 80
+      targetPort: 8080
+      name: 'http-port'
+    - port: 9090
+      targetPort: 9090
+      name: 'grpc-port'

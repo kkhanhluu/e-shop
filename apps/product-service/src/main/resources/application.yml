@@ -1,7 +1,0 @@
-spring:
-  sql:
-    init:
-      platform: postgres
-  jpa:
-    generate-ddl: true
-    show-sql: true

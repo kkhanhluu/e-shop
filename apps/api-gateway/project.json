@@ -4,10 +4,17 @@
   "sourceRoot": "apps/api-gateway/src",
   "projectType": "application",
   "targets": {
+    "buf:generate": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "buf:generate"
+      }
+    },
     "build": {
       "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
+      "dependsOn": ["buf:generate"],
       "options": {
         "target": "node",
         "compiler": "tsc",
@@ -16,7 +23,8 @@
         "tsConfig": "apps/api-gateway/tsconfig.app.json",
         "assets": ["apps/api-gateway/src/assets"],
         "isolatedConfig": true,
-        "webpackConfig": "apps/api-gateway/webpack.config.js"
+        "webpackConfig": "apps/api-gateway/webpack.config.js",
+        "generatePackageJson": true
       },
       "configurations": {
         "development": {},
@@ -58,6 +66,10 @@
           "codeCoverage": true
         }
       }
+    },
+    "docker:build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f ./apps/api-gateway/Dockerfile . -t kkhanhluu/api-gateway:latest"
     }
   },
   "tags": []

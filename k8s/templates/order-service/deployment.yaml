@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: order-service
+  template:
+    metadata:
+      labels:
+        component: order-service
+    spec:
+      containers:
+        - name: order-service
+          image: kkhanhluu/order-service:0.0.13
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_APPLICATION_JSON
+              value: '{"spring":{"rabbitmq":{"host":"rabbitmq-service","port":5672},"datasource":{"url":"jdbc:postgresql://postgres-cluster-ip-service:5432/order_service","username":"postgres","password":"postgres","driver-class-name":"org.postgresql.Driver"}},"sql":{"init":{"platform":"postgres"}},"eventstore":{"connection-string":"esdb://eventstore-cluster-ip-service:2113?tls=false"},"payment":{"api-host":"http://payment-service-cluster-ip-service"}}'
