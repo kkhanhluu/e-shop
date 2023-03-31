@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/kkhanhluu/e-shop/compare/@payment-service-app/v0.0.10...@payment-service-app/v0.0.11) (2023-03-31)
+
+
+### Features
+
+* add api gateway k8s config ([c034629](https://github.com/kkhanhluu/e-shop/commit/c0346299675f536bb90d870dffa36f9045b89ff9))
+* add dockerfile for api gateway ([91c0f9d](https://github.com/kkhanhluu/e-shop/commit/91c0f9d0e98eaa43d0365f41ab47e1c0b918e6a0))
+* add dockerfile for api gateway ([fa1c652](https://github.com/kkhanhluu/e-shop/commit/fa1c6523c22561502137d0c1f957461dd3197fc4))
+* add grpc port ([a930e03](https://github.com/kkhanhluu/e-shop/commit/a930e0321ba571857f965e6dd765eace51a586fd))
+* add k8s config for databases ([987b423](https://github.com/kkhanhluu/e-shop/commit/987b4237bcb87ad5134b1b62ad58f8291bdabae2))
+* add k8s config for eventstore ([d8b2dfe](https://github.com/kkhanhluu/e-shop/commit/d8b2dfe848add14907595dd2a4613f5b3e1a0d1e))
+* add k8s for inventory service ([8c7c4a4](https://github.com/kkhanhluu/e-shop/commit/8c7c4a4e4cd7353dcf8b778422be094036ad9094))
+* add k8s for payment service ([1aa7842](https://github.com/kkhanhluu/e-shop/commit/1aa78425dd629724a19e3e76c39ad4d73852ab44))
+* add k8s for product service ([c441f16](https://github.com/kkhanhluu/e-shop/commit/c441f168c04ffa32740f1fa62da94cde04a1f237))
+* add k8s for review service ([a304d8a](https://github.com/kkhanhluu/e-shop/commit/a304d8a06c78d9ff42092e6fb007886df22ce711))
+* add k8s for user service ([d125fea](https://github.com/kkhanhluu/e-shop/commit/d125fea2dc85d79ade2368d96bd2495bda64df72))
+* add k8s for user service ([6366b71](https://github.com/kkhanhluu/e-shop/commit/6366b71a17674f5df0a56dbbf2593feca8c2345f))
+
+
+### Bug Fixes
+
+* fix product service test ([73afb1b](https://github.com/kkhanhluu/e-shop/commit/73afb1bea5a3c167c43db1e6c0d475b07bb5b0ae))
+
 ### [0.0.10](https://github.com/kkhanhluu/e-shop/compare/@payment-service-app/v0.0.8...@payment-service-app/v0.0.10) (2023-03-29)
 
 
