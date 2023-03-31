@@ -4,13 +4,18 @@ import * as trpcExpress from '@trpc/server/adapters/express';
 import { expressHandler } from 'trpc-playground/handlers/express';
 import { appRouter } from './router';
 import { createContext } from './context';
+import { migrateDatabases } from './scripts/migrate-db';
+import { seedDB } from './scripts/seed-db';
 
 async function main() {
+  migrateDatabases();
+  await seedDB();
+
   const app = express();
 
   app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-  app.get('/api', (req, res) => {
+  app.get('/api', (_, res) => {
     res.send({ message: 'Welcome to api-gateway!' });
   });
 
@@ -22,16 +27,14 @@ async function main() {
     })
   );
 
-  if (process.env.NODE_ENV === 'development') {
-    app.use(
-      '/trpc-playground',
-      await expressHandler({
-        trpcApiEndpoint: '/trpc',
-        router: appRouter,
-        playgroundEndpoint: '/trpc-playground',
-      })
-    );
-  }
+  app.use(
+    '/trpc-playground',
+    await expressHandler({
+      trpcApiEndpoint: '/trpc',
+      router: appRouter,
+      playgroundEndpoint: '/trpc-playground',
+    })
+  );
 
   const port = process.env.PORT || 3333;
   const server = app.listen(port, () => {

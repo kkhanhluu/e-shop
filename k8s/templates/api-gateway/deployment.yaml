@@ -28,5 +28,13 @@ spec:
               value: product-service-cluster-ip-service:9090
             - name: REVIEW_SERVICE_GRPC_URI
               value: review-service-cluster-ip-service:9090
-            - name: USER_SERVICE_GRPC_URI
-              value: user-service-cluster-ip-service:9090
+            - name: DATABASE_HOST
+              value: postgres-cluster-ip-service
+            - name: DATABASE_PORT
+              value: '5432'
+            - name: DATABASE_USERNAME
+              value: postgres
+            - name: DATABASE_PASSWORD
+              value: postgres
+            - name: MONGODB_URI
+              value: mongodb://mongo:mongo@mongo-cluster-ip-service:27017?authMechanism=DEFAULT
