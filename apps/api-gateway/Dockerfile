@@ -27,13 +27,30 @@ ENV REVIEW_SERVICE_GRPC_URI $REVIEW_SERVICE_GRPC_URI
 ARG USER_SERVICE_GRPC_URI
 ENV USER_SERVICE_GRPC_URI $USER_SERVICE_GRPC_URI
 
+ARG DATABASE_HOST
+ENV DATABASE_HOST $DATABASE_HOST
+
+ARG DATABASE_PORT
+ENV DATABASE_PORT $DATABASE_PORT
+
+ARG DATBASE_USERNAME
+ENV DATBASE_USERNAME $DATBASE_USERNAME
+
+ARG DATABSE_PORT
+ENV DATABSE_PORT $DATABSE_PORT
+
+ARG MONGODB_URI
+ENV MONGODB_URI $MONGODB_URI
+
+ARG NODE_ENV
+ENV NODE_ENV $NODE_ENV
+
 WORKDIR /app
 
 RUN addgroup --system api-gateway && \
           adduser --system -G api-gateway api-gateway
 
 COPY dist/apps/api-gateway api-gateway
-COPY apps/api-gateway/node_modules api-gateway
 RUN chown -R api-gateway:api-gateway .
 
 RUN npm --prefix api-gateway --omit=dev -f install
