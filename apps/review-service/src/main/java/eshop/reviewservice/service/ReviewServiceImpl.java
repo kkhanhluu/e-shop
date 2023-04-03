@@ -42,7 +42,6 @@ public class ReviewServiceImpl implements ReviewService {
         Aggregation aggregation = Aggregation.newAggregation(filterReviews, averageRating, limitToOnlyFirstDoc);
         AggregationResults<AverageRatingForProduct> result = mongoTemplate.aggregate(aggregation, "reviews",
                 AverageRatingForProduct.class);
-        result.forEach(i -> System.out.println("i = " + i));
         return result.getMappedResults().get(0).getAverage();
     }
 }
