@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/kkhanhluu/e-shop/compare/@payment-service-app/v0.0.11...@payment-service-app/v0.0.12) (2023-04-03)
+
+
+### Features
+
+* add api gateway k8s config ([a56bece](https://github.com/kkhanhluu/e-shop/commit/a56bece4b967057802b3ba8410b377c38bdf72b6))
+* add authentication to api gateway ([4b080c0](https://github.com/kkhanhluu/e-shop/commit/4b080c07637fe3b80cf723e2cdeaa1de10554b4d))
+* add seed script for client and user ([0edd581](https://github.com/kkhanhluu/e-shop/commit/0edd58188f1c8e325b1d7cf03787f96772b31350))
+
+
+### Bug Fixes
+
+* add claims to access token ([45887cd](https://github.com/kkhanhluu/e-shop/commit/45887cdc06ed6ae46e9474f0c830c5454c7656c3))
+* fix db migration ([a1f9a1d](https://github.com/kkhanhluu/e-shop/commit/a1f9a1d9009be8f9b0ec4787f6b62dc53db798e7))
+* remove console.log ([16e2bcf](https://github.com/kkhanhluu/e-shop/commit/16e2bcf60edf5eebd76466565f38577624517801))
+* udpate api gateway k8s config for authentication ([6cb466d](https://github.com/kkhanhluu/e-shop/commit/6cb466d1a31a3f7677c374bbeb1be6876f95b2b4))
+
 ### [0.0.11](https://github.com/kkhanhluu/e-shop/compare/@payment-service-app/v0.0.10...@payment-service-app/v0.0.11) (2023-03-31)
 
 
