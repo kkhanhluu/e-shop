@@ -1,12 +1,13 @@
-import { publicProcedure, router } from '../../context';
+import { router } from '../../context';
+import { authenticatedProcedure } from '../../middleware/authenticated';
 import { createPayment, CreatePaymentInput } from '../handlers/create';
 import { getPaymentByOrderId, GetPaymentByOrderIdInput } from '../handlers/get';
 
 export const paymentRouter = router({
-  create: publicProcedure
+  create: authenticatedProcedure
     .input(CreatePaymentInput)
     .query(({ input }) => createPayment(input)),
-  get: publicProcedure
+  get: authenticatedProcedure
     .input(GetPaymentByOrderIdInput)
     .query(({ input }) => getPaymentByOrderId(input)),
 });

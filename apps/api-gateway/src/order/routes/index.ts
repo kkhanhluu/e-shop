@@ -1,12 +1,13 @@
-import { publicProcedure, router } from '../../context';
+import { router } from '../../context';
+import { authenticatedProcedure } from '../../middleware/authenticated';
 import { createOrder, CreateOrderInput } from '../handlers/create';
 import { getOrderById, GetOrderByIdInput } from '../handlers/get';
 
 export const orderRouter = router({
-  create: publicProcedure
+  create: authenticatedProcedure
     .input(CreateOrderInput)
     .query(({ input }) => createOrder(input)),
-  get: publicProcedure
+  get: authenticatedProcedure
     .input(GetOrderByIdInput)
     .query(({ input }) => getOrderById(input)),
 });
