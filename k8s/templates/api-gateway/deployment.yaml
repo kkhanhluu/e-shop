@@ -40,3 +40,5 @@ spec:
               value: mongodb://mongo:mongo@mongo-cluster-ip-service:27017?authMechanism=DEFAULT
             - name: NODE_ENV
               value: production
+            - name: AUTHORIZATION_SERVICE_URI
+              value: http://user-service-cluster-ip-service:8080
