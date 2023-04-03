@@ -25,7 +25,7 @@ public class UserService {
 
     public void createUser(RegisterRequest request) {
         User user = User.builder().email(request.getEmail()).username(request.getUsername()).password(
-                passwordEncoder.encode(request.getPassword())).build();
+                passwordEncoder.encode(request.getPassword())).role(request.getRole()).build();
         userRepository.save(user);
     }
 }

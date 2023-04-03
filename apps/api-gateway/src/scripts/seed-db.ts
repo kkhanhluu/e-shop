@@ -21,6 +21,7 @@ const inventoryClient = new Client({
   ...CONFIG,
   database: 'inventory_service',
 });
+
 const reviewClient = new MongoClient(process.env.MONGODB_URI as string);
 
 export async function seedDB() {
@@ -80,6 +81,19 @@ export async function seedDB() {
         )
         .flat()
     );
+
+    userClient.query({
+      text: 'INSERT INTO public.clients (id, auth_method, client_id, grant_types, redirect_uri, scopes, secret) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+      values: [
+        faker.datatype.uuid(),
+        'client_secret_basic',
+        'eshop',
+        ['authorization_code', 'refresh_token'],
+        'https://springone.io/authorized',
+        ['openid'],
+        '$2a$12$201RJVqIyUY10HYSRs0mpe3cQ2QJrJZ13v4Yzov',
+      ],
+    });
     console.log('Database was successfully seeded 🌱');
   } catch (error) {
     console.error(`Cannot seed database: ${error}`);
