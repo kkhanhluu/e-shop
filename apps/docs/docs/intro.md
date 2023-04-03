@@ -25,7 +25,7 @@ Information and details to help you getting to know e-shop from these points of 
 - [Architecture](/docs/tutorial-basics/congratulations)
 - [Code](/docs/tutorial-basics/congratulations)
 
-## Tech stack:
+## Tech stack
 
 - Spring boot: Java framework to build web server
 - [Spring oauth2 authorization server](https://docs.spring.io/spring-authorization-server/docs/current/reference/html/index.html): Framework that provides implementation of OAuth 2.1 and OpenID specifications.
