@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: kkhanhluu/user-service:0.0.17
+          image: kkhanhluu/user-service:0.0.18
           ports:
             - containerPort: 8080
           env:

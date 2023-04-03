@@ -3,13 +3,10 @@ apiVersion: v1
 metadata:
   name: user-service-cluster-ip-service
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     component: user-service
   ports:
     - port: 80
       targetPort: 8080
-      name: 'http-port'
-    - port: 9090
-      targetPort: 9090
-      name: 'grpc-port'
+      nodePort: 30090
