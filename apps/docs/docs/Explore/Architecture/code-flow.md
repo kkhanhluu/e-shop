@@ -6,10 +6,10 @@ sidebar_position: 2
 
 # Code Flow
 
-## User Registration
-
-## Login
-
 ## Create an order
 
-## Make a payment
+![create order](/img/create-order.png)
+
+## Order checkout
+
+![order checkout](/img/order-checkout.png)
