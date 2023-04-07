@@ -36,7 +36,7 @@ Event sourcing pattern can be checked in order service.
 
 ### Write model
 
-- In command handler of [CQRS pattern](/docs/explore/code/simplified-cqrs), an event is published to the state machine, which implements the Saga pattern
+- In command handler of [CQRS pattern](/docs/explore/code/simplified-cqrs), an event is published to the state machine, which implements the [Saga pattern](/docs/explore/code/saga-pattern)
 - When the state of machine is transited to a new state (e.g. from `PAYMENT_PENDING` to `PAID` or `PAYMENT_EXCEPTION`), an action will be fired.
 - When an action is fired, events will stored in eventstore database
   ![action event sourcing](/img/event-sourcing-action-saga.png)

@@ -58,3 +58,4 @@ public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<O
                         OrderStateMachineEvent.ALLOCATION_FAILED).action(allocateOrderFailedAction);
     }
 }
+
