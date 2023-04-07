@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.15](https://github.com/kkhanhluu/e-shop/compare/@order-service-app/v0.0.14...@order-service-app/v0.0.15) (2023-04-07)
+
+
+### Features
+
+* add docs ([e4fcfcd](https://github.com/kkhanhluu/e-shop/commit/e4fcfcd3c92e5d956b4e9d7865ad086f69d49872))
+* add docs structure ([a2c9c57](https://github.com/kkhanhluu/e-shop/commit/a2c9c575ac98a645532d9777113bcc537a6f131d))
+* add docs structure ([63e90ff](https://github.com/kkhanhluu/e-shop/commit/63e90ff90bf5fa797288d82fd973e444137ecf15))
+* add event-sourcing docs ([e1902be](https://github.com/kkhanhluu/e-shop/commit/e1902be4d0a7bd73a2734f550e01a179191937fd))
+* add grpc docs ([3b205ba](https://github.com/kkhanhluu/e-shop/commit/3b205ba39654c61b4877a16fdac99ea342bca73c))
+* add saga pattern docs ([384fdab](https://github.com/kkhanhluu/e-shop/commit/384fdabce5d967eecab1a67d2e2ed61c142a1b95))
+* add simplified cqrs ([852562b](https://github.com/kkhanhluu/e-shop/commit/852562b90713da0967a00b800cb180874a11def0))
+* add transactional outbox pattern ([ac15db7](https://github.com/kkhanhluu/e-shop/commit/ac15db776ce08694fef734dc3f53b20b5d6f6f55))
+
+
+### Bug Fixes
+
+* update k8s config ([9dde6ea](https://github.com/kkhanhluu/e-shop/commit/9dde6ea54c68d20535f67ed8f7dc30e1c6ef2959))
+
 ### [0.0.14](https://github.com/kkhanhluu/e-shop/compare/@order-service-app/v0.0.13...@order-service-app/v0.0.14) (2023-04-03)
 
 
