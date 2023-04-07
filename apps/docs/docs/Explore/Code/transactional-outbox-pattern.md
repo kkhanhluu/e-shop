@@ -8,9 +8,9 @@ sidebar_position: 5
 
 ## Context and problem
 
-In a microservices system, message/event queues is one of the most popular ways to implement the communication between services. In most of cases, a service typically needs to update its own database and then publish the message/events. For example, in the payment service, after receiving request to create a payment, the service needs to create entry in database and then publish message to order service notifying that, this order has been checked out.
+In a microservices system, message/event queues are one of the most popular ways to implement communication between services. In most cases, a service needs to update its own database and then publish the message/events. For example, in the payment service, after receiving a request to create a payment, the service needs to create an entry in the database and then publish a message to the order service notifying that the order has been checked out.
 
-The traditional solution is: using database transaction to update database and then after transaction finished, a message is published to queue. This approach works well until an error occurs between transaction and publishing the corresponding message for any reasons (i.e. network errors, host failure,..). In this case, the database is updated but other services won't be notified by that change. Therefore, a mechanism is needed to ensure that a service update the database and send messages atomically.
+The traditional solution is to use a database transaction to update the database and then, after the transaction is finished, publish the corresponding message to the queue. This approach works well until an error occurs between the transaction and publishing the corresponding message for any reason (i.e., network errors, host failure, etc.). In this case, the database is updated, but other services won't be notified of that change. Therefore, a mechanism is needed to ensure that a service updates the database and sends messages atomically.
 
 ## Conceptual overview
 
