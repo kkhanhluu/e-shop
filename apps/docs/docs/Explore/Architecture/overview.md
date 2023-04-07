@@ -31,4 +31,4 @@ Currently, the API gateway only performs request forwarding to internal microser
 
 ## Database
 
-In order to simplify the development, there are 1 Postgres database server, 1 event store server and 1 MongoDB server are all deployed to a single cluster. However, this is not recommended approach for a production-grade solution.
+In order to simplify the development, there are 1 Postgres database server with multiple databases, 1 event store server and 1 MongoDB server are all deployed to a single cluster. However, this is not recommended approach for a production-grade solution.

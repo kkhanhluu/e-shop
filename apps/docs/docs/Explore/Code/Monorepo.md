@@ -1,6 +1,7 @@
 ---
 title: Monorepo
 slug: monorepo
+sidebar_position: 1
 ---
 
 # Monorepo
