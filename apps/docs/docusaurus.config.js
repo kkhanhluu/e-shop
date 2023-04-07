@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'E-shop documentation',
   tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/avatar.png',
 
   // Set the production url of your site here
   url: 'https://kkhanhluu.github.io',
@@ -55,8 +55,8 @@ const config = {
         hideOnScroll: true,
         logo: {
           alt: 'E-shop',
-          src: 'img/logo.png',
-          srcDark: 'img/logo.png',
+          src: 'img/logo.svg',
+          srcDark: 'img/logo.svg',
         },
         items: [
           {
