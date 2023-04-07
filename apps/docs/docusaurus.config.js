@@ -55,8 +55,8 @@ const config = {
         hideOnScroll: true,
         logo: {
           alt: 'E-shop',
-          src: 'img/logo.svg',
-          srcDark: 'img/logo.svg',
+          src: 'img/logo.png',
+          srcDark: 'img/logo.png',
         },
         items: [
           {
