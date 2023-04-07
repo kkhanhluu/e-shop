@@ -13,7 +13,7 @@
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-  tutorialSidebar: [
+  docs: [
     'index',
     'getting-started',
     {
@@ -54,13 +54,13 @@ const sidebars = {
             },
             {
               type: 'doc',
-              id: 'explore/code/simplified-cqrs',
-              label: 'Simplified CQRS',
+              id: 'explore/code/event-sourcing',
+              label: 'Event Sourcing',
             },
             {
               type: 'doc',
-              id: 'explore/code/event-sourcing',
-              label: 'Event Sourcing',
+              id: 'explore/code/simplified-cqrs',
+              label: 'Simplified CQRS',
             },
             {
               type: 'doc',
