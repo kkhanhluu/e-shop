@@ -14,7 +14,7 @@ This example illustrates several important concepts:
 
 ## Architecture overview
 
-![Eshop architecture](https://kkhanhluu.github.io/e-shop/assets/images/architecture-64ba597d4898075c06b04b8ee331a9d4.png)
+![Eshop architecture](./apps/docs/static/img/architecture.png)
 
 Information and details to help you getting to know e-shop from these points of view:
 
